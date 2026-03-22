@@ -6,8 +6,13 @@
 	objectVersion = 77;
 	objects = {
 
+/* Begin PBXBuildFile section */
+		D9ADB2222F6FFCF600FEDA12 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = D9ADB2212F6FFCF600FEDA12 /* README.md */; };
+/* End PBXBuildFile section */
+
 /* Begin PBXFileReference section */
 		D9ADB20B2F6FFBDE00FEDA12 /* Modulo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Modulo.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		D9ADB2212F6FFCF600FEDA12 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
@@ -15,6 +20,13 @@
 			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
 			membershipExceptions = (
 				Info.plist,
+			);
+			target = D9ADB20A2F6FFBDE00FEDA12 /* Modulo */;
+		};
+		D9ADB2252F6FFD3E00FEDA12 /* Exceptions for "Modules" folder in "Modulo" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				Models,
 			);
 			target = D9ADB20A2F6FFBDE00FEDA12 /* Modulo */;
 		};
@@ -27,6 +39,14 @@
 				D9ADB2182F6FFBDF00FEDA12 /* Exceptions for "Modulo" folder in "Modulo" target */,
 			);
 			path = Modulo;
+			sourceTree = "<group>";
+		};
+		D9ADB2232F6FFD0600FEDA12 /* Modules */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			exceptions = (
+				D9ADB2252F6FFD3E00FEDA12 /* Exceptions for "Modules" folder in "Modulo" target */,
+			);
+			path = Modules;
 			sourceTree = "<group>";
 		};
 /* End PBXFileSystemSynchronizedRootGroup section */
@@ -45,7 +65,9 @@
 		D9ADB2022F6FFBDE00FEDA12 = {
 			isa = PBXGroup;
 			children = (
+				D9ADB2212F6FFCF600FEDA12 /* README.md */,
 				D9ADB20D2F6FFBDE00FEDA12 /* Modulo */,
+				D9ADB2232F6FFD0600FEDA12 /* Modules */,
 				D9ADB20C2F6FFBDE00FEDA12 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -75,6 +97,7 @@
 			);
 			fileSystemSynchronizedGroups = (
 				D9ADB20D2F6FFBDE00FEDA12 /* Modulo */,
+				D9ADB2232F6FFD0600FEDA12 /* Modules */,
 			);
 			name = Modulo;
 			packageProductDependencies = (
@@ -122,6 +145,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D9ADB2222F6FFCF600FEDA12 /* README.md in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
