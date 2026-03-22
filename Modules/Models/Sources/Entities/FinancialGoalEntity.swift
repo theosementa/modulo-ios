@@ -11,27 +11,26 @@ import SwiftData
 @Model
 public final class FinancialGoalEntity {
     
-    @Attribute(.unique) var id: UUID = UUID()
+    @Attribute(.unique) public var id: UUID = UUID()
     
-    var name: String
+    public var name: String
     
-    var emoji: String
+    public var emoji: String
     
-    var goalAmount: Double
+    public var goalAmount: Double
     
-    var goalDate: Date?
+    public var goalDate: Date?
     
     @Relationship(deleteRule: .cascade, inverse: \ContributionEntity.financialGoal)
-    public var contributions: [ContributionEntity]?
+    public var contributions: [ContributionEntity]
     
     public init(
         name: String,
         emoji: String,
         goalAmount: Double,
         goalDate: Date? = nil,
-        contributions: [ContributionEntity]? = nil
+        contributions: [ContributionEntity] = []
     ) {
-        self.id = id
         self.name = name
         self.emoji = emoji
         self.goalAmount = goalAmount

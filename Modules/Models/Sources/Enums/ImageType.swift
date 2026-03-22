@@ -7,6 +7,8 @@
 
 import Foundation
 
-public enum ContributionType: String, Codable {
-    case add, remove
+public enum ImageType: String {
+    
+    case iconProfile = "person.fill"
+    
 }

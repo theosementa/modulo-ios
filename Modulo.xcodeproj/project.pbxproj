@@ -8,11 +8,18 @@
 
 /* Begin PBXBuildFile section */
 		D9ADB2222F6FFCF600FEDA12 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = D9ADB2212F6FFCF600FEDA12 /* README.md */; };
+		D9ADB24F2F70508000FEDA12 /* CLAUDE.md in Resources */ = {isa = PBXBuildFile; fileRef = D9ADB24E2F70508000FEDA12 /* CLAUDE.md */; };
+		D9ADB2582F705EE700FEDA12 /* FinancialGoal in Frameworks */ = {isa = PBXBuildFile; productRef = D9ADB2572F705EE700FEDA12 /* FinancialGoal */; };
+		D9ADB25A2F705EE700FEDA12 /* Models in Frameworks */ = {isa = PBXBuildFile; productRef = D9ADB2592F705EE700FEDA12 /* Models */; };
+		D9ADB25C2F705EE700FEDA12 /* Navigation in Frameworks */ = {isa = PBXBuildFile; productRef = D9ADB25B2F705EE700FEDA12 /* Navigation */; };
+		D9ADB28C2F7062F700FEDA12 /* DesignSystem in Frameworks */ = {isa = PBXBuildFile; productRef = D9ADB28B2F7062F700FEDA12 /* DesignSystem */; };
+		D9ADB28E2F7062F700FEDA12 /* Persistence in Frameworks */ = {isa = PBXBuildFile; productRef = D9ADB28D2F7062F700FEDA12 /* Persistence */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		D9ADB20B2F6FFBDE00FEDA12 /* Modulo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Modulo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D9ADB2212F6FFCF600FEDA12 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		D9ADB24E2F70508000FEDA12 /* CLAUDE.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = CLAUDE.md; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
@@ -56,6 +63,11 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D9ADB25C2F705EE700FEDA12 /* Navigation in Frameworks */,
+				D9ADB28E2F7062F700FEDA12 /* Persistence in Frameworks */,
+				D9ADB25A2F705EE700FEDA12 /* Models in Frameworks */,
+				D9ADB2582F705EE700FEDA12 /* FinancialGoal in Frameworks */,
+				D9ADB28C2F7062F700FEDA12 /* DesignSystem in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -65,9 +77,11 @@
 		D9ADB2022F6FFBDE00FEDA12 = {
 			isa = PBXGroup;
 			children = (
+				D9ADB24E2F70508000FEDA12 /* CLAUDE.md */,
 				D9ADB2212F6FFCF600FEDA12 /* README.md */,
 				D9ADB20D2F6FFBDE00FEDA12 /* Modulo */,
 				D9ADB2232F6FFD0600FEDA12 /* Modules */,
+				D9ADB2562F705EE700FEDA12 /* Frameworks */,
 				D9ADB20C2F6FFBDE00FEDA12 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -78,6 +92,13 @@
 				D9ADB20B2F6FFBDE00FEDA12 /* Modulo.app */,
 			);
 			name = Products;
+			sourceTree = "<group>";
+		};
+		D9ADB2562F705EE700FEDA12 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -101,6 +122,11 @@
 			);
 			name = Modulo;
 			packageProductDependencies = (
+				D9ADB2572F705EE700FEDA12 /* FinancialGoal */,
+				D9ADB2592F705EE700FEDA12 /* Models */,
+				D9ADB25B2F705EE700FEDA12 /* Navigation */,
+				D9ADB28B2F7062F700FEDA12 /* DesignSystem */,
+				D9ADB28D2F7062F700FEDA12 /* Persistence */,
 			);
 			productName = Modulo;
 			productReference = D9ADB20B2F6FFBDE00FEDA12 /* Modulo.app */;
@@ -146,6 +172,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				D9ADB2222F6FFCF600FEDA12 /* README.md in Resources */,
+				D9ADB24F2F70508000FEDA12 /* CLAUDE.md in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -396,6 +423,29 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		D9ADB2572F705EE700FEDA12 /* FinancialGoal */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = FinancialGoal;
+		};
+		D9ADB2592F705EE700FEDA12 /* Models */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = Models;
+		};
+		D9ADB25B2F705EE700FEDA12 /* Navigation */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = Navigation;
+		};
+		D9ADB28B2F7062F700FEDA12 /* DesignSystem */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = DesignSystem;
+		};
+		D9ADB28D2F7062F700FEDA12 /* Persistence */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = Persistence;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = D9ADB2032F6FFBDE00FEDA12 /* Project object */;
 }

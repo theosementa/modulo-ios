@@ -11,7 +11,7 @@ import SwiftData
 @Model
 public final class ContributionEntity {
     
-    @Attribute(.unique) var id: UUID = UUID()
+    @Attribute(.unique) public var id: UUID = UUID()
     
     public var name: String?
     

@@ -6,13 +6,29 @@
 //
 
 import SwiftUI
+import Navigation
+import FinancialGoal
 
 struct RootScreen: View {
+    
+    // MARK: Constants
+    private let router: Router<AppDestination> = .init()
+    private let routerManager: AppRouterManager = .shared
+    
+    // MARK: - View
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        NavigationStackView(
+            router: router,
+            routerManager: routerManager,
+            flow: AppFlow.home,
+            isTabPage: false
+        ) {
+            FinancialGoalListScreen()
+        }
     }
 }
 
+// MARK: - Preview
 #Preview {
     RootScreen()
 }
