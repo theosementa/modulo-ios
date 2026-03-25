@@ -18,6 +18,13 @@ public struct FinancialGoalListScreen: View {
             
         }
         .background(Color.Background.primary)
+//        .overlay {
+//            ContentUnavailableView(
+//                "Aucun objectif",
+//                systemImage: <#T##String#>,
+//                description: <#T##Text?#>
+//            )
+//        }
         .navigationTitle("Objectifs")
         .toolbar {
             ToolbarItem(placement: .topBarTrailing) {

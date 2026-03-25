@@ -17,9 +17,9 @@ public struct IconView: View {
     
     // MARK: Init
     public init(
-        icon: ImageType,
-        size: CGFloat = 16,
-        color: Color = .primary
+        _ icon: ImageType,
+        size: CGFloat = .large,
+        color: Color = .Text.primary
     ) {
         self.icon = icon
         self.size = size
@@ -28,13 +28,15 @@ public struct IconView: View {
     
     // MARK: - View
     public var body: some View {
-        Image(systemName: icon.rawValue)
-            .font(.system(size: size))
+        Image(asset: icon)
+            .resizable()
+            .renderingMode(.template)
+            .frame(width: size, height: size)
             .foregroundStyle(color)
     }
 }
 
 // MARK: - Preview
 #Preview {
-    IconView(icon: .iconProfile)
+    IconView(.iconProfile)
 }

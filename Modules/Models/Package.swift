@@ -12,9 +12,15 @@ let package = Package(
             targets: ["Models"]
         )
     ],
+    dependencies: [
+        .package(name: "Utilities", path: "../Utilities")
+    ],
     targets: [
         .target(
-            name: "Models"
+            name: "Models",
+            dependencies: [
+                .product(name: "Utilities", package: "Utilities")
+            ]
         )
     ]
 )
