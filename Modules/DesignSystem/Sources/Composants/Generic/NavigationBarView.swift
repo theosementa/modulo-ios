@@ -52,7 +52,7 @@ public struct NavigationBarView: View {
                         if let rightAction { rightAction() }
                     }
                 }
-            case .push(let title):
+            case .push:
                 HStack(spacing: 8) {
                     IconButtonView(.iconChevronLeft) {
                         if let leftAction { leftAction() }

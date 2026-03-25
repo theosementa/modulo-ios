@@ -10,8 +10,8 @@ import SwiftData
 import Models
 
 @MainActor
-final class SwiftDataContextManager: ObservableObject {
-    static let shared = SwiftDataContextManager()
+public final class SwiftDataContextManager: ObservableObject {
+    public static let shared = SwiftDataContextManager()
     
     let container: ModelContainer
     var context: ModelContext

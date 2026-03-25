@@ -8,6 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		D9469C5F2F73CA8E002B5BE5 /* Core in Frameworks */ = {isa = PBXBuildFile; productRef = D9469C5E2F73CA8E002B5BE5 /* Core */; };
+		D9469D0D2F73D3B3002B5BE5 /* Repositories in Frameworks */ = {isa = PBXBuildFile; productRef = D9469D0C2F73D3B3002B5BE5 /* Repositories */; };
+		D9469D0F2F73D3BA002B5BE5 /* Providers in Frameworks */ = {isa = PBXBuildFile; productRef = D9469D0E2F73D3BA002B5BE5 /* Providers */; };
+		D9469D112F73D3BF002B5BE5 /* Stores in Frameworks */ = {isa = PBXBuildFile; productRef = D9469D102F73D3BF002B5BE5 /* Stores */; };
 		D9ADB2222F6FFCF600FEDA12 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = D9ADB2212F6FFCF600FEDA12 /* README.md */; };
 		D9ADB24F2F70508000FEDA12 /* CLAUDE.md in Resources */ = {isa = PBXBuildFile; fileRef = D9ADB24E2F70508000FEDA12 /* CLAUDE.md */; };
 		D9ADB2582F705EE700FEDA12 /* FinancialGoal in Frameworks */ = {isa = PBXBuildFile; productRef = D9ADB2572F705EE700FEDA12 /* FinancialGoal */; };
@@ -37,6 +40,9 @@
 			membershipExceptions = (
 				Core,
 				Models,
+				Providers,
+				Repositories,
+				Stores,
 			);
 			target = D9ADB20A2F6FFBDE00FEDA12 /* Modulo */;
 		};
@@ -66,10 +72,13 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D9469D112F73D3BF002B5BE5 /* Stores in Frameworks */,
 				D9ADB25C2F705EE700FEDA12 /* Navigation in Frameworks */,
 				D9ADB2C62F706E0E00FEDA12 /* Utilities in Frameworks */,
 				D9ADB28E2F7062F700FEDA12 /* Persistence in Frameworks */,
+				D9469D0F2F73D3BA002B5BE5 /* Providers in Frameworks */,
 				D9ADB25A2F705EE700FEDA12 /* Models in Frameworks */,
+				D9469D0D2F73D3B3002B5BE5 /* Repositories in Frameworks */,
 				D9ADB2582F705EE700FEDA12 /* FinancialGoal in Frameworks */,
 				D9469C5F2F73CA8E002B5BE5 /* Core in Frameworks */,
 				D9ADB28C2F7062F700FEDA12 /* DesignSystem in Frameworks */,
@@ -134,6 +143,9 @@
 				D9ADB28D2F7062F700FEDA12 /* Persistence */,
 				D9ADB2C52F706E0E00FEDA12 /* Utilities */,
 				D9469C5E2F73CA8E002B5BE5 /* Core */,
+				D9469D0C2F73D3B3002B5BE5 /* Repositories */,
+				D9469D0E2F73D3BA002B5BE5 /* Providers */,
+				D9469D102F73D3BF002B5BE5 /* Stores */,
 			);
 			productName = Modulo;
 			productReference = D9ADB20B2F6FFBDE00FEDA12 /* Modulo.app */;
@@ -435,6 +447,18 @@
 		D9469C5E2F73CA8E002B5BE5 /* Core */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = Core;
+		};
+		D9469D0C2F73D3B3002B5BE5 /* Repositories */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = Repositories;
+		};
+		D9469D0E2F73D3BA002B5BE5 /* Providers */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = Providers;
+		};
+		D9469D102F73D3BF002B5BE5 /* Stores */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = Stores;
 		};
 		D9ADB2572F705EE700FEDA12 /* FinancialGoal */ = {
 			isa = XCSwiftPackageProductDependency;

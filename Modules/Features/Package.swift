@@ -11,14 +11,16 @@ let package = Package(
     ],
     dependencies: [
         .package(name: "DesignSystem", path: "../DesignSystem"),
-        .package(name: "Navigation", path: "../Navigation")
+        .package(name: "Navigation", path: "../Navigation"),
+        .package(name: "Providers", path: "../Providers")
     ],
     targets: [
         .target(
             name: "FinancialGoal",
             dependencies: [
                 .product(name: "DesignSystem", package: "DesignSystem"),
-                .product(name: "Navigation", package: "Navigation")
+                .product(name: "Navigation", package: "Navigation"),
+                .product(name: "Providers", package: "Providers")
             ]
         )
     ]

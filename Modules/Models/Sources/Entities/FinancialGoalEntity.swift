@@ -39,3 +39,17 @@ public final class FinancialGoalEntity {
     }
     
 }
+
+public extension FinancialGoalEntity {
+    
+    func toDomain() -> FinancialGoalDomain {
+        return .init(
+            id: id.uuidString,
+            name: name,
+            emoji: emoji,
+            goalAmount: goalAmount,
+            goalDate: goalDate
+        )
+    }
+    
+}

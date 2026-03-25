@@ -25,7 +25,7 @@ struct FinancialGoalRowView: View {
                 .font(.title2)
                 .frame(width: 24, height: 24)
                 .padding(.medium)
-                .background(Color.Background.tertiary)
+//                .background(Color.Background.tertiary)
             
             VStack(alignment: .leading, spacing: .zero) {
                 Text(item.name)

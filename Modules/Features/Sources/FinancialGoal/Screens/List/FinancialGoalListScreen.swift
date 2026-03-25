@@ -10,31 +10,24 @@ import DesignSystem
 
 public struct FinancialGoalListScreen: View {
     
+    @State private var viewModel: ViewModel = .init()
+    
     public init() { }
     
     // MARK: - View
     public var body: some View {
-        List {
+        VStack(spacing: .zero) {
+            NavigationBarView(
+                style: .home,
+                rightAction: { }
+            )
             
-        }
-        .background(Color.Background.primary)
-//        .overlay {
-//            ContentUnavailableView(
-//                "Aucun objectif",
-//                systemImage: <#T##String#>,
-//                description: <#T##Text?#>
-//            )
-//        }
-        .navigationTitle("Objectifs")
-        .toolbar {
-            ToolbarItem(placement: .topBarTrailing) {
-                Button {
-                    
-                } label: {
-                    IconView(icon: .iconProfile)
-                }
+            List(viewModel.financialGoals) { financialGoal in
+                FinancialGoalRowView(item: financialGoal.toUIModel())
             }
+            .disableListStyle()
         }
+        .background(Color.Background.bg50)
     }
 }
 
