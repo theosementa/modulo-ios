@@ -18,6 +18,7 @@ extension AddFinancialGoalScreen {
         var financialGoal: FinancialGoalDomain?
         
         // MARK: States
+        var emoji: String = "🚗"
         var name: String = ""
         var amount: String = "0"
         var startDate: Date? = .now
@@ -26,6 +27,7 @@ extension AddFinancialGoalScreen {
         // MARK: UI Variables
         var namePlaceholder: String = ""
         var isAlertLeavePresented: Bool = false
+        var showEmojiPicker: Bool = false
     }
     
 }

@@ -12,7 +12,9 @@ let package = Package(
     dependencies: [
         .package(name: "DesignSystem", path: "../DesignSystem"),
         .package(name: "Navigation", path: "../Navigation"),
-        .package(name: "Providers", path: "../Providers")
+        .package(name: "Providers", path: "../Providers"),
+        
+        .package(url: "https://github.com/izyumkin/MCEmojiPicker", branch: "1.2.3")
     ],
     targets: [
         .target(
@@ -20,7 +22,9 @@ let package = Package(
             dependencies: [
                 .product(name: "DesignSystem", package: "DesignSystem"),
                 .product(name: "Navigation", package: "Navigation"),
-                .product(name: "Providers", package: "Providers")
+                .product(name: "Providers", package: "Providers"),
+                
+                .product(name: "MCEmojiPicker", package: "MCEmojiPicker")
             ]
         )
     ]

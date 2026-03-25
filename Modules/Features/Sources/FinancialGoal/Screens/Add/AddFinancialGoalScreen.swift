@@ -8,6 +8,7 @@
 import SwiftUI
 import DesignSystem
 import Core
+import MCEmojiPicker
 
 struct AddFinancialGoalScreen: View {
     
@@ -24,6 +25,16 @@ struct AddFinancialGoalScreen: View {
         VStack(spacing: .standard) {
             DismissButtonView { viewModel.dismissAction() }
                 .fullWidth(.trailing)
+            
+            VStack(spacing: .standard) {
+                emojiPickerView
+                
+                TextFieldView(
+                    text: $viewModel.name,
+                    title: "Nom de l'objectif", // TODO: TBL
+                    placeholder: viewModel.namePlaceholder
+                )
+            }
             
             amountView
                 .fullSize()
@@ -44,9 +55,11 @@ struct AddFinancialGoalScreen: View {
                 }
             }
         }
-        .lockView()
         .padding(.standard)
         .background(Color.Background.bg50)
+        .alertLeaveForm(isPresented: $viewModel.isAlertLeavePresented)
+        .animation(.smooth, value: keyboardManager.isKeyboardVisible)
+        .lockView()
         .navigationBarBackButtonHidden(true)
     }
 }
@@ -70,6 +83,19 @@ extension AddFinancialGoalScreen {
         }
     }
     
+    var emojiPickerView: some View {
+        Button { viewModel.showEmojiPicker.toggle() } label: {
+            Text(viewModel.emoji)
+                .font(.Title.mediumMedium)
+                .frame(width: 20, height: 20)
+                .padding(.medium)
+                .background(Color.Background.bg100, in: .rect(cornerRadius: .standard, style: .continuous))
+        }
+        .emojiPicker(
+            isPresented: $viewModel.showEmojiPicker,
+            selectedEmoji: $viewModel.emoji
+        )
+    }
 }
 
 // MARK: - Preview

@@ -1,6 +1,15 @@
 {
-  "originHash" : "44916c57eb4b3057e176d1b913c7e964036e8142071e1b5ff8d27944530906f1",
+  "originHash" : "15a297d01bd8c489cf20729d6c1a4303d6c6cffceade3425e42a9e6a19cc4099",
   "pins" : [
+    {
+      "identity" : "mcemojipicker",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/izyumkin/MCEmojiPicker",
+      "state" : {
+        "branch" : "1.2.3",
+        "revision" : "e0b4903b75ae1cc418d276d84d1cb946b8a1d73c"
+      }
+    },
     {
       "identity" : "navigationkit",
       "kind" : "remoteSourceControl",
