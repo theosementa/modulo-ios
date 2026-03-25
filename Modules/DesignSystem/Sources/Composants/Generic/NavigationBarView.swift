@@ -43,7 +43,7 @@ public struct NavigationBarView: View {
         Group {
             switch style {
             case .home:
-                HStack(spacing: 8) {
+                HStack(alignment: .bottom, spacing: 8) {
                     Text(style.title)
                         .font(.Title.largeSemiBold)
                         .fullWidth(.leading)

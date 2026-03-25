@@ -13,12 +13,12 @@ public struct IconButtonView: View {
     
     // MARK: Dependencies
     private let icon: ImageType
-    private let action: () -> Void
+    private let action: (() -> Void)?
     
     // MARK: Init
     public init(
         _ icon: ImageType,
-        action: @escaping () -> Void
+        action: (() -> Void)? = nil
     ) {
         self.icon = icon
         self.action = action
@@ -28,12 +28,13 @@ public struct IconButtonView: View {
     public var body: some View {
         Button {
             VibrationManager.vibration()
-            action()
+            if let action { action() }
         } label: {
             IconView(icon)
                 .padding(10)
                 .background(Color.Background.bg100, in: .rect(cornerRadius: .standard, style: .continuous))
         }
+        .disabled(action == nil)
     }
 }
 

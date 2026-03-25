@@ -10,4 +10,6 @@ import NavigationKit
 
 public enum FinancialGoalDestination: DestinationItem {
     case list
+    case add
+    case update(id: String)
 }

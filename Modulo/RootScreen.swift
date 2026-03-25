@@ -20,8 +20,7 @@ struct RootScreen: View {
         NavigationStackView(
             router: router,
             routerManager: routerManager,
-            flow: AppFlow.home,
-            isTabPage: false
+            flow: AppFlow.home
         ) {
             FinancialGoalListScreen()
         }

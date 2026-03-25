@@ -6,10 +6,16 @@
 //
 
 import SwiftUI
-import SwiftData
+import Navigation
+import FinancialGoal
 
 @main
 struct ModuloApp: App {
+    
+    init() {
+        NavigationRegistry.shared.registerFinancialGoalsRoutes()
+    }
+    
     var body: some Scene {
         WindowGroup {
             RootScreen()

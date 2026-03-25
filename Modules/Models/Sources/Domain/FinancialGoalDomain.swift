@@ -46,14 +46,44 @@ public extension FinancialGoalDomain {
 }
 
 // MARK: - Mocks
+@MainActor
 public extension FinancialGoalDomain {
-    
-    @MainActor
+
     static let mock: FinancialGoalDomain = .init(
-        id: UUID().uuidString,
+        id: "mock-1",
         name: "Preview Goal",
         emoji: "🧠",
         goalAmount: 20_000
     )
-    
+
+    static let mocks: [FinancialGoalDomain] = [
+        .init(
+            id: "mock-1",
+            name: "Vacances Japon",
+            emoji: "🗾",
+            goalAmount: 3_000,
+            goalDate: Calendar.current.date(byAdding: .month, value: 8, to: .now)
+        ),
+        .init(
+            id: "mock-2",
+            name: "MacBook Pro",
+            emoji: "💻",
+            goalAmount: 2_500,
+            goalDate: Calendar.current.date(byAdding: .month, value: 4, to: .now)
+        ),
+        .init(
+            id: "mock-3",
+            name: "Fonds d'urgence",
+            emoji: "🛡️",
+            goalAmount: 10_000
+        ),
+        .init(
+            id: "mock-4",
+            name: "Voiture",
+            emoji: "🚗",
+            goalAmount: 15_000,
+            goalDate: Calendar.current.date(byAdding: .year, value: 2, to: .now)
+        ),
+    ]
+
 }

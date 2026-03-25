@@ -23,10 +23,11 @@ public struct FinancialGoalRowView: View {
     // MARK: - View
     public var body: some View {
         HStack(spacing: .small) {
-            
+
             HStack(spacing: .medium) {
                 Text(item.emoji)
                     .font(.Title.largeSemiBold)
+                    .frame(width: 24, height: 24)
                     .padding(.medium)
                     .background(Color.Background.bg200, in: .rect(cornerRadius: .standard, style: .continuous))
                 

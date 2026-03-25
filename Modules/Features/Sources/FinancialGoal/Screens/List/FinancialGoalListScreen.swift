@@ -7,6 +7,7 @@
 
 import SwiftUI
 import DesignSystem
+import Navigation
 
 public struct FinancialGoalListScreen: View {
     
@@ -24,10 +25,23 @@ public struct FinancialGoalListScreen: View {
             
             List(viewModel.financialGoals) { financialGoal in
                 FinancialGoalRowView(item: financialGoal.toUIModel())
+                    .disableListStyle()
+                    .padding(.bottom, .medium)
             }
-            .disableListStyle()
+            .listStyle(.plain)
+            .scrollIndicators(.hidden)
+            .contentMargins(.all, .standard, for: .scrollContent)
         }
         .background(Color.Background.bg50)
+        .overlay(alignment: .bottomTrailing) {
+            NavigationButtonView(
+                route: .fullScreenCover,
+                destination: .financialGoal(.add)
+            ) {
+                IconButtonView(.iconPlus)
+            }
+            .padding(.large)
+        }
     }
 }
 
