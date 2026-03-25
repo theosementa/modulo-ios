@@ -13,20 +13,23 @@ public struct FinancialGoalDomain: Identifiable {
     public let name: String
     public let emoji: String
     public let goalAmount: Double
-    public let goalDate: Date?
+    public let startDate: Date
+    public let endDate: Date?
     
     public init(
         id: String,
         name: String,
         emoji: String,
         goalAmount: Double,
-        goalDate: Date? = nil
+        startDate: Date,
+        endDate: Date? = nil
     ) {
         self.id = id
         self.name = name
         self.emoji = emoji
         self.goalAmount = goalAmount
-        self.goalDate = goalDate
+        self.startDate = startDate
+        self.endDate = endDate
     }
 }
 
@@ -39,7 +42,17 @@ public extension FinancialGoalDomain {
             name: name,
             emoji: emoji,
             goalAmountFormatted: goalAmount.toCurrency(),
-            goalDateFormatted: goalDate?.formatted(date: .numeric, time: .omitted) ?? ""
+            goalDateFormatted: endDate?.formatted(date: .numeric, time: .omitted) ?? ""
+        )
+    }
+    
+    func toEntity() -> FinancialGoalEntity {
+        return .init(
+            name: name,
+            emoji: emoji,
+            goalAmount: goalAmount,
+            startDate: startDate,
+            endDate: endDate
         )
     }
     
@@ -53,7 +66,8 @@ public extension FinancialGoalDomain {
         id: "mock-1",
         name: "Preview Goal",
         emoji: "🧠",
-        goalAmount: 20_000
+        goalAmount: 20_000,
+        startDate: .now
     )
 
     static let mocks: [FinancialGoalDomain] = [
@@ -62,27 +76,31 @@ public extension FinancialGoalDomain {
             name: "Vacances Japon",
             emoji: "🗾",
             goalAmount: 3_000,
-            goalDate: Calendar.current.date(byAdding: .month, value: 8, to: .now)
+            startDate: .now,
+            endDate: Calendar.current.date(byAdding: .month, value: 8, to: .now)
         ),
         .init(
             id: "mock-2",
             name: "MacBook Pro",
             emoji: "💻",
             goalAmount: 2_500,
-            goalDate: Calendar.current.date(byAdding: .month, value: 4, to: .now)
+            startDate: .now,
+            endDate: Calendar.current.date(byAdding: .month, value: 4, to: .now)
         ),
         .init(
             id: "mock-3",
             name: "Fonds d'urgence",
             emoji: "🛡️",
-            goalAmount: 10_000
+            goalAmount: 10_000,
+            startDate: .now
         ),
         .init(
             id: "mock-4",
             name: "Voiture",
             emoji: "🚗",
             goalAmount: 15_000,
-            goalDate: Calendar.current.date(byAdding: .year, value: 2, to: .now)
+            startDate: .now,
+            endDate: Calendar.current.date(byAdding: .year, value: 2, to: .now)
         ),
     ]
 

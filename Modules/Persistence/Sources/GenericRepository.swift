@@ -21,9 +21,11 @@ open class GenericRepository<T: PersistentModel> {
 
 public extension GenericRepository {
     
-    func save(_ entity: T) throws {
+    @discardableResult
+    func save(_ entity: T) throws -> T? {
         context.insert(entity)
         try context.save()
+        return try fetchOneById(entity.id)
     }
     
     func delete(_ entity: T) throws {
@@ -37,6 +39,13 @@ public extension GenericRepository {
     
     func fetchAll() throws -> [T] {
         try context.fetch(FetchDescriptor<T>())
+    }
+    
+    func fetchOneById(_ id: PersistentIdentifier) throws -> T? {
+        let predicate = #Predicate<T> { $0.persistentModelID == id }
+        var fetchDescriptor = FetchDescriptor<T>(predicate: predicate)
+        fetchDescriptor.fetchLimit = 1
+        return try container.mainContext.fetch(fetchDescriptor).first
     }
     
 }

@@ -42,6 +42,7 @@ public struct FinancialGoalListScreen: View {
             }
             .padding(.large)
         }
+        .onAppear { viewModel.onAppearAction() }
     }
 }
 

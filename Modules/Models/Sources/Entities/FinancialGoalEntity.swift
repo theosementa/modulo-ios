@@ -19,7 +19,9 @@ public final class FinancialGoalEntity {
     
     public var goalAmount: Double
     
-    public var goalDate: Date?
+    public var startDate: Date
+    
+    public var endDate: Date?
     
     @Relationship(deleteRule: .cascade, inverse: \ContributionEntity.financialGoal)
     public var contributions: [ContributionEntity]
@@ -28,13 +30,15 @@ public final class FinancialGoalEntity {
         name: String,
         emoji: String,
         goalAmount: Double,
-        goalDate: Date? = nil,
+        startDate: Date,
+        endDate: Date? = nil,
         contributions: [ContributionEntity] = []
     ) {
         self.name = name
         self.emoji = emoji
         self.goalAmount = goalAmount
-        self.goalDate = goalDate
+        self.startDate = startDate
+        self.endDate = endDate
         self.contributions = contributions
     }
     
@@ -48,7 +52,8 @@ public extension FinancialGoalEntity {
             name: name,
             emoji: emoji,
             goalAmount: goalAmount,
-            goalDate: goalDate
+            startDate: startDate,
+            endDate: endDate
         )
     }
     

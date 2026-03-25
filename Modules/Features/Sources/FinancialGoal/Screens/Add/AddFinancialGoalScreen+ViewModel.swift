@@ -8,6 +8,7 @@
 import Foundation
 import Core
 import Models
+import Stores
 
 extension AddFinancialGoalScreen {
     
@@ -16,6 +17,7 @@ extension AddFinancialGoalScreen {
         
         // MARK: Dependencies
         var financialGoal: FinancialGoalDomain?
+        private let store: FinancialGoalStore
         
         // MARK: States
         var emoji: String = "🚗"
@@ -28,6 +30,11 @@ extension AddFinancialGoalScreen {
         var namePlaceholder: String = ""
         var isAlertLeavePresented: Bool = false
         var showEmojiPicker: Bool = false
+        
+        // MARK: Init
+        init(store: FinancialGoalStore = DefaultFinancialGoalStore.shared) {
+            self.store = store
+        }
     }
     
 }
@@ -52,7 +59,7 @@ extension AddFinancialGoalScreen.ViewModel {
         do {
             try checkDatas()
             if financialGoal == nil {
-//                await createTransaction(dismiss: dismiss)
+                create()
             } else {
 //                await updateTransaction(dismiss: dismiss)
             }
@@ -73,10 +80,23 @@ extension AddFinancialGoalScreen.ViewModel {
 private extension AddFinancialGoalScreen.ViewModel {
     
     func checkDatas() throws {
-        if amount.isReallyEmpty || amount.toDouble() == 0 {
+        if name.isReallyEmpty || amount.toDouble() == 0 {
 //            toastBannerService.send(.errorAmountMandatory)
-//            throw NetworkError.fieldIsIncorrectlyFilled
+            // TODO: throw custom error
         }
+    }
+    
+    func create() {
+        let domain = FinancialGoalDomain(
+            id: "0",
+            name: name,
+            emoji: emoji,
+            goalAmount: amount.toDouble(),
+            startDate: startDate ?? .now,
+            endDate: endDate
+        )
+        store.create(goal: domain)
+        router?.dismiss()
     }
     
 }

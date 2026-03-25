@@ -16,7 +16,7 @@ extension FinancialGoalListScreen {
         
         private let provider: FinancialGoalProvider
         
-        init(provider: FinancialGoalProvider = MockFinancialGoalProvider.shared) {
+        init(provider: FinancialGoalProvider = DefaultFinancialGoalProvider.shared) {
             self.provider = provider
         }
         
@@ -29,6 +29,14 @@ extension FinancialGoalListScreen.ViewModel {
     
     var financialGoals: [FinancialGoalDomain] {
         return provider.financialGoals(by: .maxAmount)
+    }
+    
+}
+
+extension FinancialGoalListScreen.ViewModel {
+    
+    func onAppearAction() {
+        provider.store.fetchAll()
     }
     
 }

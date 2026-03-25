@@ -31,6 +31,18 @@ public extension FinancialGoalStore {
             .first(where: { $0.id == id })
     }
     
+    func create(goal: FinancialGoalDomain) {
+        let draftEntity = goal.toEntity()
+        do {
+            let entity = try repository.save(draftEntity)
+            if let domain = entity?.toDomain() {
+                add(domain)
+            }
+        } catch {
+            
+        }
+    }
+    
     func delete(by id: String) {
         guard let uuid = UUID(uuidString: id) else { return }
         let goalToDelete = repository.fetchOneByEntityId(uuid)
@@ -42,6 +54,16 @@ public extension FinancialGoalStore {
             } catch {
                 
             }
+        }
+    }
+    
+}
+
+private extension FinancialGoalStore {
+    
+    func add(_ goal: FinancialGoalDomain) {
+        if financialGoals.contains(where: { $0.id == goal.id }) == false {
+            financialGoals.append(goal)
         }
     }
     

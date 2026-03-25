@@ -44,6 +44,22 @@ public struct FinancialGoalRowView: View {
         }
         .padding(.standard)
         .background(Color.Background.bg100, in: .rect(cornerRadius: .large, style: .continuous))
+        .contentShape(.contextMenuPreview, .rect(cornerRadius: .large))
+        .contextMenu {
+            Button(role: .destructive) {
+               
+            } label: {
+                Label {
+                    Text("generic_delete".localized) // TODO: TBL
+                        .font(.Body.mediumMedium, color: .Error.e500)
+                } icon: {
+                    IconView(.iconTrash, size: .medium, color: .Error.e500)
+                }
+            }
+        } preview: {
+            self
+                .frame(width: UIScreen.main.bounds.width - (.standard * 2))
+        }
     }
 }
 
