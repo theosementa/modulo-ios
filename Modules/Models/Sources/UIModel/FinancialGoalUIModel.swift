@@ -11,20 +11,20 @@ public struct FinancialGoalUIModel {
     public let id: String
     public let name: String
     public let emoji: String
-    public let goalAmountFormatted: String
+    public let currentAmountFormatted: String
     public let goalDateFormatted: String?
     
     public init(
         id: String,
         name: String,
         emoji: String,
-        goalAmountFormatted: String,
+        currentAmountFormatted: String,
         goalDateFormatted: String? = nil
     ) {
         self.id = id
         self.name = name
         self.emoji = emoji
-        self.goalAmountFormatted = goalAmountFormatted
+        self.currentAmountFormatted = currentAmountFormatted
         self.goalDateFormatted = goalDateFormatted
     }
 }

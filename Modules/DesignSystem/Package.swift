@@ -15,6 +15,7 @@ let package = Package(
     dependencies: [
         .package(name: "Core", path: "../Core"),
         .package(name: "Models", path: "../Models"),
+        .package(name: "Navigation", path: "../Navigation"),
         
         .package(url: "https://github.com/theosementa/ToastBannerKit.git", exact: "1.0.2")
     ],
@@ -24,6 +25,7 @@ let package = Package(
             dependencies: [
                 .product(name: "Core", package: "Core"),
                 .product(name: "Models", package: "Models"),
+                .product(name: "Navigation", package: "Navigation"),
                 
                 .product(name: "ToastBannerKit", package: "ToastBannerKit")
             ]

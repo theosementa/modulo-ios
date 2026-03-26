@@ -37,3 +37,17 @@ public final class ContributionEntity {
         self.financialGoal = financialGoal
     }
 }
+
+public extension ContributionEntity {
+
+    func toDomain() -> ContributionDomain {
+        return .init(
+            id: id.uuidString,
+            name: name,
+            amount: amount,
+            type: type,
+            date: date
+        )
+    }
+
+}

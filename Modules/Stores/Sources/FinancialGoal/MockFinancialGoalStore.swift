@@ -22,7 +22,7 @@ public final class MockFinancialGoalStore: FinancialGoalStore {
     // MARK: - Overrides (in-memory, no SwiftData)
 
     public func fetchAll() {
-        // No-op: données déjà chargées en mémoire
+        financialGoals = FinancialGoalDomain.mocks
     }
 
     public func findOne(by id: String) -> FinancialGoalDomain? {
@@ -31,6 +31,11 @@ public final class MockFinancialGoalStore: FinancialGoalStore {
 
     public func delete(by id: String) {
         financialGoals.removeAll(where: { $0.id == id })
+    }
+
+    public func findOneDetailed(by id: String) -> FinancialGoalDetailedDomain? {
+        guard let goal = financialGoals.first(where: { $0.id == id }) else { return nil }
+        return FinancialGoalDetailedDomain(goal: goal, contributions: ContributionDomain.mocks)
     }
 
 }

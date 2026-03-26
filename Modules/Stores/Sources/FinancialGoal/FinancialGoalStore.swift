@@ -13,22 +13,19 @@ import Models
 public protocol FinancialGoalStore: AnyObject {
     var repository: FinancialGoalRepository { get }
     var financialGoals: [FinancialGoalDomain] { get set }
+    func fetchAll() -> Void
 }
 
 public extension FinancialGoalStore {
     
-    func fetchAll() {
-        do {
-            let entities = try repository.fetchAll()
-            self.financialGoals = entities.map { $0.toDomain() }
-        } catch {
-            
-        }
-    }
-    
     func findOne(by id: String) -> FinancialGoalDomain? {
         return financialGoals
             .first(where: { $0.id == id })
+    }
+
+    func findOneDetailed(by id: String) -> FinancialGoalDetailedDomain? {
+        guard let uuid = UUID(uuidString: id) else { return nil }
+        return repository.fetchOneByEntityId(uuid)?.toDetailed()
     }
     
     func create(goal: FinancialGoalDomain) {

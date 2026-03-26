@@ -34,7 +34,7 @@ public struct FinancialGoalRowView: View {
                 VStack(alignment: .leading, spacing: .zero) {
                     Text(item.name)
                         .font(.Body.smallRegular, color: Color.Text.secondary)
-                    Text(item.goalAmountFormatted)
+                    Text(item.currentAmountFormatted)
                         .font(.Title.largeSemiBold)
                 }
                 .fullWidth(.leading)

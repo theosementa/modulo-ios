@@ -22,3 +22,16 @@ public final class DefaultFinancialGoalStore: FinancialGoalStore {
     }
     
 }
+
+public extension DefaultFinancialGoalStore {
+    
+    func fetchAll() {
+        do {
+            let entities = try repository.fetchAll()
+            self.financialGoals = entities.map { $0.toDomain() }
+        } catch {
+            
+        }
+    }
+    
+}
