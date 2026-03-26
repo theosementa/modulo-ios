@@ -17,10 +17,12 @@ public extension NavigationRegistry {
             switch destination {
             case .list:
                 return AnyView(FinancialGoalListScreen())
-            case .add:
+            case .create:
                 return AnyView(AddFinancialGoalScreen())
             case let .update(id):
                 return AnyView(AddFinancialGoalScreen())
+            case let .details(id):
+                return AnyView(FinancialGoalDetailsScreen(id: id))
             }
         }
     }

@@ -24,9 +24,14 @@ public struct FinancialGoalListScreen: View {
             )
             
             List(viewModel.financialGoals) { financialGoal in
-                FinancialGoalRowView(item: financialGoal.toUIModel())
-                    .disableListStyle()
-                    .padding(.bottom, .medium)
+                NavigationButtonView(
+                    route: .push,
+                    destination: .financialGoal(.details(id: financialGoal.id))
+                ) {
+                    FinancialGoalRowView(item: financialGoal.toUIModel())
+                }
+                .disableListStyle()
+                .padding(.bottom, .medium)
             }
             .listStyle(.plain)
             .scrollIndicators(.hidden)
@@ -36,7 +41,7 @@ public struct FinancialGoalListScreen: View {
         .overlay(alignment: .bottomTrailing) {
             NavigationButtonView(
                 route: .fullScreenCover,
-                destination: .financialGoal(.add)
+                destination: .financialGoal(.create)
             ) {
                 IconButtonView(.iconPlus)
             }

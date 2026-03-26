@@ -34,4 +34,9 @@ public extension DefaultFinancialGoalStore {
         }
     }
     
+    func findOneDetailed(by id: String) -> FinancialGoalDetailedDomain? {
+        guard let uuid = UUID(uuidString: id) else { return nil }
+        return repository.fetchOneByEntityId(uuid)?.toDetailed()
+    }
+    
 }
