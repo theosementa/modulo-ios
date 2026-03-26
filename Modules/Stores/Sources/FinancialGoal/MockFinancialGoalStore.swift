@@ -31,7 +31,7 @@ public final class MockFinancialGoalStore: FinancialGoalStore {
 
     public func findOneDetailed(by id: String) -> FinancialGoalDetailedDomain? {
         guard let goal = financialGoals.first(where: { $0.id == id }) else { return nil }
-        return FinancialGoalDetailedDomain(goal: goal, contributions: ContributionDomain.mocks)
+        return FinancialGoalDetailedDomain(goal: goal, contributions: ContributionDomain.mocks(for: id))
     }
     
     public func delete(by id: String) {

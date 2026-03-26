@@ -35,8 +35,10 @@ struct FinancialGoalDetailsScreen: View {
             if let goal = viewModel.detailledGoal?.toUIModel() {
                 ScrollView {
                     VStack(spacing: .large) {
-                        Text(goal.remainingThisMonthFormatted ?? "")
-                        DividerView()
+                        if goal.date.endDateFormatted != nil {
+                            toContributeThisMonthSectionView(goal)
+                            DividerView()
+                        }
                         generalSectionView(goal)
                         DividerView()
                         monthlySectionView(goal)
@@ -57,8 +59,19 @@ struct FinancialGoalDetailsScreen: View {
 // MARK: - Subviews
 fileprivate extension FinancialGoalDetailsScreen {
     
+    func toContributeThisMonthSectionView(_ goal: FinancialGoalDetailedUIModel) -> some View { // TODO: TBL
+        VStack(spacing: .zero) {
+            Text(goal.remainingThisMonthFormatted ?? "")
+                .font(.Title.largeSemiBold)
+            Text("Montant à contribuer ce mois-ci")
+                .font(.Body.mediumRegular)
+        }
+    }
+    
     func generalSectionView(_ goal: FinancialGoalDetailedUIModel) -> some View { // TODO: TBL
         VStack(spacing: .medium) {
+            ProgressBarView(percentage: goal.progress)
+            
             ValueWithLabelView(
                 value: goal.goalAmountFormatted,
                 label: "Objectif"

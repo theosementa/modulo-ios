@@ -92,6 +92,7 @@ public extension FinancialGoalDetailedDomain {
         return FinancialGoalDetailedUIModel(
             id: goal.id,
             name: goal.emoji + goal.name,
+            progress: progressRatio,
             goalAmountFormatted: goal.goalAmount.toCurrency(),
             currentContributionsFormatted: goal.currentAmount.toCurrency(),
             remainingContributionsFormatted: max(0, goal.goalAmount - goal.currentAmount).toCurrency(),
@@ -111,7 +112,7 @@ public extension FinancialGoalDetailedDomain {
 
     static let mock: FinancialGoalDetailedDomain = .init(
         goal: .mocks[0],
-        contributions: ContributionDomain.mocks
+        contributions: ContributionDomain.mocks(for: FinancialGoalDomain.mocks[0].id)
     )
 
 }

@@ -10,6 +10,7 @@ import Foundation
 public struct FinancialGoalDetailedUIModel {
     public var id: String
     public var name: String
+    public var progress: Double
     
     public var goalAmountFormatted: String
     public var currentContributionsFormatted: String
@@ -25,6 +26,7 @@ public struct FinancialGoalDetailedUIModel {
     public init(
         id: String,
         name: String,
+        progress: Double,
         goalAmountFormatted: String,
         currentContributionsFormatted: String,
         remainingContributionsFormatted: String,
@@ -36,6 +38,7 @@ public struct FinancialGoalDetailedUIModel {
     ) {
         self.id = id
         self.name = name
+        self.progress = progress
         self.goalAmountFormatted = goalAmountFormatted
         self.currentContributionsFormatted = currentContributionsFormatted
         self.remainingContributionsFormatted = remainingContributionsFormatted
