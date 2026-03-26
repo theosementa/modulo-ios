@@ -70,6 +70,10 @@ fileprivate extension FinancialGoalDetailsScreen {
     
     func generalSectionView(_ goal: FinancialGoalDetailedUIModel) -> some View { // TODO: TBL
         VStack(spacing: .medium) {
+            if goal.contributionsByMonth.isEmpty == false {
+                ContributionLineChartView(dataPoints: goal.contributionsByMonth)
+            }
+            
             ProgressBarView(percentage: goal.progress)
             
             ValueWithLabelView(

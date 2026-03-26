@@ -13,14 +13,17 @@ public struct IconButtonView: View {
     
     // MARK: Dependencies
     private let icon: ImageType
+    private let config: Configuration
     private let action: (() -> Void)?
     
     // MARK: Init
     public init(
         _ icon: ImageType,
+        config: Configuration = .init(),
         action: (() -> Void)? = nil
     ) {
         self.icon = icon
+        self.config = config
         self.action = action
     }
     
@@ -32,10 +35,23 @@ public struct IconButtonView: View {
         } label: {
             IconView(icon)
                 .padding(10)
-                .background(Color.Background.bg100, in: .rect(cornerRadius: .standard, style: .continuous))
+                .background(config.bgColor, in: .rect(cornerRadius: .standard, style: .continuous))
         }
         .disabled(action == nil)
     }
+}
+
+// MARK: - Configuration
+extension IconButtonView {
+    
+    public struct Configuration {
+        public var bgColor: Color
+        
+        public init(bgColor: Color = .Background.bg100) {
+            self.bgColor = bgColor
+        }
+    }
+    
 }
 
 // MARK: - Preview

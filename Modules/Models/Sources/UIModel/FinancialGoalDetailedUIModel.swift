@@ -21,8 +21,9 @@ public struct FinancialGoalDetailedUIModel {
     public var contribuedThisMonthFormatted: String
     public var remainingThisMonthFormatted: String?
     
+    public var contributionsByMonth: [ContributionMonthlyDataPoint]
     public var date: FinancialGoalDetailedDateUIModel
-    
+
     public init(
         id: String,
         name: String,
@@ -34,6 +35,7 @@ public struct FinancialGoalDetailedUIModel {
         monthlyRequiredFormatted: String? = nil,
         contribuedThisMonthFormatted: String,
         remainingThisMonthFormatted: String? = nil,
+        contributionsByMonth: [ContributionMonthlyDataPoint] = [],
         date: FinancialGoalDetailedDateUIModel
     ) {
         self.id = id
@@ -46,6 +48,7 @@ public struct FinancialGoalDetailedUIModel {
         self.monthlyRequiredFormatted = monthlyRequiredFormatted
         self.contribuedThisMonthFormatted = contribuedThisMonthFormatted
         self.remainingThisMonthFormatted = remainingThisMonthFormatted
+        self.contributionsByMonth = contributionsByMonth
         self.date = date
     }
 }
