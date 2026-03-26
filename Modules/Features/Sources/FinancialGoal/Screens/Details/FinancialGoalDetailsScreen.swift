@@ -9,6 +9,7 @@ import SwiftUI
 import Models
 import DesignSystem
 import Navigation
+import Core
 
 struct FinancialGoalDetailsScreen: View {
     
@@ -45,6 +46,8 @@ struct FinancialGoalDetailsScreen: View {
                         monthlySectionView(goal)
                         DividerView()
                         dateSectionView(goal)
+                        DividerView()
+                        contributionsSectionView(goal)
                     }
                     .padding(.standard)
                 }
@@ -58,7 +61,8 @@ struct FinancialGoalDetailsScreen: View {
         .overlay(alignment: .bottomTrailing) {
             NavigationButtonView(
                 route: .fullScreenCover,
-                destination: .contribution(.create(goalId: viewModel.goalId))
+                destination: .contribution(.create(goalId: viewModel.goalId)),
+                onNavigate: { VibrationManager.vibration() }
             ) {
                 IconButtonView(.iconPlus)
             }
@@ -169,6 +173,17 @@ fileprivate extension FinancialGoalDetailsScreen {
                         value: endDate
                     )
                 }
+            }
+        }
+    }
+    
+    func contributionsSectionView(_ goal: FinancialGoalDetailedUIModel) -> some View { // TODO: TBL
+        VStack(alignment: .leading, spacing: .standard) {
+            Text("Contributions")
+                .font(.Title.largeSemiBold)
+            
+            VStack(spacing: .medium) {
+                
             }
         }
     }

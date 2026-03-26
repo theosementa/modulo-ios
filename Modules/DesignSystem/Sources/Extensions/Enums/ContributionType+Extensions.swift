@@ -29,12 +29,21 @@ public extension ContributionType {
         }
     }
     
-    var bgColor: Color {
+    var color: Color {
         switch self {
         case .add:
             return .Success.s500
         case .remove:
             return .Error.e500
+        }
+    }
+    
+    var bgColor: Color {
+        switch self {
+        case .add:
+            return .Success.s100
+        case .remove:
+            return .Error.e100
         }
     }
     

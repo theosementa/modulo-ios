@@ -8,6 +8,7 @@
 import SwiftUI
 import DesignSystem
 import Navigation
+import Core
 
 public struct FinancialGoalListScreen: View {
     
@@ -41,7 +42,8 @@ public struct FinancialGoalListScreen: View {
         .overlay(alignment: .bottomTrailing) {
             NavigationButtonView(
                 route: .fullScreenCover,
-                destination: .financialGoal(.create)
+                destination: .financialGoal(.create),
+                onNavigate: { VibrationManager.vibration() }
             ) {
                 IconButtonView(.iconPlus)
             }

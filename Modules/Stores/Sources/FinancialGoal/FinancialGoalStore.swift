@@ -63,7 +63,6 @@ public extension FinancialGoalStore {
         entity.contributions.append(contribution)
         try? repository.saveContext()
 
-        // Rafraîchit le goal en mémoire avec le nouveau currentAmount
         if let index = financialGoals.firstIndex(where: { $0.id == goalId }) {
             financialGoals[index] = entity.toDomain()
         }

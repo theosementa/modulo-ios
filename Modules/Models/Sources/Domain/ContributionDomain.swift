@@ -29,6 +29,20 @@ public struct ContributionDomain: Identifiable {
     }
 }
 
+public extension ContributionDomain {
+    
+    func toUIModel() -> ContributionUIModel { // TODO: TBL
+        return .init(
+            id: id,
+            name: name ?? (type == .add ? "Argent ajouté" : "Argent retiré"),
+            amountFormatted: amount.toCurrency(),
+            type: type,
+            dateFormatted: date.formatted(date: .numeric, time: .omitted)
+        )
+    }
+    
+}
+
 // MARK: - Mocks
 @MainActor
 public extension ContributionDomain {

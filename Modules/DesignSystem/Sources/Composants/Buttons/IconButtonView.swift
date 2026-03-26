@@ -33,7 +33,7 @@ public struct IconButtonView: View {
             VibrationManager.vibration()
             if let action { action() }
         } label: {
-            IconView(icon)
+            IconView(icon, color: config.iconColor)
                 .padding(10)
                 .background(config.bgColor, in: .rect(cornerRadius: .standard, style: .continuous))
         }
@@ -45,9 +45,14 @@ public struct IconButtonView: View {
 extension IconButtonView {
     
     public struct Configuration {
+        public var iconColor: Color
         public var bgColor: Color
         
-        public init(bgColor: Color = .Background.bg100) {
+        public init(
+            iconColor: Color = .Text.primary,
+            bgColor: Color = .Background.bg100
+        ) {
+            self.iconColor = iconColor
             self.bgColor = bgColor
         }
     }

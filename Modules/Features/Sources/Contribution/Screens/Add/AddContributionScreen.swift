@@ -53,7 +53,7 @@ struct AddContributionScreen: View {
                         }
                     } label: {
                         SmallActionButtonView(
-                            style: .withValue(bgColor: viewModel.type.bgColor),
+                            style: .withValue(bgColor: viewModel.type.color),
                             icon: viewModel.type.icon,
                             text: viewModel.type.name
                         )
