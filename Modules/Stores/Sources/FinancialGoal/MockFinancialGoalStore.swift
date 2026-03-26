@@ -38,4 +38,19 @@ public final class MockFinancialGoalStore: FinancialGoalStore {
         financialGoals.removeAll(where: { $0.id == id })
     }
 
+    public func addContribution(to goalId: String, name: String?, amount: Double, type: ContributionType, date: Date) {
+        guard let index = financialGoals.firstIndex(where: { $0.id == goalId }) else { return }
+        let goal = financialGoals[index]
+        let delta = type == .add ? amount : -amount
+        financialGoals[index] = FinancialGoalDomain(
+            id: goal.id,
+            name: goal.name,
+            emoji: goal.emoji,
+            goalAmount: goal.goalAmount,
+            currentAmount: goal.currentAmount + delta,
+            startDate: goal.startDate,
+            endDate: goal.endDate
+        )
+    }
+
 }

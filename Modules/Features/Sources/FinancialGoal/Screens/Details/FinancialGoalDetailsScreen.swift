@@ -8,6 +8,7 @@
 import SwiftUI
 import Models
 import DesignSystem
+import Navigation
 
 struct FinancialGoalDetailsScreen: View {
     
@@ -48,11 +49,21 @@ struct FinancialGoalDetailsScreen: View {
                     .padding(.standard)
                 }
                 .scrollIndicators(.hidden)
+                .contentMargins(.bottom, .massive, for: .scrollContent)
             }
         }
         .fullSize(.top)
         .background(Color.Background.bg50)
         .navigationBarBackButtonHidden(true)
+        .overlay(alignment: .bottomTrailing) {
+            NavigationButtonView(
+                route: .fullScreenCover,
+                destination: .contribution(.create(goalId: viewModel.goalId))
+            ) {
+                IconButtonView(.iconPlus)
+            }
+            .padding(.large)
+        }
     }
 }
 
@@ -70,7 +81,7 @@ fileprivate extension FinancialGoalDetailsScreen {
     
     func generalSectionView(_ goal: FinancialGoalDetailedUIModel) -> some View { // TODO: TBL
         VStack(spacing: .medium) {
-            if goal.contributionsByMonth.isEmpty == false {
+            if viewModel.isChartDisplayed {
                 ContributionLineChartView(dataPoints: goal.contributionsByMonth)
             }
             

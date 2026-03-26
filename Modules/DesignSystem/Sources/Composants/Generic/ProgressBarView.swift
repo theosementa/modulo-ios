@@ -40,7 +40,7 @@ public struct ProgressBarView: View {
                             Text(percentageString)
                                 .font(.Body.mediumMedium, color: .white)
                                 .opacity(isAnimated ? 1 : 0)
-                                .padding(.horizontal, 12)
+                                .padding(.horizontal, .medium)
                                 .fixedSize(horizontal: true, vertical: false)
                         }
                         .animation(.smooth.delay(0.3), value: progressWidth)
@@ -64,7 +64,7 @@ extension ProgressBarView {
     }
     
     private var progressWidth: CGFloat {
-        return max(80, widthPercentage)
+        return max(60, widthPercentage)
     }
     
 }

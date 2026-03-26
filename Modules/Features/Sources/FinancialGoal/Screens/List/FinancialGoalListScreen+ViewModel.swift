@@ -16,7 +16,7 @@ extension FinancialGoalListScreen {
         
         private let provider: FinancialGoalProvider
         
-        init(provider: FinancialGoalProvider = MockFinancialGoalProvider.shared) {
+        init(provider: FinancialGoalProvider = DefaultFinancialGoalProvider.shared) {
             self.provider = provider
         }
         

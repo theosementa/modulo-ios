@@ -40,17 +40,35 @@ public extension FinancialGoalStore {
     func delete(by id: String) {
         guard let uuid = UUID(uuidString: id) else { return }
         let goalToDelete = repository.fetchOneByEntityId(uuid)
-        
+
         if let goalToDelete {
             do {
                 try repository.delete(goalToDelete)
                 self.financialGoals.removeAll(where: { $0.id == id })
-            } catch {
-                
-            }
+            } catch { }
         }
     }
-    
+
+    func addContribution(to goalId: String, name: String?, amount: Double, type: ContributionType, date: Date) {
+        guard let uuid = UUID(uuidString: goalId),
+              let entity = repository.fetchOneByEntityId(uuid) else { return }
+
+        let contribution = ContributionEntity(
+            name: name,
+            amount: amount,
+            type: type,
+            date: date,
+            financialGoal: entity
+        )
+        entity.contributions.append(contribution)
+        try? repository.saveContext()
+
+        // Rafraîchit le goal en mémoire avec le nouveau currentAmount
+        if let index = financialGoals.firstIndex(where: { $0.id == goalId }) {
+            financialGoals[index] = entity.toDomain()
+        }
+    }
+
 }
 
 private extension FinancialGoalStore {

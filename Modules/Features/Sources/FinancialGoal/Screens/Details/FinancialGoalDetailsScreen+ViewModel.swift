@@ -16,16 +16,17 @@ extension FinancialGoalDetailsScreen {
     final class ViewModel: BaseViewModel {
         
         // MARK: Dependencies
-        var detailledGoal: FinancialGoalDetailedDomain?
+        var goalId: String
+        
         private let provider: FinancialGoalProvider
         
         // MARK: Init
         init(
             id: String,
-            provider: FinancialGoalProvider = MockFinancialGoalProvider.shared
+            provider: FinancialGoalProvider = DefaultFinancialGoalProvider.shared
         ) {
+            self.goalId = id
             self.provider = provider
-            detailledGoal = provider.store.findOneDetailed(by: id)
         }
         
     }
@@ -34,6 +35,12 @@ extension FinancialGoalDetailsScreen {
 
 extension FinancialGoalDetailsScreen.ViewModel {
     
+    var detailledGoal: FinancialGoalDetailedDomain? {
+        return provider.store.findOneDetailed(by: goalId)
+    }
     
+    var isChartDisplayed: Bool {
+        return detailledGoal?.contributions.isEmpty == false
+    }
     
 }

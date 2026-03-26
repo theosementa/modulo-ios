@@ -1,52 +1,66 @@
 //
-//  SwiftUIView.swift
+//  AddContributionScreen.swift
 //  Features
 //
-//  Created by Theo Sementa on 25/03/2026.
+//  Created by Theo Sementa on 26/03/2026.
 //
 
 import SwiftUI
 import DesignSystem
 import Core
-import MCEmojiPicker
+import Models
 import ToastBannerKit
 
-struct AddFinancialGoalScreen: View {
-    
+struct AddContributionScreen: View {
+
     // MARK: Environments
     @Environment(\.safeAreaInsets) private var safeAreaInsets
     @Environment(\.dismiss) private var dismiss
     @Environment(\.theme) private var theme
-    
+
     // MARK: States
-    @State private var viewModel: ViewModel = .init()
+    @State private var viewModel: ViewModel
     @StateObject private var keyboardManager: KeyboardManager = .init()
-    
+
+    // MARK: Init
+    init(goalId: String) {
+        self._viewModel = State(wrappedValue: ViewModel(goalId: goalId))
+    }
+
     // MARK: - View
     var body: some View {
         VStack(spacing: .standard) {
             DismissButtonView { viewModel.dismissAction() }
                 .fullWidth(.trailing)
-            
-            VStack(spacing: .standard) {
-                emojiPickerView
-                
-                TextFieldView(
-                    text: $viewModel.name,
-                    title: "add_goal_field_name_title".localized,
-                    placeholder: viewModel.namePlaceholder
-                )
-            }
-            
+
+            TextFieldView( // TODO: TBL
+                text: $viewModel.name,
+                title: "add_contribution_field_name_title".localized,
+                placeholder: "add_contribution_field_name_placeholder".localized
+            )
+
             amountView
                 .fullSize()
-            
+
             VStack(spacing: .medium) {
                 HStack(spacing: .medium) {
-                    DatePickerView(date: $viewModel.startDate)
-                    DatePickerView(date: $viewModel.endDate, placeholder: "add_goal_field_end_date".localized)
+                    DatePickerView(date: $viewModel.date)
+                    Menu {
+                        ForEach(ContributionType.allCases, id: \.self) { type in
+                            Button { viewModel.type = type } label: {
+                                Text(type.name)
+                            }
+                        }
+                    } label: {
+                        SmallActionButtonView(
+                            style: .withValue(bgColor: viewModel.type.bgColor),
+                            icon: viewModel.type.icon,
+                            text: viewModel.type.name
+                        )
+                    }
+                    .animation(.smooth, value: viewModel.type)
                 }
-                
+
                 if keyboardManager.isKeyboardVisible {
                     Color.clear.frame(height: keyboardManager.keyboardHeight - safeAreaInsets.bottom - .standard)
                 } else {
@@ -65,7 +79,7 @@ struct AddFinancialGoalScreen: View {
         .navigationBarBackButtonHidden(true)
         .toastBanner(
             item: $viewModel.toastBannerService.toastBanner,
-            config: .init(yOffset: 10, animation: .smooth),
+            config: .init(yOffset: 10, animation: .smooth)
         ) { toastBanner in
             ToastBannerView(banner: toastBanner)
         }
@@ -73,8 +87,8 @@ struct AddFinancialGoalScreen: View {
 }
 
 // MARK: - Subviews
-extension AddFinancialGoalScreen {
-    
+extension AddContributionScreen {
+
     var amountView: some View {
         HStack(spacing: .tiny) {
             Text(UserCurrency.symbol)
@@ -90,23 +104,10 @@ extension AddFinancialGoalScreen {
                 .isDisplayed(viewModel.amount != "0")
         }
     }
-    
-    var emojiPickerView: some View {
-        Button { viewModel.showEmojiPicker.toggle() } label: {
-            Text(viewModel.emoji)
-                .font(.Title.mediumMedium)
-                .frame(width: 20, height: 20)
-                .padding(.medium)
-                .background(Color.Background.bg100, in: .rect(cornerRadius: .standard, style: .continuous))
-        }
-        .emojiPicker(
-            isPresented: $viewModel.showEmojiPicker,
-            selectedEmoji: $viewModel.emoji
-        )
-    }
+
 }
 
 // MARK: - Preview
 #Preview {
-    AddFinancialGoalScreen()
+    AddContributionScreen(goalId: "mock-1")
 }

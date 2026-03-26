@@ -11,7 +11,7 @@ import SwiftUI
 public final class ThemeManager {
     @MainActor public static let shared = ThemeManager()
     
-    @AppStorage("theme") @ObservationIgnored public var theme: ThemeColor = .green
+    @AppStorage("theme") @ObservationIgnored public var theme: ThemeColor = .blue
     
     public init() { }
 }
@@ -25,15 +25,6 @@ public enum ThemeColor: String, CaseIterable {
         case .blue: return "theme_blue"
         case .purple: return "theme_purple"
         case .red: return "theme_red"
-        }
-    }
-    
-    public var nameNotLocalized: String {
-        switch self {
-        case .green: return "Green"
-        case .blue: return "Blue"
-        case .purple: return "Purple"
-        case .red: return "Red"
         }
     }
 }

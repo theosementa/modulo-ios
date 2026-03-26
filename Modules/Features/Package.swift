@@ -7,7 +7,8 @@ let package = Package(
     name: "Features",
     platforms: [.iOS(.v17)],
     products: [
-        .library(name: "FinancialGoal", targets: ["FinancialGoal"])
+        .library(name: "FinancialGoal", targets: ["FinancialGoal"]),
+        .library(name: "Contribution", targets: ["Contribution"]),
     ],
     dependencies: [
         .package(name: "DesignSystem", path: "../DesignSystem"),
@@ -25,6 +26,14 @@ let package = Package(
                 .product(name: "Providers", package: "Providers"),
                 
                 .product(name: "MCEmojiPicker", package: "MCEmojiPicker")
+            ]
+        ),
+        .target(
+            name: "Contribution",
+            dependencies: [
+                .product(name: "DesignSystem", package: "DesignSystem"),
+                .product(name: "Navigation", package: "Navigation"),
+                .product(name: "Providers", package: "Providers")
             ]
         )
     ]
