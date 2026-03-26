@@ -9,6 +9,7 @@ import Foundation
 import Core
 import Models
 import Stores
+import ToastBannerKit
 
 extension AddFinancialGoalScreen {
     
@@ -18,6 +19,7 @@ extension AddFinancialGoalScreen {
         // MARK: Dependencies
         var financialGoal: FinancialGoalDomain?
         private let store: FinancialGoalStore
+        var toastBannerService: ToastBannerService
         
         // MARK: States
         var emoji: String = "🚗"
@@ -32,8 +34,12 @@ extension AddFinancialGoalScreen {
         var showEmojiPicker: Bool = false
         
         // MARK: Init
-        init(store: FinancialGoalStore = DefaultFinancialGoalStore.shared) {
+        init(
+            store: FinancialGoalStore = DefaultFinancialGoalStore.shared,
+            toastBannerService: ToastBannerService = .shared
+        ) {
             self.store = store
+            self.toastBannerService = toastBannerService
         }
     }
     
@@ -80,9 +86,14 @@ extension AddFinancialGoalScreen.ViewModel {
 private extension AddFinancialGoalScreen.ViewModel {
     
     func checkDatas() throws {
-        if name.isReallyEmpty || amount.toDouble() == 0 {
-//            toastBannerService.send(.errorAmountMandatory)
-            // TODO: throw custom error
+        if name.isReallyEmpty {
+            toastBannerService.send(.errorNameMandatory)
+            throw AddFinancialGoalError.missingName
+        }
+        
+        if amount.toDouble() == 0 {
+            toastBannerService.send(.errorAmountMandatory)
+            throw AddFinancialGoalError.missingAmount
         }
     }
     

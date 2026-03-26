@@ -9,6 +9,7 @@ import SwiftUI
 import DesignSystem
 import Core
 import MCEmojiPicker
+import ToastBannerKit
 
 struct AddFinancialGoalScreen: View {
     
@@ -31,7 +32,7 @@ struct AddFinancialGoalScreen: View {
                 
                 TextFieldView(
                     text: $viewModel.name,
-                    title: "Nom de l'objectif", // TODO: TBL
+                    title: "add_goal_field_name_title".localized,
                     placeholder: viewModel.namePlaceholder
                 )
             }
@@ -42,7 +43,7 @@ struct AddFinancialGoalScreen: View {
             VStack(spacing: .medium) {
                 HStack(spacing: .medium) {
                     DatePickerView(date: $viewModel.startDate)
-                    DatePickerView(date: $viewModel.endDate, placeholder: "Date de fin") // TODO: TBL
+                    DatePickerView(date: $viewModel.endDate, placeholder: "add_goal_field_end_date".localized)
                 }
                 
                 if keyboardManager.isKeyboardVisible {
@@ -61,6 +62,12 @@ struct AddFinancialGoalScreen: View {
         .animation(.smooth, value: keyboardManager.isKeyboardVisible)
         .lockView()
         .navigationBarBackButtonHidden(true)
+        .toastBanner(
+            item: $viewModel.toastBannerService.toastBanner,
+            config: .init(yOffset: 10, animation: .smooth),
+        ) { toastBanner in
+            ToastBannerView(banner: toastBanner)
+        }
     }
 }
 

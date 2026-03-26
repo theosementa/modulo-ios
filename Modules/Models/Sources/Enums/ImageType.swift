@@ -35,6 +35,7 @@ public enum ImageType: String {
     case iconTargetMoney
     case iconTrash
     case iconVibration
+    case iconWarning
     case iconWithdrawal
     case iconXmark
 

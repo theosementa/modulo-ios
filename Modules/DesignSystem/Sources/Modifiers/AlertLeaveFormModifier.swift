@@ -8,7 +8,7 @@
 
 import SwiftUI
 
-struct AlertLeaveFormModifier: ViewModifier { // TODO: TBL
+struct AlertLeaveFormModifier: ViewModifier {
     
     // MARK: Dependencies
     @Binding var isPresented: Bool

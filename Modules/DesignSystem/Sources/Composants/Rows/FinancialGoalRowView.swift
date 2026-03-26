@@ -50,7 +50,7 @@ public struct FinancialGoalRowView: View {
                
             } label: {
                 Label {
-                    Text("generic_delete".localized) // TODO: TBL
+                    Text("generic_delete".localized)
                         .font(.Body.mediumMedium, color: .Error.e500)
                 } icon: {
                     IconView(.iconTrash, size: .medium, color: .Error.e500)
