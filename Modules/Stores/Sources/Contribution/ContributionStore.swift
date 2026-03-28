@@ -39,6 +39,18 @@ public extension ContributionStore {
         }
     }
     
+    func delete(by id: String) {
+        guard let uuid = UUID(uuidString: id) else { return }
+        let contributionToDelete = repository.fetchOneByEntityId(uuid)
+
+        if let contributionToDelete {
+            do {
+                try repository.delete(contributionToDelete)
+                self.contributions.removeAll(where: { $0.id == id })
+            } catch { }
+        }
+    }
+    
 }
 
 // MARK: - Private methods

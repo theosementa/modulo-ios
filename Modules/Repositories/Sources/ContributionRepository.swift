@@ -12,6 +12,13 @@ import SwiftData
 
 public final class ContributionRepository: GenericRepository<ContributionEntity> {
     
+    public func fetchOneByEntityId(_ id: UUID) -> ContributionEntity? {
+        let predicate = #Predicate<ContributionEntity> { $0.id == id }
+        var descriptor = FetchDescriptor<ContributionEntity>(predicate: predicate)
+        descriptor.fetchLimit = 1
+        return try? context.fetch(descriptor).first
+    }
+    
     public func fetchAll(for goalId: UUID) -> [ContributionEntity] {
         let goalRepository: FinancialGoalRepository = .init()
         

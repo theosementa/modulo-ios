@@ -7,6 +7,7 @@
 
 import SwiftUI
 import Models
+import Stores
 
 public struct ContributionRowView: View {
     
@@ -41,6 +42,25 @@ public struct ContributionRowView: View {
                 Text(item.dateFormatted)
                     .font(.Body.smallRegular, color: .Text.secondary)
             }
+        }
+        .contentShape(Rectangle())
+        .contentShape(.contextMenuPreview, RoundedRectangle(cornerRadius: .medium, style: .continuous))
+        .contextMenu {
+            Button(role: .destructive) {
+               // TODO: Ask with alert
+                DefaultContributionStore.shared.delete(by: item.id)
+            } label: {
+                Label {
+                    Text("generic_delete".localized)
+                        .font(.Body.mediumMedium, color: .Error.e500)
+                } icon: {
+                    IconView(.iconTrash, size: .medium, color: .Error.e500)
+                }
+            }
+        } preview: {
+            self
+                .frame(width: UIScreen.main.bounds.width - (.standard * 2))
+                .padding(.small)
         }
     }
 }
