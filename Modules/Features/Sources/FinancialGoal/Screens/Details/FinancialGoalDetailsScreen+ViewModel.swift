@@ -18,8 +18,8 @@ extension FinancialGoalDetailsScreen {
         
         // MARK: Dependencies
         var goalId: String
-        private let provider: FinancialGoalProvider
-        private let contributionStore: ContributionStore
+        private let financialGoalProvider: FinancialGoalProvider
+        private let contributionProvider: ContributionProvider
 
         // MARK: Contributions pagination
         private(set) var hasMoreContributions: Bool = true
@@ -32,12 +32,12 @@ extension FinancialGoalDetailsScreen {
         // MARK: Init
         init(
             id: String,
-            provider: FinancialGoalProvider = DefaultFinancialGoalProvider.shared,
-            contributionStore: ContributionStore = DefaultContributionStore.shared
+            financialGoalProvider: FinancialGoalProvider = DefaultFinancialGoalProvider.shared,
+            contributionProvider: ContributionProvider = DefaultContributionProvider.shared
         ) {
             self.goalId = id
-            self.provider = provider
-            self.contributionStore = contributionStore
+            self.financialGoalProvider = financialGoalProvider
+            self.contributionProvider = contributionProvider
         }
     }
 }
@@ -46,7 +46,7 @@ extension FinancialGoalDetailsScreen {
 extension FinancialGoalDetailsScreen.ViewModel {
 
     var detailledGoal: FinancialGoalDetailedDomain? {
-        return provider.store.findOneDetailed(by: goalId)
+        return financialGoalProvider.store.findOneDetailed(by: goalId)
     }
 
     var isChartDisplayed: Bool {
@@ -54,7 +54,7 @@ extension FinancialGoalDetailsScreen.ViewModel {
     }
     
     var contributions: [ContributionDomain] {
-        return contributionStore.contributions
+        return contributionProvider.contributions(by: .mostRecent)
     }
 
 }
@@ -63,20 +63,8 @@ extension FinancialGoalDetailsScreen.ViewModel {
 extension FinancialGoalDetailsScreen.ViewModel {
     
     func fetchAllContributions() {
-        contributionStore.fetchAll()
+        contributionProvider.store.fetchAll()
     }
-
-//    func loadMoreContributions() {
-//        guard hasMoreContributions else { return }
-//        let page = provider.store.fetchContributions(
-//            for: goalId,
-//            offset: contributionsOffset,
-//            limit: pageSize
-//        )
-//        contributions += page
-//        contributionsOffset += page.count
-//        hasMoreContributions = page.count == pageSize
-//    }
 
 }
 
@@ -84,7 +72,7 @@ extension FinancialGoalDetailsScreen.ViewModel {
 extension FinancialGoalDetailsScreen.ViewModel {
 
     func loadMonthlyDataPoints() {
-        monthlyDataPoints = provider.store.fetchMonthlyDataPoints(for: goalId)
+        monthlyDataPoints = financialGoalProvider.store.fetchMonthlyDataPoints(for: goalId)
     }
 
 }

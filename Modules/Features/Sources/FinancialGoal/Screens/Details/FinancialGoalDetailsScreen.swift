@@ -201,22 +201,12 @@ fileprivate extension FinancialGoalDetailsScreen {
                     ForEach(viewModel.contributions) { contribution in
                         ContributionRowView(item: contribution.toUIModel())
                     }
-
-//                    if viewModel.hasMoreContributions {
-//                        Button {
-//                            withAnimation(.smooth) {
-//                                viewModel.loadMoreContributions()
-//                            }
-//                        } label: {
-//                            Text("Voir plus")
-//                                .font(.Body.mediumMedium)
-//                                .fullWidth()
-//                        }
-//                    }
                 }
             }
         }
-        .task { viewModel.fetchAllContributions() }
+        .task {
+            viewModel.fetchAllContributions()
+        }
     }
     
 }
