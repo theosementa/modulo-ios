@@ -40,7 +40,7 @@ struct FinancialGoalDetailsScreen: View {
             if let goal = viewModel.detailledGoal?.toUIModel() {
                 ScrollView {
                     VStack(spacing: .large) {
-                        if goal.date.endDateFormatted != nil {
+                        if goal.remainingThisMonthFormatted != nil {
                             toContributeThisMonthSectionView(goal)
                             DividerView()
                         }

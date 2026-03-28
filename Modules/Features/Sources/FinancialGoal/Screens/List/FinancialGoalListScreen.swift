@@ -25,20 +25,25 @@ public struct FinancialGoalListScreen: View {
                 rightAction: { }
             )
             
-            List(viewModel.financialGoals) { financialGoal in
-                NavigationButtonView(
-                    route: .push,
-                    destination: .financialGoal(.details(id: financialGoal.id)),
-                    onNavigate: { viewModel.onNavigateSetGoalId(financialGoal.id) }
-                ) {
-                    FinancialGoalRowView(item: financialGoal.toUIModel())
+            if viewModel.financialGoals.isEmpty == false {
+                List(viewModel.financialGoals) { financialGoal in
+                    NavigationButtonView(
+                        route: .push,
+                        destination: .financialGoal(.details(id: financialGoal.id)),
+                        onNavigate: { viewModel.onNavigateSetGoalId(financialGoal.id) }
+                    ) {
+                        FinancialGoalRowView(item: financialGoal.toUIModel())
+                    }
+                    .disableListStyle()
+                    .padding(.bottom, .medium)
                 }
-                .disableListStyle()
-                .padding(.bottom, .medium)
+                .listStyle(.plain)
+                .scrollIndicators(.hidden)
+                .contentMargins(.all, .standard, for: .scrollContent)
+            } else {
+                CustomEmptyView(style: .noTargets)
+                    .fullSize()
             }
-            .listStyle(.plain)
-            .scrollIndicators(.hidden)
-            .contentMargins(.all, .standard, for: .scrollContent)
         }
         .background(Color.Background.bg50)
         .overlay(alignment: .bottomTrailing) {
