@@ -20,7 +20,7 @@ public final class FinancialGoalRepository: GenericRepository<FinancialGoalEntit
     }
 
     public func fetchContributions(for goalId: UUID, offset: Int, limit: Int) -> [ContributionEntity] {
-        let predicate = #Predicate<ContributionEntity> { $0.financialGoal.id == goalId }
+        let predicate = #Predicate<ContributionEntity> { $0.financialGoal?.id == goalId }
         var descriptor = FetchDescriptor<ContributionEntity>(
             predicate: predicate,
             sortBy: [SortDescriptor(\.date, order: .reverse)]
@@ -33,7 +33,7 @@ public final class FinancialGoalRepository: GenericRepository<FinancialGoalEntit
     public func fetchMonthlyDataPoints(for goalId: UUID) -> [ContributionMonthlyDataPoint] {
         let calendar = Calendar.current
 
-        let predicate = #Predicate<ContributionEntity> { $0.financialGoal.id == goalId }
+        let predicate = #Predicate<ContributionEntity> { $0.financialGoal?.id == goalId }
         var oldestDescriptor = FetchDescriptor<ContributionEntity>(
             predicate: predicate,
             sortBy: [SortDescriptor(\.date, order: .forward)]
@@ -61,7 +61,7 @@ public final class FinancialGoalRepository: GenericRepository<FinancialGoalEntit
             let monthEnd = calendar.date(byAdding: .month, value: 1, to: cursor) ?? cursor
 
             let predicate = #Predicate<ContributionEntity> {
-                $0.financialGoal.id == goalId &&
+                $0.financialGoal?.id == goalId &&
                 $0.date >= monthStart &&
                 $0.date < monthEnd
             }

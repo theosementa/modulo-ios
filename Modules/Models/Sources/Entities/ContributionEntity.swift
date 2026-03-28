@@ -21,8 +21,8 @@ public final class ContributionEntity {
     
     public var date: Date
     
-    public var financialGoal: FinancialGoalEntity
-    
+    public var financialGoal: FinancialGoalEntity?
+
     public init(
         name: String? = nil,
         amount: Double,
