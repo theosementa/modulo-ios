@@ -7,6 +7,7 @@
 
 import SwiftUI
 import Models
+import Stores
 
 public struct FinancialGoalRowView: View {
     
@@ -47,7 +48,8 @@ public struct FinancialGoalRowView: View {
         .contentShape(.contextMenuPreview, .rect(cornerRadius: .large))
         .contextMenu {
             Button(role: .destructive) {
-               
+               // TODO: Ask with alert
+                DefaultFinancialGoalStore.shared.delete(by: item.id)
             } label: {
                 Label {
                     Text("generic_delete".localized)

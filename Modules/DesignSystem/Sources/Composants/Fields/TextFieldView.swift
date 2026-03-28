@@ -40,7 +40,7 @@ public struct TextFieldView: View {
                 .lineLimit(2)
                 .overlay(condition: text.isReallyEmpty) {
                     Text(placeholder)
-                        .font(.Title.mediumMedium, color: .Text.secondary)
+                        .font(.Title.mediumMedium, color: .Text.tertiary)
                 }
                 .submitLabel(.done)
         }

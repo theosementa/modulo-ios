@@ -61,9 +61,6 @@ public struct DatePickerView: View {
             .frame(width: 365, height: 365) // Support iPhone SE
             .presentationCompactAdaptation(.popover) // show popOver on iPhones
         }
-        .onChange(of: date) {
-            showCalendar = false
-        }
     }
 }
 

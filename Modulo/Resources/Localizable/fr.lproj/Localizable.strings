@@ -1,7 +1,96 @@
-/* 
-  Localizable.strings
-  Modulo
+/*  */
+"add_contribution_field_name_placeholder" = "Argent de mamie";
 
-  Created by Theo Sementa on 25/03/2026.
-  
-*/
+/*  */
+"add_contribution_field_name_title" = "Nom de la contribution (optionnel)";
+
+/*  */
+"add_financial_goal_field_name_placeholder_five" = "Investir 10 000 €";
+
+/*  */
+"add_financial_goal_field_name_placeholder_four" = "Maison à la montagne";
+
+/*  */
+"add_financial_goal_field_name_placeholder_one" = "Nouveau MacBook Pro";
+
+/*  */
+"add_financial_goal_field_name_placeholder_three" = "Voyage à New York";
+
+/*  */
+"add_financial_goal_field_name_placeholder_two" = "Nouvelle voiture";
+
+/*  */
+"add_goal_field_name_title" = "Nom de l'objectif";
+
+/*  */
+"confirmation_leave_form_cancel_button" = "Continuer";
+
+/*  */
+"confirmation_leave_form_destructive_button" = "Quitter sans sauvegarder";
+
+/*  */
+"confirmation_leave_form_message" = "Tu as apporté des changements. Si tu quittes maintenant, ils seront perdus.";
+
+/*  */
+"confirmation_leave_form_title" = "Modifications non enregistrées";
+
+/*  */
+"contribution_add" = "Ajout";
+
+/*  */
+"contribution_money_added" = "Argent ajouté";
+
+/*  */
+"contribution_money_withdrawn" = "Argent retiré";
+
+/*  */
+"contribution_withdrawal" = "Retrait";
+
+/*  */
+"financial_goal_detail_date_section_elapsed_days" = "Jours écoulés";
+
+/*  */
+"financial_goal_detail_date_section_remaining_days" = "Jours restants";
+
+/*  */
+"financial_goal_detail_general_section_remaining_contribution" = "Contribution restante";
+
+/*  */
+"financial_goal_detail_general_section_target" = "Objectif";
+
+/*  */
+"financial_goal_detail_general_section_total_contribution" = "Contribution totale";
+
+/*  */
+"financial_goal_detail_monthly_section_contributed_this_month" = "Contribué ce mois-ci";
+
+/*  */
+"financial_goal_detail_monthly_section_recalculed_target" = "Objectif recalculé";
+
+/*  */
+"financial_goal_detail_monthly_section_theorical_target" = "Objectif théorique";
+
+/*  */
+"financial_goal_detail_monthly_section_title" = "Mensualité";
+
+/*  */
+"financial_goal_detail_to_contribute_this_month" = "Montant à contribuer ce mois-ci";
+
+/*  */
+"generic_date" = "Date";
+
+/*  */
+"generic_delete" = "Supprimer";
+
+/*  */
+"generic_end_date" = "Date de fin";
+
+/*  */
+"generic_start_date" = "Date de début";
+
+/*  */
+"toast_banner_amount_mandatory" = "Le montant est obligatoire";
+
+/*  */
+"toast_banner_name_mandatory" = "Le nom est obligatoire";
+

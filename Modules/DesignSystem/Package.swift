@@ -16,6 +16,7 @@ let package = Package(
         .package(name: "Core", path: "../Core"),
         .package(name: "Models", path: "../Models"),
         .package(name: "Navigation", path: "../Navigation"),
+        .package(name: "Stores", path: "../Stores"),
         
         .package(url: "https://github.com/theosementa/ToastBannerKit.git", exact: "1.0.2")
     ],
@@ -26,6 +27,7 @@ let package = Package(
                 .product(name: "Core", package: "Core"),
                 .product(name: "Models", package: "Models"),
                 .product(name: "Navigation", package: "Navigation"),
+                .product(name: "Stores", package: "Stores"),
                 
                 .product(name: "ToastBannerKit", package: "ToastBannerKit")
             ]

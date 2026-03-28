@@ -29,6 +29,7 @@ public struct ValueWithLabelView: View {
                 .font(.Title.mediumMedium)
             Text(label)
                 .font(.Body.smallRegular)
+                .multilineTextAlignment(.center)
         }
         .fullWidth()
         .padding(.standard)

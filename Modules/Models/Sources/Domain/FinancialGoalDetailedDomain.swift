@@ -82,14 +82,9 @@ public extension FinancialGoalDetailedDomain {
 
         let remainingThisMonth: Double? = monthlyRequired.map { max(0, $0 - contributedThisMonth) }
 
-        let monthlyDataPoints = Self.computeMonthlyDataPoints(
-            contributions: contributions,
-            startDate: goal.startDate
-        )
-
         let dateModel = FinancialGoalDetailedDateUIModel(
-            elapsedDaysFormatted: "\(elapsedDays)j", // TODO: TBL
-            remainingDaysFormatted: remainingDays.map { "\($0)j" }, // TODO: TBL
+            elapsedDaysFormatted: "\(elapsedDays)",
+            remainingDaysFormatted: remainingDays.map { "\($0)" },
             startDateFormatted: goal.startDate.formatted(.dateTime.day().month(.abbreviated).year()),
             endDateFormatted: goal.endDate?.formatted(.dateTime.day().month(.abbreviated).year())
         )
@@ -105,43 +100,8 @@ public extension FinancialGoalDetailedDomain {
             monthlyRequiredFormatted: monthlyRequired?.toCurrency(),
             contribuedThisMonthFormatted: contributedThisMonth.toCurrency(),
             remainingThisMonthFormatted: remainingThisMonth?.toCurrency(),
-            contributionsByMonth: monthlyDataPoints,
             date: dateModel
         )
-    }
-
-    private static func computeMonthlyDataPoints(
-        contributions: [ContributionDomain],
-        startDate: Date
-    ) -> [ContributionMonthlyDataPoint] {
-        let calendar = Calendar.current
-
-        guard
-            let startOfFirstMonth = calendar.date(from: calendar.dateComponents([.year, .month], from: startDate)),
-            let startOfCurrentMonth = calendar.date(from: calendar.dateComponents([.year, .month], from: .now))
-        else { return [] }
-
-        var result: [ContributionMonthlyDataPoint] = []
-        var cursor = startOfFirstMonth
-
-        while cursor <= startOfCurrentMonth {
-            let nextMonth = calendar.date(byAdding: .month, value: 1, to: cursor) ?? cursor
-
-            let net = contributions
-                .filter { $0.date >= cursor && $0.date < nextMonth }
-                .reduce(0.0) { $0 + ($1.type == .add ? $1.amount : -$1.amount) }
-
-            result.append(ContributionMonthlyDataPoint(
-                id: cursor.formatted(.dateTime.year().month()),
-                month: cursor,
-                monthLabel: cursor.formatted(.dateTime.month(.abbreviated).year(.twoDigits)),
-                netAmount: net
-            ))
-
-            cursor = nextMonth
-        }
-
-        return result
     }
 
 }

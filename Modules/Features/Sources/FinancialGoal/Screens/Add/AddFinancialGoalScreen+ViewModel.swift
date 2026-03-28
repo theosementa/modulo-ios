@@ -40,6 +40,7 @@ extension AddFinancialGoalScreen {
         ) {
             self.store = store
             self.toastBannerService = toastBannerService
+            self.namePlaceholder = randomPlaceholder()
         }
     }
     
@@ -108,6 +109,17 @@ private extension AddFinancialGoalScreen.ViewModel {
         )
         store.create(goal: domain)
         router?.dismiss()
+    }
+    
+    func randomPlaceholder() -> String {
+        let availablePlaceholders: [String] = [
+            "add_financial_goal_field_name_placeholder_one",
+            "add_financial_goal_field_name_placeholder_two",
+            "add_financial_goal_field_name_placeholder_three",
+            "add_financial_goal_field_name_placeholder_four",
+            "add_financial_goal_field_name_placeholder_five"
+        ]
+        return availablePlaceholders.randomElement() ?? ""
     }
     
 }

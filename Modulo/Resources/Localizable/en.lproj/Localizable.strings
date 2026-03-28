@@ -1,7 +1,96 @@
-/* 
-  Localizable.strings
-  Modulo
+/*  */
+"add_contribution_field_name_placeholder" = "Grandma's money";
 
-  Created by Theo Sementa on 25/03/2026.
-  
-*/
+/*  */
+"add_contribution_field_name_title" = "Name of the contribution (optional)";
+
+/*  */
+"add_financial_goal_field_name_placeholder_five" = "Invest €10,000";
+
+/*  */
+"add_financial_goal_field_name_placeholder_four" = "Mountain home";
+
+/*  */
+"add_financial_goal_field_name_placeholder_one" = "New MacBook Pro";
+
+/*  */
+"add_financial_goal_field_name_placeholder_three" = "Trip to New York";
+
+/*  */
+"add_financial_goal_field_name_placeholder_two" = "New car";
+
+/*  */
+"add_goal_field_name_title" = "Target name";
+
+/*  */
+"confirmation_leave_form_cancel_button" = "Continue";
+
+/*  */
+"confirmation_leave_form_destructive_button" = "Exit without saving";
+
+/*  */
+"confirmation_leave_form_message" = "You've made some changes. If you leave now, they'll be lost.";
+
+/*  */
+"confirmation_leave_form_title" = "Unsaved changes";
+
+/*  */
+"contribution_add" = "Add";
+
+/*  */
+"contribution_money_added" = "Money added";
+
+/*  */
+"contribution_money_withdrawn" = "Money withdrawn";
+
+/*  */
+"contribution_withdrawal" = "Withdrawal";
+
+/*  */
+"financial_goal_detail_date_section_elapsed_days" = "Elapsed days";
+
+/*  */
+"financial_goal_detail_date_section_remaining_days" = "Remaining days";
+
+/*  */
+"financial_goal_detail_general_section_remaining_contribution" = "Remaining contribution";
+
+/*  */
+"financial_goal_detail_general_section_target" = "Target";
+
+/*  */
+"financial_goal_detail_general_section_total_contribution" = "Total contribution";
+
+/*  */
+"financial_goal_detail_monthly_section_contributed_this_month" = "Contributed this month";
+
+/*  */
+"financial_goal_detail_monthly_section_recalculed_target" = "Recalculated target";
+
+/*  */
+"financial_goal_detail_monthly_section_theorical_target" = "Theoretical target";
+
+/*  */
+"financial_goal_detail_monthly_section_title" = "Monthly payment";
+
+/*  */
+"financial_goal_detail_to_contribute_this_month" = "Amount to contribute this month";
+
+/*  */
+"generic_date" = "Date";
+
+/*  */
+"generic_delete" = "Delete";
+
+/*  */
+"generic_end_date" = "End date";
+
+/*  */
+"generic_start_date" = "Start date";
+
+/*  */
+"toast_banner_amount_mandatory" = "The amount is required";
+
+/*  */
+"toast_banner_name_mandatory" = "The name is required";
+

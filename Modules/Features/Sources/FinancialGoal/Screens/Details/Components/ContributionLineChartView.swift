@@ -185,8 +185,8 @@ private extension ContributionLineChartView {
 
 // MARK: - Preview
 #Preview {
-    ContributionLineChartView(
-        dataPoints: FinancialGoalDetailedDomain.mock.toUIModel().contributionsByMonth
-    )
-    .padding()
+//    ContributionLineChartView(
+//        dataPoints: FinancialGoalDetailedDomain.mock.toUIModel().contributionsByMonth
+//    )
+//    .padding()
 }

@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import Utilities
 
 public struct ContributionDomain: Identifiable {
     public let id: String
@@ -31,11 +32,11 @@ public struct ContributionDomain: Identifiable {
 
 public extension ContributionDomain {
     
-    func toUIModel() -> ContributionUIModel { // TODO: TBL
+    func toUIModel() -> ContributionUIModel {
         return .init(
             id: id,
-            name: name ?? (type == .add ? "Argent ajouté" : "Argent retiré"),
-            amountFormatted: amount.toCurrency(),
+            name: name ?? (type == .add ? "contribution_money_added" : "contribution_money_withdrawn").localized,
+            amountFormatted: (type == .add ? "+ " : "- ") + amount.toCurrency(),
             type: type,
             dateFormatted: date.formatted(date: .numeric, time: .omitted)
         )

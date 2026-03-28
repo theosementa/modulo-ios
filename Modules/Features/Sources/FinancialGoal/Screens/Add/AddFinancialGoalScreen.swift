@@ -34,7 +34,7 @@ struct AddFinancialGoalScreen: View {
                 TextFieldView(
                     text: $viewModel.name,
                     title: "add_goal_field_name_title".localized,
-                    placeholder: viewModel.namePlaceholder
+                    placeholder: viewModel.namePlaceholder.localized
                 )
             }
             
@@ -44,7 +44,7 @@ struct AddFinancialGoalScreen: View {
             VStack(spacing: .medium) {
                 HStack(spacing: .medium) {
                     DatePickerView(date: $viewModel.startDate)
-                    DatePickerView(date: $viewModel.endDate, placeholder: "add_goal_field_end_date".localized)
+                    DatePickerView(date: $viewModel.endDate, placeholder: "generic_end_date".localized)
                 }
                 
                 if keyboardManager.isKeyboardVisible {
@@ -84,6 +84,7 @@ extension AddFinancialGoalScreen {
                 .contentTransition(.numericText())
         }
         .animation(.smooth, value: viewModel.amount)
+        .onTapGesture { UIDevice.hideKeyboard() }
         .fullWidth()
         .overlay(alignment: .trailing) {
             DeleteNumberButtonView(amount: $viewModel.amount)

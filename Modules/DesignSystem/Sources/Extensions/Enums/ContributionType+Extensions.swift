@@ -20,12 +20,12 @@ public extension ContributionType {
         }
     }
     
-    var name: String { // TODO: TBL
+    var name: String {
         switch self {
         case .add:
-            return "Ajout"
+            return "contribution_add".localized
         case .remove:
-            return "Retrait"
+            return "contribution_withdrawal".localized
         }
     }
     

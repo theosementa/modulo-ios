@@ -49,6 +49,16 @@ public extension FinancialGoalStore {
         }
     }
 
+    func fetchContributions(for goalId: String, offset: Int, limit: Int) -> [ContributionDomain] {
+        guard let uuid = UUID(uuidString: goalId) else { return [] }
+        return repository.fetchContributions(for: uuid, offset: offset, limit: limit).map { $0.toDomain() }
+    }
+
+    func fetchMonthlyDataPoints(for goalId: String) -> [ContributionMonthlyDataPoint] {
+        guard let uuid = UUID(uuidString: goalId) else { return [] }
+        return repository.fetchMonthlyDataPoints(for: uuid)
+    }
+
     func addContribution(to goalId: String, name: String?, amount: Double, type: ContributionType, date: Date) {
         guard let uuid = UUID(uuidString: goalId),
               let entity = repository.fetchOneByEntityId(uuid) else { return }

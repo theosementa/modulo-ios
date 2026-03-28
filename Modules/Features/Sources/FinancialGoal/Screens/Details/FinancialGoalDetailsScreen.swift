@@ -16,6 +16,9 @@ struct FinancialGoalDetailsScreen: View {
     // MARK: Dependencies
     private let id: String
     
+    // MARK: Environments
+    @Environment(\.theme) private var theme
+    
     // MARK: States
     @State private var viewModel: ViewModel
     
@@ -47,12 +50,16 @@ struct FinancialGoalDetailsScreen: View {
                         DividerView()
                         dateSectionView(goal)
                         DividerView()
-                        contributionsSectionView(goal)
+                        contributionsSectionView()
                     }
                     .padding(.standard)
                 }
                 .scrollIndicators(.hidden)
                 .contentMargins(.bottom, .massive, for: .scrollContent)
+                .task { viewModel.loadMonthlyDataPoints() }
+                .onChange(of: viewModel.detailledGoal?.goal.currentAmount) {
+                    viewModel.loadMonthlyDataPoints()
+                }
             }
         }
         .fullSize(.top)
@@ -64,7 +71,10 @@ struct FinancialGoalDetailsScreen: View {
                 destination: .contribution(.create(goalId: viewModel.goalId)),
                 onNavigate: { VibrationManager.vibration() }
             ) {
-                IconButtonView(.iconPlus)
+                IconButtonView(
+                    .iconPlus,
+                    config: .init(iconColor: .white, bgColor: theme.color)
+                )
             }
             .padding(.large)
         }
@@ -74,102 +84,102 @@ struct FinancialGoalDetailsScreen: View {
 // MARK: - Subviews
 fileprivate extension FinancialGoalDetailsScreen {
     
-    func toContributeThisMonthSectionView(_ goal: FinancialGoalDetailedUIModel) -> some View { // TODO: TBL
+    func toContributeThisMonthSectionView(_ goal: FinancialGoalDetailedUIModel) -> some View {
         VStack(spacing: .zero) {
             Text(goal.remainingThisMonthFormatted ?? "")
                 .font(.Title.largeSemiBold)
-            Text("Montant à contribuer ce mois-ci")
+            Text("financial_goal_detail_to_contribute_this_month".localized)
                 .font(.Body.mediumRegular)
         }
     }
     
-    func generalSectionView(_ goal: FinancialGoalDetailedUIModel) -> some View { // TODO: TBL
+    func generalSectionView(_ goal: FinancialGoalDetailedUIModel) -> some View {
         VStack(spacing: .medium) {
             if viewModel.isChartDisplayed {
-                ContributionLineChartView(dataPoints: goal.contributionsByMonth)
+                ContributionLineChartView(dataPoints: viewModel.monthlyDataPoints)
             }
             
             ProgressBarView(percentage: goal.progress)
             
             ValueWithLabelView(
                 value: goal.goalAmountFormatted,
-                label: "Objectif"
+                label: "financial_goal_detail_general_section_target".localized
             )
             
             HStack(spacing: .medium) {
                 ValueWithLabelView(
                     value: goal.currentContributionsFormatted,
-                    label: "Contribution totale"
+                    label: "financial_goal_detail_general_section_total_contribution".localized
                 )
                 
                 ValueWithLabelView(
                     value: goal.remainingContributionsFormatted,
-                    label: "Contribution restante"
+                    label: "financial_goal_detail_general_section_remaining_contribution".localized
                 )
             }
         }
     }
     
     @ViewBuilder
-    func monthlySectionView(_ goal: FinancialGoalDetailedUIModel) -> some View { // TODO: TBL
+    func monthlySectionView(_ goal: FinancialGoalDetailedUIModel) -> some View {
         VStack(alignment: .leading, spacing: .standard) {
-            Text("Mensualité")
+            Text("financial_goal_detail_monthly_section_title".localized)
                 .font(.Title.largeSemiBold)
             
             VStack(spacing: .medium) {
                 if goal.date.endDateFormatted != nil {
                     DetailRowView(
                         icon: .iconTarget,
-                        text: "Objectif théorique",
+                        text: "financial_goal_detail_monthly_section_theorical_target".localized,
                         value: goal.monthlyTargetFormatted ?? ""
                     )
                     
                     DetailRowView(
                         icon: .iconTarget,
-                        text: "Objectif recalculé",
+                        text: "financial_goal_detail_monthly_section_recalculed_target".localized,
                         value: goal.monthlyRequiredFormatted ?? ""
                     )
                 }
                 
                 DetailRowView(
                     icon: .iconHandCoins,
-                    text: "Contribué ce mois-ci",
+                    text: "financial_goal_detail_monthly_section_contributed_this_month".localized,
                     value: goal.contribuedThisMonthFormatted
                 )
             }
         }
     }
     
-    func dateSectionView(_ goal: FinancialGoalDetailedUIModel) -> some View { // TODO: TBL
+    func dateSectionView(_ goal: FinancialGoalDetailedUIModel) -> some View {
         VStack(alignment: .leading, spacing: .standard) {
-            Text("Date")
+            Text("generic_date".localized)
                 .font(.Title.largeSemiBold)
             
             VStack(spacing: .medium) {
                 DetailRowView(
                     icon: .iconSablier,
-                    text: "Jours écoulés",
+                    text: "financial_goal_detail_date_section_elapsed_days".localized,
                     value: goal.date.elapsedDaysFormatted
                 )
                 
                 if let remainingDays = goal.date.remainingDaysFormatted {
                     DetailRowView(
                         icon: .iconRemaningTime,
-                        text: "Jours restants",
+                        text: "financial_goal_detail_date_section_remaining_days".localized,
                         value: remainingDays
                     )
                 }
                 
                 DetailRowView(
                     icon: .iconCalendar,
-                    text: "Date de début",
+                    text: "generic_start_date".localized,
                     value: goal.date.startDateFormatted
                 )
                 
                 if let endDate = goal.date.endDateFormatted {
                     DetailRowView(
                         icon: .iconCalendar,
-                        text: "Date de fin",
+                        text: "generic_end_date".localized,
                         value: endDate
                     )
                 }
@@ -177,15 +187,36 @@ fileprivate extension FinancialGoalDetailsScreen {
         }
     }
     
-    func contributionsSectionView(_ goal: FinancialGoalDetailedUIModel) -> some View { // TODO: TBL
+    func contributionsSectionView() -> some View { // TODO: TBL
         VStack(alignment: .leading, spacing: .standard) {
             Text("Contributions")
                 .font(.Title.largeSemiBold)
-            
-            VStack(spacing: .medium) {
-                
+
+            if viewModel.contributions.isEmpty {
+                Text("Aucune contribution pour le moment")
+                    .font(.Body.mediumRegular)
+                    .fullWidth()
+            } else {
+                VStack(spacing: .medium) {
+                    ForEach(viewModel.contributions) { contribution in
+                        ContributionRowView(item: contribution.toUIModel())
+                    }
+
+                    if viewModel.hasMoreContributions {
+                        Button {
+                            withAnimation(.smooth) {
+                                viewModel.loadMoreContributions()
+                            }
+                        } label: {
+                            Text("Voir plus")
+                                .font(.Body.mediumMedium)
+                                .fullWidth()
+                        }
+                    }
+                }
             }
         }
+        .task { viewModel.loadMoreContributions() }
     }
     
 }

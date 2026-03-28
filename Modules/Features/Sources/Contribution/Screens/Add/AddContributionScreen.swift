@@ -33,7 +33,7 @@ struct AddContributionScreen: View {
             DismissButtonView { viewModel.dismissAction() }
                 .fullWidth(.trailing)
 
-            TextFieldView( // TODO: TBL
+            TextFieldView(
                 text: $viewModel.name,
                 title: "add_contribution_field_name_title".localized,
                 placeholder: "add_contribution_field_name_placeholder".localized
@@ -98,6 +98,7 @@ extension AddContributionScreen {
                 .contentTransition(.numericText())
         }
         .animation(.smooth, value: viewModel.amount)
+        .onTapGesture { UIDevice.hideKeyboard() }
         .fullWidth()
         .overlay(alignment: .trailing) {
             DeleteNumberButtonView(amount: $viewModel.amount)

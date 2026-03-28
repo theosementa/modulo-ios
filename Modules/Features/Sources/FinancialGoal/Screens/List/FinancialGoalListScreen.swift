@@ -13,6 +13,7 @@ import Core
 public struct FinancialGoalListScreen: View {
     
     @State private var viewModel: ViewModel = .init()
+    @Environment(\.theme) private var theme
     
     public init() { }
     
@@ -45,7 +46,10 @@ public struct FinancialGoalListScreen: View {
                 destination: .financialGoal(.create),
                 onNavigate: { VibrationManager.vibration() }
             ) {
-                IconButtonView(.iconPlus)
+                IconButtonView(
+                    .iconPlus,
+                    config: .init(iconColor: .white, bgColor: theme.color)
+                )
             }
             .padding(.large)
         }
