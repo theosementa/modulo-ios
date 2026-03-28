@@ -47,6 +47,15 @@
 "contribution_withdrawal" = "Retrait";
 
 /*  */
+"empty_button_title_no_targets" = "Créer";
+
+/*  */
+"empty_message_no_targets" = "Il n’y a rien à suivre pour le moment. Créé ton premier objectif dès maintenant !";
+
+/*  */
+"empty_title_no_targets" = "Aucun objectif";
+
+/*  */
 "financial_goal_detail_date_section_elapsed_days" = "Jours écoulés";
 
 /*  */

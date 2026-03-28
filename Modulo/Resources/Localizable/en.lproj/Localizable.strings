@@ -47,6 +47,15 @@
 "contribution_withdrawal" = "Withdrawal";
 
 /*  */
+"empty_button_title_no_targets" = "Create";
+
+/*  */
+"empty_message_no_targets" = "There's nothing to follow right now. Set your first goal now!";
+
+/*  */
+"empty_title_no_targets" = "No goals";
+
+/*  */
 "financial_goal_detail_date_section_elapsed_days" = "Elapsed days";
 
 /*  */
