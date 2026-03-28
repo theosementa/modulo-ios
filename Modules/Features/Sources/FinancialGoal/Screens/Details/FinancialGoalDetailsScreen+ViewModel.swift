@@ -9,6 +9,7 @@ import Foundation
 import Models
 import Providers
 import Core
+import Stores
 
 extension FinancialGoalDetailsScreen {
     
@@ -18,9 +19,9 @@ extension FinancialGoalDetailsScreen {
         // MARK: Dependencies
         var goalId: String
         private let provider: FinancialGoalProvider
+        private let contributionStore: ContributionStore
 
         // MARK: Contributions pagination
-        var contributions: [ContributionDomain] = []
         private(set) var hasMoreContributions: Bool = true
         private var contributionsOffset: Int = 0
         private let pageSize: Int = 25
@@ -31,10 +32,12 @@ extension FinancialGoalDetailsScreen {
         // MARK: Init
         init(
             id: String,
-            provider: FinancialGoalProvider = DefaultFinancialGoalProvider.shared
+            provider: FinancialGoalProvider = DefaultFinancialGoalProvider.shared,
+            contributionStore: ContributionStore = DefaultContributionStore.shared
         ) {
             self.goalId = id
             self.provider = provider
+            self.contributionStore = contributionStore
         }
     }
 }
@@ -49,23 +52,31 @@ extension FinancialGoalDetailsScreen.ViewModel {
     var isChartDisplayed: Bool {
         return !monthlyDataPoints.isEmpty
     }
+    
+    var contributions: [ContributionDomain] {
+        return contributionStore.contributions
+    }
 
 }
 
 // MARK: - Contributions
 extension FinancialGoalDetailsScreen.ViewModel {
-
-    func loadMoreContributions() {
-        guard hasMoreContributions else { return }
-        let page = provider.store.fetchContributions(
-            for: goalId,
-            offset: contributionsOffset,
-            limit: pageSize
-        )
-        contributions += page
-        contributionsOffset += page.count
-        hasMoreContributions = page.count == pageSize
+    
+    func fetchAllContributions() {
+        contributionStore.fetchAll()
     }
+
+//    func loadMoreContributions() {
+//        guard hasMoreContributions else { return }
+//        let page = provider.store.fetchContributions(
+//            for: goalId,
+//            offset: contributionsOffset,
+//            limit: pageSize
+//        )
+//        contributions += page
+//        contributionsOffset += page.count
+//        hasMoreContributions = page.count == pageSize
+//    }
 
 }
 

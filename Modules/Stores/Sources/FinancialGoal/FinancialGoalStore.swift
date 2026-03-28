@@ -12,7 +12,9 @@ import Models
 @MainActor
 public protocol FinancialGoalStore: AnyObject {
     var repository: FinancialGoalRepository { get }
+    
     var financialGoals: [FinancialGoalDomain] { get set }
+    var currentGoalId: String? { get set }
     
     func fetchAll() -> Void
     func findOneDetailed(by id: String) -> FinancialGoalDetailedDomain?
@@ -23,6 +25,11 @@ public extension FinancialGoalStore {
     func findOne(by id: String) -> FinancialGoalDomain? {
         return financialGoals
             .first(where: { $0.id == id })
+    }
+    
+    func findOneEntity(by id: String) -> FinancialGoalEntity? {
+        guard let uuid = UUID(uuidString: id) else { return nil }
+        return repository.fetchOneByEntityId(uuid)
     }
     
     func create(goal: FinancialGoalDomain) {

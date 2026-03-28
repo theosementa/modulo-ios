@@ -18,7 +18,8 @@ extension AddContributionScreen {
 
         // MARK: Dependencies
         private let goalId: String
-        private let store: FinancialGoalStore
+        private let contributionStore: ContributionStore
+        private let financialGoalStore: FinancialGoalStore
         var toastBannerService: ToastBannerService
 
         // MARK: States
@@ -33,11 +34,13 @@ extension AddContributionScreen {
         // MARK: Init
         init(
             goalId: String,
-            store: FinancialGoalStore = DefaultFinancialGoalStore.shared,
+            contributionStore: ContributionStore = DefaultContributionStore.shared,
+            financialGoalStore: FinancialGoalStore = DefaultFinancialGoalStore.shared,
             toastBannerService: ToastBannerService = .shared
         ) {
             self.goalId = goalId
-            self.store = store
+            self.contributionStore = contributionStore
+            self.financialGoalStore = financialGoalStore
             self.toastBannerService = toastBannerService
         }
 
@@ -60,7 +63,7 @@ extension AddContributionScreen.ViewModel {
     func validationAction() async {
         do {
             try checkDatas()
-            save()
+            create()
         } catch { }
     }
 
@@ -84,15 +87,19 @@ private extension AddContributionScreen.ViewModel {
         }
     }
 
-    func save() {
-        store.addContribution(
-            to: goalId,
+    func create() {
+        let contribution = ContributionDomain(
+            id: "0",
             name: name.isReallyEmpty ? nil : name,
             amount: amount.toDouble(),
             type: type,
             date: date ?? .now
         )
-        router?.dismiss()
+        
+        if let goal = financialGoalStore.findOneEntity(by: goalId) {
+            contributionStore.create(contribution: contribution, in: goal)
+            router?.dismiss()
+        }
     }
 
 }

@@ -32,6 +32,16 @@ public struct ContributionDomain: Identifiable {
 
 public extension ContributionDomain {
     
+    func toEntity(goal: FinancialGoalEntity) -> ContributionEntity {
+        return .init(
+            name: name,
+            amount: amount,
+            type: type,
+            date: date,
+            financialGoal: goal
+        )
+    }
+    
     func toUIModel() -> ContributionUIModel {
         return .init(
             id: id,

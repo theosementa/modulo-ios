@@ -16,6 +16,7 @@ public final class DefaultFinancialGoalStore: FinancialGoalStore {
     
     public var repository: FinancialGoalRepository
     public var financialGoals: [FinancialGoalDomain] = []
+    public var currentGoalId: String?
     
     public init(repository: FinancialGoalRepository = .init()) {
         self.repository = repository

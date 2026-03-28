@@ -202,21 +202,21 @@ fileprivate extension FinancialGoalDetailsScreen {
                         ContributionRowView(item: contribution.toUIModel())
                     }
 
-                    if viewModel.hasMoreContributions {
-                        Button {
-                            withAnimation(.smooth) {
-                                viewModel.loadMoreContributions()
-                            }
-                        } label: {
-                            Text("Voir plus")
-                                .font(.Body.mediumMedium)
-                                .fullWidth()
-                        }
-                    }
+//                    if viewModel.hasMoreContributions {
+//                        Button {
+//                            withAnimation(.smooth) {
+//                                viewModel.loadMoreContributions()
+//                            }
+//                        } label: {
+//                            Text("Voir plus")
+//                                .font(.Body.mediumMedium)
+//                                .fullWidth()
+//                        }
+//                    }
                 }
             }
         }
-        .task { viewModel.loadMoreContributions() }
+        .task { viewModel.fetchAllContributions() }
     }
     
 }

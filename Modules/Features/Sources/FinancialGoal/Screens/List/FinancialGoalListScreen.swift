@@ -28,7 +28,8 @@ public struct FinancialGoalListScreen: View {
             List(viewModel.financialGoals) { financialGoal in
                 NavigationButtonView(
                     route: .push,
-                    destination: .financialGoal(.details(id: financialGoal.id))
+                    destination: .financialGoal(.details(id: financialGoal.id)),
+                    onNavigate: { viewModel.onNavigateSetGoalId(financialGoal.id) }
                 ) {
                     FinancialGoalRowView(item: financialGoal.toUIModel())
                 }

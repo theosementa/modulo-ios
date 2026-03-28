@@ -39,4 +39,8 @@ extension FinancialGoalListScreen.ViewModel {
         provider.store.fetchAll()
     }
     
+    func onNavigateSetGoalId(_ id: String) {
+        provider.store.currentGoalId = id
+    }
+    
 }

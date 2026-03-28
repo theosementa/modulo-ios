@@ -15,7 +15,9 @@ public final class MockFinancialGoalStore: FinancialGoalStore {
     @MainActor public static let shared = MockFinancialGoalStore()
 
     public var repository: FinancialGoalRepository = .init()
+    
     public var financialGoals: [FinancialGoalDomain] = FinancialGoalDomain.mocks
+    public var currentGoalId: String?
 
     public init() {}
 
