@@ -8,7 +8,7 @@
 import Foundation
 import Utilities
 
-public struct FinancialGoalDomain: Identifiable {
+public struct FinancialGoalDomain: Identifiable, Equatable {
     public let id: String
     public let name: String
     public let emoji: String

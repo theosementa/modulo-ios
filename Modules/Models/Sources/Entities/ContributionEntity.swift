@@ -11,22 +11,22 @@ import SwiftData
 @Model
 public final class ContributionEntity {
     
-    @Attribute(.unique) public var id: UUID = UUID()
-    
+    public var id: UUID = UUID()
+
     public var name: String?
-    
-    public var amount: Double
-    
-    public var type: ContributionType
-    
-    public var date: Date
+
+    public var amount: Double = 0
+
+    public var type: String = ContributionType.add.rawValue
+
+    public var date: Date = Date.now
     
     public var financialGoal: FinancialGoalEntity?
 
     public init(
         name: String? = nil,
         amount: Double,
-        type: ContributionType,
+        type: String,
         date: Date,
         financialGoal: FinancialGoalEntity
     ) {
@@ -45,7 +45,7 @@ public extension ContributionEntity {
             id: id.uuidString,
             name: name,
             amount: amount,
-            type: type,
+            type: ContributionType(rawValue: type) ?? .add,
             date: date
         )
     }

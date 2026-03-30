@@ -13,7 +13,7 @@ public enum NavigationBarStyle {
     var title: String {
         switch self {
         case .home:
-            "Objectifs"
+            "generic_targets".localized
         case .push(let title):
             title
         }

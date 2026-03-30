@@ -71,7 +71,7 @@ struct ContributionLineChartView: View {
 // MARK: - Subviews
 private extension ContributionLineChartView {
 
-    var chartView: some View { // TODO: TBL
+    var chartView: some View { // TODO: TBLA
         Chart(visiblePoints) { point in
             let isSelected = selectedPoint?.id == point.id
 

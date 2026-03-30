@@ -8,6 +8,7 @@
 import Foundation
 import Repositories
 import Models
+import Persistence
 
 @Observable
 public final class DefaultFinancialGoalStore: FinancialGoalStore {
@@ -20,6 +21,17 @@ public final class DefaultFinancialGoalStore: FinancialGoalStore {
     
     public init(repository: FinancialGoalRepository = .init()) {
         self.repository = repository
+        observeRemoteChanges()
+    }
+
+    private func observeRemoteChanges() {
+        NotificationCenter.default.addObserver(
+            forName: SwiftDataContextManager.remoteChangeNotification,
+            object: nil,
+            queue: .main
+        ) { [weak self] _ in
+            self?.fetchAll()
+        }
     }
     
 }

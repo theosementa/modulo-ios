@@ -44,6 +44,7 @@ public struct FinancialGoalListScreen: View {
                     .fullSize()
             }
         }
+        .animation(.smooth, value: viewModel.financialGoals)
         .background(Color.Background.bg50)
         .overlay(alignment: .bottomTrailing) {
             NavigationButtonView(

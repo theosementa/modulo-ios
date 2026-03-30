@@ -11,20 +11,20 @@ import SwiftData
 @Model
 public final class FinancialGoalEntity {
     
-    @Attribute(.unique) public var id: UUID = UUID()
-    
-    public var name: String
-    
-    public var emoji: String
-    
-    public var goalAmount: Double
-    
-    public var startDate: Date
-    
+    public var id: UUID = UUID()
+
+    public var name: String = ""
+
+    public var emoji: String = ""
+
+    public var goalAmount: Double = 0
+
+    public var startDate: Date = Date.now
+
     public var endDate: Date?
-    
+
     @Relationship(deleteRule: .cascade, inverse: \ContributionEntity.financialGoal)
-    public var contributions: [ContributionEntity]
+    public var contributions: [ContributionEntity]? = []
     
     public init(
         name: String,
@@ -32,7 +32,7 @@ public final class FinancialGoalEntity {
         goalAmount: Double,
         startDate: Date,
         endDate: Date? = nil,
-        contributions: [ContributionEntity] = []
+        contributions: [ContributionEntity]? = []
     ) {
         self.name = name
         self.emoji = emoji
@@ -47,8 +47,9 @@ public final class FinancialGoalEntity {
 public extension FinancialGoalEntity {
 
     func toDomain() -> FinancialGoalDomain {
-        let currentAmount = contributions.reduce(0.0) { result, contribution in
-            contribution.type == .add ? result + contribution.amount : result - contribution.amount
+        let allContributions = contributions ?? []
+        let currentAmount = allContributions.reduce(0.0) { result, contribution in
+            contribution.type == ContributionType.add.rawValue ? result + contribution.amount : result - contribution.amount
         }
         return .init(
             id: id.uuidString,
@@ -62,7 +63,7 @@ public extension FinancialGoalEntity {
     }
 
     func toDetailed() -> FinancialGoalDetailedDomain {
-        let sortedContributions = contributions
+        let sortedContributions = (contributions ?? [])
             .sorted(by: { $0.date > $1.date })
             .map { $0.toDomain() }
         return FinancialGoalDetailedDomain(goal: toDomain(), contributions: sortedContributions)

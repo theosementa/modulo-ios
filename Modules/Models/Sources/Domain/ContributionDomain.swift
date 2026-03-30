@@ -36,7 +36,7 @@ public extension ContributionDomain {
         return .init(
             name: name,
             amount: amount,
-            type: type,
+            type: type.rawValue,
             date: date,
             financialGoal: goal
         )

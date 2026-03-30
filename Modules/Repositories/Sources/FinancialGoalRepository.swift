@@ -66,7 +66,7 @@ public final class FinancialGoalRepository: GenericRepository<FinancialGoalEntit
                 $0.date < monthEnd
             }
             let contributions = (try? context.fetch(FetchDescriptor(predicate: predicate))) ?? []
-            let net = contributions.reduce(0.0) { $0 + ($1.type == .add ? $1.amount : -$1.amount) }
+            let net = contributions.reduce(0.0) { $0 + ($1.type == ContributionType.add.rawValue ? $1.amount : -$1.amount) }
 
             result.append(ContributionMonthlyDataPoint(
                 id: monthStart.formatted(.dateTime.year().month()),

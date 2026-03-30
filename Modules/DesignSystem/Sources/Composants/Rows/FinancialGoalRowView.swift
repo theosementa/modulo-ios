@@ -37,6 +37,7 @@ public struct FinancialGoalRowView: View {
                         .font(.Body.smallRegular, color: Color.Text.secondary)
                     Text(item.currentAmountFormatted)
                         .font(.Title.largeSemiBold)
+                        .contentTransition(.numericText())
                 }
                 .fullWidth(.leading)
             }
