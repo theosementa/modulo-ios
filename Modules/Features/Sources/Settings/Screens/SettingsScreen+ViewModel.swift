@@ -18,6 +18,7 @@ extension SettingsScreen {
         
         // MARK: Constants
         let userDefaultManager: UserDefaultManager
+        let appVersion: String = Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String ?? "1.0.0"
         
         // MARK: Init
         init(

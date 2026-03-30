@@ -38,7 +38,7 @@ public struct SettingsRowView<Content: View>: View {
     public var body: some View {
         HStack(spacing: .small) {
             IconView(icon, size: .standard, color: .white)
-                .padding(.medium)
+                .padding(.small)
                 .background(style == .destructive ? Color.Error.e500 : Color.Text.tertiary, in: .rect(cornerRadius: .medium, style: .continuous))
 
             Text(text)

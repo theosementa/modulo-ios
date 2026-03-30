@@ -27,6 +27,9 @@ public struct NavigationBarView: View {
     private let rightAction: (() -> Void)?
     private let leftAction: (() -> Void)?
     
+    // MARK: - Environments
+    @Environment(\.dismiss) private var dismiss
+    
     // MARK: Init
     public init(
         style: NavigationBarStyle,
@@ -55,7 +58,7 @@ public struct NavigationBarView: View {
             case .push:
                 HStack(spacing: 8) {
                     IconButtonView(.iconChevronLeft) {
-                        if let leftAction { leftAction() }
+                        if let leftAction { leftAction() } else { dismiss() }
                     }
                     
                     Text(style.title)

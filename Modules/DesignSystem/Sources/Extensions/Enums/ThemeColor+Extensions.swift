@@ -16,6 +16,7 @@ extension ThemeColor {
         case .blue: return .blue
         case .green: return .green
         case .purple: return .purple
+        case .pink: return Color(hex: 0xFF00A8)
         case .red: return .red
         }
     }

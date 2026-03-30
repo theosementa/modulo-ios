@@ -8,7 +8,7 @@
 import Foundation
 import SwiftUI
 
-private extension Color {
+public extension Color {
     
     static func dynamicColor(light: UInt, dark: UInt) -> Color {
         let lightColor = Color(hex: light)

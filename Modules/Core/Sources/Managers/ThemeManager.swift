@@ -17,13 +17,14 @@ public final class ThemeManager {
 }
 
 public enum ThemeColor: String, CaseIterable {
-    case green, blue, purple, red
+    case green, blue, purple, pink, red
     
     public var name: String {
         switch self {
         case .green: return "theme_green"
         case .blue: return "theme_blue"
         case .purple: return "theme_purple"
+        case .pink: return "theme_pink"
         case .red: return "theme_red"
         }
     }
