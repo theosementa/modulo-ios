@@ -1,7 +1,7 @@
 # Modulo
 
-[![Quality Phase](https://github.com/theosementa/modulo-ios/actions/workflows/build.yml/badge.svg)](https://github.com/theosementa/modulo-ios/actions/workflows/build.yml)
-![Swift](https://img.shields.io/badge/Swift-6.2-F05138?logo=swift&logoColor=white)
+[![Quality Phase](https://github.com/theosementa/modulo-ios/actions/workflows/quality.yml/badge.svg)](https://github.com/theosementa/modulo-ios/actions/workflows/quality.yml)
+![Swift](https://img.shields.io/badge/Swift-6.1-F05138?logo=swift&logoColor=white)
 ![iOS](https://img.shields.io/badge/iOS-17%2B-000000?logo=apple&logoColor=white)
 ![App Store](https://img.shields.io/badge/App%20Store-Coming%20Soon-0D96F6?logo=app-store&logoColor=white)
 
@@ -30,7 +30,7 @@
 
 | | |
 |---|---|
-| **Language** | Swift 6.2 |
+| **Language** | Swift 6.1 |
 | **UI** | SwiftUI |
 | **Persistence** | SwiftData + CloudKit |
 | **Architecture** | Clean Architecture — modular Swift packages (Domain / Repository / Store / Provider) |

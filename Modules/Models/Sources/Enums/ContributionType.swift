@@ -7,6 +7,6 @@
 
 import Foundation
 
-public enum ContributionType: String, Codable, CaseIterable {
+public enum ContributionType: String, Codable, CaseIterable, Sendable {
     case add, remove
 }

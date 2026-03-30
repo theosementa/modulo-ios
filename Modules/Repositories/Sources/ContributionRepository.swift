@@ -31,4 +31,18 @@ public final class ContributionRepository: GenericRepository<ContributionEntity>
         }
     }
     
+    public func fetchAllIds(for goalId: UUID) -> [UUID] {
+        do {
+            let predicate = #Predicate<ContributionEntity> {
+                $0.financialGoal?.id == goalId
+            }
+            var descriptor = FetchDescriptor(predicate: predicate)
+            descriptor.propertiesToFetch = [\.id]
+            
+            return try context.fetch(descriptor).map(\.id)
+        } catch {
+            return []
+        }
+    }
+    
 }

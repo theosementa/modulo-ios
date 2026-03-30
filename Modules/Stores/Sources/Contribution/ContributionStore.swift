@@ -18,13 +18,18 @@ public protocol ContributionStore: AnyObject {
 // MARK: - Public methods
 public extension ContributionStore {
     
-    func fetchAll() {
+    @discardableResult
+    func fetchAll(addToRepo: Bool = true) -> [ContributionDomain] {
         guard let goalId = DefaultFinancialGoalStore.shared.currentGoalId,
               let uuid = UUID(uuidString: goalId)
-        else { return }
+        else { return [] }
         
         let entities = repository.fetchAll(for: uuid)
-        self.contributions = entities.map { $0.toDomain() }
+        let models = entities.map { $0.toDomain() }
+        if addToRepo {
+            self.contributions = models
+        }
+        return models
     }
     
     func create(contribution: ContributionDomain, in goal: FinancialGoalEntity) {

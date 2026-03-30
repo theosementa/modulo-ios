@@ -8,7 +8,7 @@
 import Foundation
 import Utilities
 
-public struct ContributionDomain: Identifiable {
+public struct ContributionDomain: Identifiable, Sendable {
     public let id: String
     public let name: String?
     public let amount: Double
