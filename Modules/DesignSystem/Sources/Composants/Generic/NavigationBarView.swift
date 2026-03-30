@@ -65,6 +65,7 @@ public struct NavigationBarView: View {
                     IconButtonView(.iconPencil) {
                         if let rightAction { rightAction() }
                     }
+                    .opacity(rightAction == nil ? 0 : 1)
                 }
             }
         }

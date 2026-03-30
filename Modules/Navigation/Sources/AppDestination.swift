@@ -11,6 +11,7 @@ import NavigationKit
 public enum AppDestination: AppDestinationProtocol {
     case financialGoal(FinancialGoalDestination)
     case contribution(ContributionDestination)
+    case settings(SettingsDestination)
 }
 
 extension AppDestination: RecursiveDestination {
@@ -21,6 +22,8 @@ extension AppDestination: RecursiveDestination {
             return financialGoalDestination
         case .contribution(let contributionDestination):
             return contributionDestination
+        case .settings(let settingsDestination):
+            return settingsDestination
         }
     }
     

@@ -9,6 +9,7 @@ import SwiftUI
 import Navigation
 import FinancialGoal
 import Contribution
+import Settings
 
 @main
 struct ModuloApp: App {
@@ -16,6 +17,7 @@ struct ModuloApp: App {
     init() {
         NavigationRegistry.shared.registerFinancialGoalsRoutes()
         NavigationRegistry.shared.registerContributionRoutes()
+        NavigationRegistry.shared.registerSettingsRoutes()
     }
     
     var body: some Scene {

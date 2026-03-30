@@ -8,11 +8,12 @@
 import Foundation
 import Providers
 import Models
+import Core
 
 extension FinancialGoalListScreen {
     
     @Observable @MainActor
-    final class ViewModel {
+    final class ViewModel: BaseViewModel {
         
         private let provider: FinancialGoalProvider
         
@@ -41,6 +42,10 @@ extension FinancialGoalListScreen.ViewModel {
     
     func onNavigateSetGoalId(_ id: String) {
         provider.store.currentGoalId = id
+    }
+    
+    func navigateToSettings() {
+        router?.push(.settings(.list))
     }
     
 }

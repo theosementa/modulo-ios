@@ -22,7 +22,7 @@ public struct FinancialGoalListScreen: View {
         VStack(spacing: .zero) {
             NavigationBarView(
                 style: .home,
-                rightAction: { }
+                rightAction: viewModel.navigateToSettings
             )
             
             if viewModel.financialGoals.isEmpty == false {

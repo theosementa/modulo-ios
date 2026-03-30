@@ -30,5 +30,5 @@ public enum ThemeColor: String, CaseIterable {
 }
 
 public extension EnvironmentValues {
-    @Entry var theme: ThemeColor = ThemeManager().theme
+    @Entry var theme: ThemeColor = ThemeColor(rawValue: UserDefaultManager.shared.selectedTheme) ?? .blue
 }

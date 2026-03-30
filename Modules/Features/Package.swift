@@ -7,10 +7,12 @@ let package = Package(
     name: "Features",
     platforms: [.iOS(.v17)],
     products: [
+        .library(name: "Contribution", targets: ["Contribution"]),
         .library(name: "FinancialGoal", targets: ["FinancialGoal"]),
-        .library(name: "Contribution", targets: ["Contribution"])
+        .library(name: "Settings", targets: ["Settings"])
     ],
     dependencies: [
+        .package(name: "Core", path: "../Core"),
         .package(name: "DesignSystem", path: "../DesignSystem"),
         .package(name: "Navigation", path: "../Navigation"),
         .package(name: "Providers", path: "../Providers"),
@@ -18,6 +20,14 @@ let package = Package(
         .package(url: "https://github.com/izyumkin/MCEmojiPicker", branch: "1.2.3")
     ],
     targets: [
+        .target(
+            name: "Contribution",
+            dependencies: [
+                .product(name: "DesignSystem", package: "DesignSystem"),
+                .product(name: "Navigation", package: "Navigation"),
+                .product(name: "Providers", package: "Providers")
+            ]
+        ),
         .target(
             name: "FinancialGoal",
             dependencies: [
@@ -29,11 +39,11 @@ let package = Package(
             ]
         ),
         .target(
-            name: "Contribution",
+            name: "Settings",
             dependencies: [
+                .product(name: "Core", package: "Core"),
                 .product(name: "DesignSystem", package: "DesignSystem"),
-                .product(name: "Navigation", package: "Navigation"),
-                .product(name: "Providers", package: "Providers")
+                .product(name: "Navigation", package: "Navigation")
             ]
         )
     ]

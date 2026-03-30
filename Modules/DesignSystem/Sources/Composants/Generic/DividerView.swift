@@ -18,12 +18,16 @@ struct Line: Shape {
 
 public struct DividerView: View {
     
-    public init() { }
+    private let color: Color
+    
+    public init(color: Color = Color.Text.tertiary) {
+        self.color = color
+    }
     
     // MARK: - View
     public var body: some View {
         Line()
-            .stroke(Color.Text.tertiary, style: .init(lineWidth: 2.5, lineCap: .round, lineJoin: .round, dash: [0.5, 8]))
+            .stroke(color, style: .init(lineWidth: 2.5, lineCap: .round, lineJoin: .round, dash: [0.5, 8]))
             .frame(height: 2)
     }
     
