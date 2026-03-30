@@ -7,9 +7,9 @@
 
 import Foundation
 import SwiftUI
-import Core
+import Models
 
-extension ThemeColor {
+extension ThemeColorType {
     
     public var color: Color {
         switch self {

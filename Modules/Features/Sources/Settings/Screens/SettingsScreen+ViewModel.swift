@@ -7,6 +7,7 @@
 
 import Foundation
 import Core
+import Models
 
 extension SettingsScreen {
     
@@ -14,7 +15,7 @@ extension SettingsScreen {
     final class ViewModel {
         
         // MARK: States
-        var selectedTheme: ThemeColor = .blue
+        var selectedTheme: ThemeColorType = .blue
         
         // MARK: Constants
         let userDefaultManager: UserDefaultManager
@@ -25,7 +26,7 @@ extension SettingsScreen {
             userDefaultManager: UserDefaultManager = .shared
         ) {
             self.userDefaultManager = userDefaultManager
-            selectedTheme = ThemeColor(rawValue: userDefaultManager.selectedTheme) ?? .blue
+            selectedTheme = ThemeColorType(rawValue: userDefaultManager.selectedTheme) ?? .blue
         }
         
     }

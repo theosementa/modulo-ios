@@ -101,11 +101,17 @@ private extension ContributionLineChartView {
             )
             .foregroundStyle(isSelected ? Color.white : theme.color)
             .symbolSize(isSelected ? 80 : 40)
-            .annotation(position: .top, spacing: 6) {
-                if isSelected {
-                    selectionCalloutView(point)
+            .annotation(
+                position: .top,
+                overflowResolution: AnnotationOverflowResolution(
+                    x: .fit(to: .chart),
+                    y: .fit(to: .chart),
+                ), content: {
+                    if isSelected {
+                        selectionCalloutView(point)
+                    }
                 }
-            }
+            )
 
             if visiblePoints.contains(where: { $0.netAmount < 0 }) {
                 RuleMark(y: .value("Zéro", 0))
@@ -113,7 +119,6 @@ private extension ContributionLineChartView {
                     .lineStyle(StrokeStyle(lineWidth: 1, dash: [4]))
             }
 
-            // Ligne verticale sur le point sélectionné
             if let selected = selectedPoint, isSelected {
                 RuleMark(x: .value("Sélectionné", selected.month, unit: .month))
                     .foregroundStyle(Color.secondary.opacity(0.25))
@@ -138,6 +143,7 @@ private extension ContributionLineChartView {
                 }
             }
         }
+        .fullWidth()
         .frame(height: 300)
         .onChange(of: currentPage) { selectedMonth = nil }
     }

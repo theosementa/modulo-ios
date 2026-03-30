@@ -7,6 +7,7 @@
 
 import Foundation
 import SwiftUI
+import Models
 
 public final class UserDefaultManager: @unchecked Sendable {
     public static let shared = UserDefaultManager()
@@ -15,5 +16,5 @@ public final class UserDefaultManager: @unchecked Sendable {
     public var isHapticFeebackEnabled: Bool = true
     
     @AppStorage("selectedTheme")
-    public var selectedTheme: String = ThemeColor.blue.rawValue
+    public var selectedTheme: String = ThemeColorType.blue.rawValue
 }

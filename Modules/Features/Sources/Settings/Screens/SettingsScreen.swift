@@ -9,15 +9,17 @@ import SwiftUI
 import DesignSystem
 import Navigation
 import Core
+import Models
 
 struct SettingsScreen: View {
 
+    // MARK: States
     @State private var viewModel: ViewModel = .init()
 
     // MARK: - View
     var body: some View {
         VStack(spacing: .zero) {
-            NavigationBarView(style: .push(title: "generic_settings".localized)) // TODO: TBL
+            NavigationBarView(style: .push(title: "generic_settings".localized))
 
             ScrollView {
                 VStack(spacing: .medium) {
@@ -42,7 +44,7 @@ fileprivate extension SettingsScreen {
         VStack(spacing: .standard) {
             SettingsRowView(
                 icon: .iconVibration,
-                text: "Retour haptique", // TODO: TBL
+                text: "setting_haptic_feedback".localized,
                 style: .casual
             ) {
                 Toggle("", isOn: viewModel.userDefaultManager.$isHapticFeebackEnabled)
@@ -54,11 +56,11 @@ fileprivate extension SettingsScreen {
 
             SettingsRowView(
                 icon: .iconColors,
-                text: "Thème", // TODO: TBL
+                text: "setting_theme".localized,
                 style: .casual
             ) {
                 Menu {
-                    ForEach(ThemeColor.allCases, id: \.self) { theme in
+                    ForEach(ThemeColorType.allCases, id: \.self) { theme in
                         Button {
                             viewModel.selectedTheme = theme
                             viewModel.userDefaultManager.selectedTheme = theme.rawValue
@@ -84,7 +86,7 @@ fileprivate extension SettingsScreen {
             } label: {
                 SettingsRowView(
                     icon: .iconStar,
-                    text: "Rédiger un avis", // TODO: TBL
+                    text: "setting_write_review".localized,
                     style: .casual
                 )
             }
@@ -93,7 +95,7 @@ fileprivate extension SettingsScreen {
 
             SettingsRowView(
                 icon: .iconSend,
-                text: "Partager l'app", // TODO: TBL
+                text: "setting_share_app".localized,
                 style: .casual
             )
 
@@ -101,7 +103,7 @@ fileprivate extension SettingsScreen {
 
             SettingsRowView(
                 icon: .iconMessage,
-                text: "Contactez nous", // TODO: TBL
+                text: "setting_contact_us".localized,
                 style: .casual
             )
         }
@@ -113,7 +115,7 @@ fileprivate extension SettingsScreen {
         VStack(spacing: .zero) {
             SettingsRowView(
                 icon: .iconTrash,
-                text: "Supprimer mes données", // TODO: TBL
+                text: "setting_delete_data".localized,
                 style: .destructive
             ) {
                 EmptyView()
@@ -127,7 +129,7 @@ fileprivate extension SettingsScreen {
         VStack(spacing: .standard) {
             SettingsRowView(
                 icon: .iconLock,
-                text: "Politique de confidentialité", // TODO: TBL
+                text: "setting_privacy_policy".localized,
                 style: .casual
             )
 
@@ -135,7 +137,7 @@ fileprivate extension SettingsScreen {
 
             SettingsRowView(
                 icon: .iconFile,
-                text: "Conditions d'utilisation", // TODO: TBL
+                text: "setting_condition_of_use".localized,
                 style: .casual
             )
         }
@@ -147,7 +149,7 @@ fileprivate extension SettingsScreen {
         VStack(spacing: .zero) {
             Text("v\(viewModel.appVersion)")
                 .font(.Body.mediumMedium)
-            Text("Made by Theo Sementa")
+            Text("setting_made_by".localized)
                 .font(.Label.largeMedium)
         }
         .padding(.top, .small)
