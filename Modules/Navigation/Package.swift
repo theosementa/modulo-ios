@@ -13,7 +13,7 @@ let package = Package(
         )
     ],
     dependencies: [
-        .package(url: "https://github.com/theosementa/NavigationKit", branch: "3.0.2")
+        .package(url: "https://github.com/theosementa/NavigationKit", branch: "3.0.3")
     ],
     targets: [
         .target(

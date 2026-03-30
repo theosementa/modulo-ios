@@ -1,5 +1,5 @@
 {
-  "originHash" : "67419974679abf982a0f95dfc99a9694e51250dfa692a7fccd370cb3ab013db9",
+  "originHash" : "53ca7d4ed651192831e811b520368b47dc06c7a9694523d7f2e810f1be642dd4",
   "pins" : [
     {
       "identity" : "mcemojipicker",
@@ -15,8 +15,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/theosementa/NavigationKit",
       "state" : {
-        "branch" : "3.0.2",
-        "revision" : "caf491f5b89512a29ac99b83b8cbf340fb0d24f8"
+        "branch" : "3.0.3",
+        "revision" : "9f284f1ae300d7155b544d3e7381931869119750"
       }
     },
     {
@@ -24,8 +24,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/theosementa/ToastBannerKit.git",
       "state" : {
-        "revision" : "f630a401bfeac0d56eca45009332f81498136e2b",
-        "version" : "1.0.2"
+        "revision" : "210aaac66093420588a1801180c2917822355886",
+        "version" : "1.0.3"
       }
     }
   ],
