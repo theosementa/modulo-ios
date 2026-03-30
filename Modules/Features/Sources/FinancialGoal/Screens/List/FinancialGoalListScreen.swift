@@ -30,10 +30,9 @@ public struct FinancialGoalListScreen: View {
                     NavigationButtonView(
                         route: .push,
                         destination: .financialGoal(.details(id: financialGoal.id)),
-                        onNavigate: { viewModel.onNavigateSetGoalId(financialGoal.id) }
-                    ) {
-                        FinancialGoalRowView(item: financialGoal.toUIModel())
-                    }
+                        onNavigate: { viewModel.onNavigateSetGoalId(financialGoal.id) },
+                        label: { FinancialGoalRowView(item: financialGoal.toUIModel()) }
+                    )
                     .disableListStyle()
                     .padding(.bottom, .medium)
                 }
@@ -50,13 +49,14 @@ public struct FinancialGoalListScreen: View {
             NavigationButtonView(
                 route: .fullScreenCover,
                 destination: .financialGoal(.create),
-                onNavigate: { VibrationManager.vibration() }
-            ) {
-                IconButtonView(
-                    .iconPlus,
-                    config: .init(iconColor: .white, bgColor: theme.color)
-                )
-            }
+                onNavigate: { VibrationManager.vibration() },
+                label: {
+                    IconButtonView(
+                        .iconPlus,
+                        config: .init(iconColor: .white, bgColor: theme.color)
+                    )
+                }
+            )
             .padding(.large)
         }
         .onAppear { viewModel.onAppearAction() }

@@ -76,7 +76,7 @@ public extension ContributionDomain {
                 .init(id: "m1-c2", name: "Prime été", amount: 200, type: .add, date: date(-2)),
                 .init(id: "m1-c3", name: "Retrait exceptionnel", amount: 50, type: .remove, date: date(-1)),
                 .init(id: "m1-c4", name: "Virement", amount: 200, type: .add, date: date(-1, 15)),
-                .init(id: "m1-c5", name: "Virement", amount: 50, type: .add, date: date(0)),
+                .init(id: "m1-c5", name: "Virement", amount: 50, type: .add, date: date(0))
             ]
 
         // MacBook Pro — currentAmount: 1200 (pas de contribution ce mois-ci)
@@ -86,7 +86,7 @@ public extension ContributionDomain {
                 .init(id: "m2-c2", name: "Virement", amount: 300, type: .add, date: date(-3)),
                 .init(id: "m2-c3", name: "Virement", amount: 300, type: .add, date: date(-2)),
                 .init(id: "m2-c4", name: "Virement", amount: 350, type: .add, date: date(-1)),
-                .init(id: "m2-c5", name: "Achat accessoire", amount: 50, type: .remove, date: date(-1, 10)),
+                .init(id: "m2-c5", name: "Achat accessoire", amount: 50, type: .remove, date: date(-1, 10))
             ]
 
         // Fonds d'urgence — currentAmount: 2500 (gros virement ce mois)
@@ -98,7 +98,7 @@ public extension ContributionDomain {
                 .init(id: "m3-c4", name: "Virement", amount: 400, type: .add, date: date(-3)),
                 .init(id: "m3-c5", name: "Virement", amount: 400, type: .add, date: date(-2)),
                 .init(id: "m3-c6", name: "Virement", amount: 400, type: .add, date: date(-1)),
-                .init(id: "m3-c7", name: "Virement", amount: 600, type: .add, date: date(0)),
+                .init(id: "m3-c7", name: "Virement", amount: 600, type: .add, date: date(0))
             ]
 
         // Voiture — currentAmount: 3000 (retrait ce mois)
@@ -109,7 +109,7 @@ public extension ContributionDomain {
                 .init(id: "m4-c3", name: "Virement", amount: 600, type: .add, date: date(-3)),
                 .init(id: "m4-c4", name: "Virement", amount: 600, type: .add, date: date(-2)),
                 .init(id: "m4-c5", name: "Virement", amount: 700, type: .add, date: date(-1)),
-                .init(id: "m4-c6", name: "Retrait réparation", amount: 100, type: .remove, date: date(0)),
+                .init(id: "m4-c6", name: "Retrait réparation", amount: 100, type: .remove, date: date(0))
             ]
 
         default:

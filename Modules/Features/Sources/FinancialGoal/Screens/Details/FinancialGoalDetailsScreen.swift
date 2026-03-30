@@ -69,13 +69,14 @@ struct FinancialGoalDetailsScreen: View {
             NavigationButtonView(
                 route: .fullScreenCover,
                 destination: .contribution(.create(goalId: viewModel.goalId)),
-                onNavigate: { VibrationManager.vibration() }
-            ) {
-                IconButtonView(
-                    .iconPlus,
-                    config: .init(iconColor: .white, bgColor: theme.color)
-                )
-            }
+                onNavigate: { VibrationManager.vibration() },
+                label: {
+                    IconButtonView(
+                        .iconPlus,
+                        config: .init(iconColor: .white, bgColor: theme.color)
+                    )
+                }
+            )
             .padding(.large)
         }
     }

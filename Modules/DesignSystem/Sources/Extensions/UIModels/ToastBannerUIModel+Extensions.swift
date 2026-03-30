@@ -27,22 +27,3 @@ public extension ToastBannerUIModel {
     )
     
 }
-
-// MARK: - Success
-//public extension ToastBannerUIModel {
-//    
-//    @MainActor
-//    static let transactionSuccessfullyCreated: ToastBannerUIModel = .init(
-//        title: "toast_banner_transaction_successfully_created".localized,
-//        uiImage: UIImage(asset: .iconCheckmarkRounded),
-//        style: ToastBannerStyle.success
-//    )
-//    
-//    @MainActor
-//    static let transactionSuccessfullyUpdated: ToastBannerUIModel = .init(
-//        title: "toast_banner_transaction_successfully_updated".localized,
-//        uiImage: UIImage(asset: .iconCheckmarkRounded),
-//        style: ToastBannerStyle.success
-//    )
-//    
-//}

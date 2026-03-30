@@ -36,7 +36,6 @@ public struct FinancialGoalDomain: Identifiable {
     }
 }
 
-
 public extension FinancialGoalDomain {
 
     func toUIModel() -> FinancialGoalUIModel {
@@ -108,7 +107,7 @@ public extension FinancialGoalDomain {
             currentAmount: 3_000,
             startDate: Calendar.current.date(byAdding: .month, value: -5, to: .now) ?? .now,
             endDate: Calendar.current.date(byAdding: .year, value: 2, to: .now)
-        ),
+        )
     ]
 
 }

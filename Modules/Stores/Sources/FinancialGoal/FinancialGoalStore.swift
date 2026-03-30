@@ -16,7 +16,7 @@ public protocol FinancialGoalStore: AnyObject {
     var financialGoals: [FinancialGoalDomain] { get set }
     var currentGoalId: String? { get set }
     
-    func fetchAll() -> Void
+    func fetchAll()
     func findOneDetailed(by id: String) -> FinancialGoalDetailedDomain?
 }
 

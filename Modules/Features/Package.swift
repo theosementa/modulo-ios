@@ -8,7 +8,7 @@ let package = Package(
     platforms: [.iOS(.v17)],
     products: [
         .library(name: "FinancialGoal", targets: ["FinancialGoal"]),
-        .library(name: "Contribution", targets: ["Contribution"]),
+        .library(name: "Contribution", targets: ["Contribution"])
     ],
     dependencies: [
         .package(name: "DesignSystem", path: "../DesignSystem"),

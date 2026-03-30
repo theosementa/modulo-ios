@@ -16,7 +16,6 @@ struct Line: Shape {
     }
 }
 
-
 public struct DividerView: View {
     
     public init() { }

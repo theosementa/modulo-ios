@@ -66,6 +66,6 @@ public struct DatePickerView: View {
 
 // MARK: - Preview
 #Preview {
-    @Previewable @State var date: Date? = nil
+    @Previewable @State var date: Date?
     DatePickerView(date: $date)
 }

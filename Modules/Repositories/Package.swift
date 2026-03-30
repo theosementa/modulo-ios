@@ -20,6 +20,6 @@ let package = Package(
                 .product(name: "Models", package: "Models"),
                 .product(name: "Persistence", package: "Persistence")
             ]
-        ),
+        )
     ]
 )

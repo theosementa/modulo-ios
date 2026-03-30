@@ -122,7 +122,7 @@ private extension ContributionLineChartView {
         }
         .chartXSelection(value: $selectedMonth)
         .chartXAxis {
-            AxisMarks(values: visiblePoints.map(\.month)) { value in
+            AxisMarks(values: visiblePoints.map(\.month)) { _ in
                 AxisGridLine()
                 AxisValueLabel(format: .dateTime.month(.abbreviated), centered: true)
             }
