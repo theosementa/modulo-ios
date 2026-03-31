@@ -29,7 +29,9 @@ public final class DefaultContributionStore: ContributionStore {
             object: nil,
             queue: .main
         ) { [weak self] _ in
-            self?.syncContributions()
+            Task { @MainActor in
+                self?.syncContributions()
+            }
         }
     }
 

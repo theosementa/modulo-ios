@@ -14,7 +14,7 @@ import Models
 public final class SwiftDataContextManager: ObservableObject {
     public static let shared = SwiftDataContextManager()
 
-    public static let remoteChangeNotification = Notification.Name("SwiftDataContextManager.remoteChange")
+    public nonisolated static let remoteChangeNotification = Notification.Name("SwiftDataContextManager.remoteChange")
 
     let container: ModelContainer
     var context: ModelContext

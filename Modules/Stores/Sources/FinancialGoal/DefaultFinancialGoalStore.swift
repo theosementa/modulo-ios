@@ -30,7 +30,9 @@ public final class DefaultFinancialGoalStore: FinancialGoalStore {
             object: nil,
             queue: .main
         ) { [weak self] _ in
-            self?.fetchAll()
+            Task { @MainActor in
+                self?.fetchAll()
+            }
         }
     }
     
