@@ -3,6 +3,7 @@
 [![Quality Phase](https://github.com/theosementa/modulo-ios/actions/workflows/quality.yml/badge.svg)](https://github.com/theosementa/modulo-ios/actions/workflows/quality.yml)
 ![Swift](https://img.shields.io/badge/Swift-6.1-F05138?logo=swift&logoColor=white)
 ![iOS](https://img.shields.io/badge/iOS-17%2B-000000?logo=apple&logoColor=white)
+[![Roadmap](https://img.shields.io/badge/Roadmap-GitHub%20Projects-0D96F6?logo=github)](https://github.com/theosementa/modulo-ios/projects)
 ![App Store](https://img.shields.io/badge/App%20Store-Coming%20Soon-0D96F6?logo=app-store&logoColor=white)
 [![Figma](https://img.shields.io/badge/Figma-Design-F24E1E?logo=figma&logoColor=white)](https://www.figma.com/design/uTGmdDAvUopqBAdL5VSC8o/Modulo-v2?node-id=1-5&t=QwxXDSNasY1lKJvw-1)
 ![SonarQube](https://img.shields.io/badge/SonarQube-Analyzed-4E9BCD?logo=sonarqube&logoColor=white)
@@ -70,6 +71,14 @@ Select the `Modulo` scheme, choose a simulator, and hit **Run**. No additional s
 
 ---
 
+## Roadmap
+
+Upcoming features and improvements are tracked on the [GitHub Project board](https://github.com/theosementa/modulo-ios/projects).
+
+Feature requests and suggestions are welcome — feel free to [open an issue](https://github.com/theosementa/modulo-ios/issues/new).
+
+---
+
 ## Contributing
 
 Contributions are welcome! Feel free to open an issue to report a bug, suggest a feature, or discuss the architecture. Pull requests are appreciated.
@@ -81,6 +90,10 @@ Contributions are welcome! Feel free to open an issue to report a bug, suggest a
 
 ---
 
-## Author
+## Author & Contributors
 
-Made by **Theo Sementa** (Architect & Developer) with the assistance of **Claude** (Developer)
+| Role | Person |
+|---|---|
+| Architect & Developer | [**Theo Sementa**](https://x.com/theosementa) |
+| App Icons Design | **Zoé Cridel** |
+| AI Developer | **Claude** (Anthropic) |
