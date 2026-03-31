@@ -8,6 +8,7 @@
 import Foundation
 import Core
 import Models
+import Stores
 
 extension SettingsScreen {
     
@@ -16,6 +17,7 @@ extension SettingsScreen {
         
         // MARK: States
         var selectedTheme: ThemeColorType = .blue
+        var isAlertDataPresented: Bool = false
         
         // MARK: Constants
         let userDefaultManager: UserDefaultManager
@@ -29,6 +31,15 @@ extension SettingsScreen {
             selectedTheme = ThemeColorType(rawValue: userDefaultManager.selectedTheme) ?? .blue
         }
         
+    }
+    
+}
+
+extension SettingsScreen.ViewModel {
+    
+    @MainActor
+    func deleteAll() {
+        DefaultFinancialGoalStore.shared.deleteAll()
     }
     
 }
