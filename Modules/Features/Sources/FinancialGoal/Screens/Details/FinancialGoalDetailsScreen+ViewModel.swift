@@ -59,18 +59,17 @@ extension FinancialGoalDetailsScreen.ViewModel {
 
 }
 
-// MARK: - Contributions
+// MARK: - Public methods
 extension FinancialGoalDetailsScreen.ViewModel {
+    
+    func navigateToEdition() {
+        router?.present(route: .fullScreenCover, .financialGoal(.update(id: goalId)))
+    }
     
     func fetchAllContributions() {
         contributionProvider.store.fetchAll()
     }
-
-}
-
-// MARK: - Chart
-extension FinancialGoalDetailsScreen.ViewModel {
-
+    
     func loadMonthlyDataPoints() {
         monthlyDataPoints = financialGoalProvider.store.fetchMonthlyDataPoints(for: goalId)
     }

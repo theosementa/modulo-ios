@@ -34,10 +34,14 @@ public extension FinancialGoalDetailedDomain {
 
     var monthlyRequired: Double? {
         guard let endDate = goal.endDate else { return nil }
+        
         let remaining = goal.goalAmount - goal.currentAmount
         guard remaining > 0 else { return 0 }
-        let months = Calendar.current.dateComponents([.month], from: .now, to: endDate).month ?? 0
+        
+        let months = Calendar.current.months(between: .now, and: endDate)
+        
         guard months > 0 else { return nil }
+        
         return remaining / Double(months)
     }
 
@@ -62,15 +66,21 @@ public extension FinancialGoalDetailedDomain {
     func toUIModel() -> FinancialGoalDetailedUIModel {
         let calendar = Calendar.current
 
-        let elapsedDays = max(
-            0,
-            calendar.dateComponents([.day], from: goal.startDate, to: .now).day ?? 0
-        )
+        let elapsedDays = max(0, calendar.dateComponents([.day], from: goal.startDate, to: .now).day ?? 0)
 
         let monthlyTarget: Double? = {
             guard let endDate = goal.endDate else { return nil }
-            let totalMonths = calendar.dateComponents([.month], from: goal.startDate, to: endDate).month ?? 0
+            let startMonth = calendar.dateComponents([.year, .month], from: goal.startDate)
+            let endMonth = calendar.dateComponents([.year, .month], from: endDate)
+            
+            guard
+                let startMonthDate = calendar.date(from: startMonth),
+                let endMonthDate = calendar.date(from: endMonth)
+            else { return nil }
+            
+            let totalMonths = calendar.months(between: startMonthDate, and: endMonthDate)
             guard totalMonths > 0 else { return nil }
+            
             return goal.goalAmount / Double(totalMonths)
         }()
 

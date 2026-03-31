@@ -20,7 +20,7 @@ public extension NavigationRegistry {
             case .create:
                 return AnyView(AddFinancialGoalScreen())
             case let .update(id):
-                return AnyView(AddFinancialGoalScreen())
+                return AnyView(AddFinancialGoalScreen(goalId: id))
             case let .details(id):
                 return AnyView(FinancialGoalDetailsScreen(id: id))
             }

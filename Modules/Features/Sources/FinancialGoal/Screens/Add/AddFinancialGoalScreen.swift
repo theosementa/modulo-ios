@@ -19,8 +19,13 @@ struct AddFinancialGoalScreen: View {
     @Environment(\.theme) private var theme
     
     // MARK: States
-    @State private var viewModel: ViewModel = .init()
+    @State private var viewModel: ViewModel
     @StateObject private var keyboardManager: KeyboardManager = .init()
+    
+    // MARK: Init
+    init(goalId: String? = nil) {
+        _viewModel = State(wrappedValue: .init(goalId: goalId))
+    }
     
     // MARK: - View
     var body: some View {

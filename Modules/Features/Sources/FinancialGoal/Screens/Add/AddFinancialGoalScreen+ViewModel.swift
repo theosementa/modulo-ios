@@ -17,7 +17,7 @@ extension AddFinancialGoalScreen {
     final class ViewModel: BaseViewModel {
         
         // MARK: Dependencies
-        var financialGoal: FinancialGoalDomain?
+        var goalId: String?
         private let store: FinancialGoalStore
         var toastBannerService: ToastBannerService
         
@@ -35,12 +35,21 @@ extension AddFinancialGoalScreen {
         
         // MARK: Init
         init(
+            goalId: String? = nil,
             store: FinancialGoalStore = DefaultFinancialGoalStore.shared,
             toastBannerService: ToastBannerService = .shared
         ) {
             self.store = store
             self.toastBannerService = toastBannerService
             self.namePlaceholder = randomPlaceholder()
+            self.goalId = goalId
+            if let goalId, let financialGoal = store.findOne(by: goalId) {
+                self.emoji = financialGoal.emoji
+                self.name = financialGoal.name
+                self.amount = financialGoal.goalAmount.toString()
+                self.startDate = financialGoal.startDate
+                self.endDate = financialGoal.endDate
+            }
         }
     }
     
@@ -55,7 +64,7 @@ extension AddFinancialGoalScreen.ViewModel {
         || amount.toDouble() != 0
     }
     
-    var isEditing: Bool { financialGoal != nil }
+    var isEditing: Bool { goalId != nil }
 
 }
 
@@ -65,10 +74,10 @@ extension AddFinancialGoalScreen.ViewModel {
     func validationAction() async {
         do {
             try checkDatas()
-            if financialGoal == nil {
-                create()
+            if isEditing {
+                //                await updateTransaction(dismiss: dismiss)
             } else {
-//                await updateTransaction(dismiss: dismiss)
+                create()
             }
         } catch { }
     }

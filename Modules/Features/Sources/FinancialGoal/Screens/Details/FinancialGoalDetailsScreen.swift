@@ -33,7 +33,7 @@ struct FinancialGoalDetailsScreen: View {
         VStack(spacing: .zero) {
             NavigationBarView(
                 style: .push(title: viewModel.detailledGoal?.toUIModel().name ?? ""),
-                rightAction: { },
+                rightAction: { viewModel.navigateToEdition() },
                 leftAction: { viewModel.router?.dismiss() }
             )
             
