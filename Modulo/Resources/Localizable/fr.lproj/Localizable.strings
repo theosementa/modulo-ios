@@ -95,7 +95,55 @@
 "generic_end_date" = "Date de fin";
 
 /*  */
+"generic_settings" = "Réglages";
+
+/*  */
 "generic_start_date" = "Date de début";
+
+/*  */
+"generic_targets" = "Objectifs";
+
+/*  */
+"setting_condition_of_use" = "Conditions d'utilisation";
+
+/*  */
+"setting_contact_us" = "Contactez nous";
+
+/*  */
+"setting_delete_data" = "Supprimer mes données";
+
+/*  */
+"setting_haptic_feedback" = "Retour haptique";
+
+/*  */
+"setting_made_by" = "Fait par Théo Sementa";
+
+/*  */
+"setting_privacy_policy" = "Politique de confidentialité";
+
+/*  */
+"setting_share_app" = "Partager l'app";
+
+/*  */
+"setting_theme" = "Thème";
+
+/*  */
+"setting_write_review" = "Rédiger un avis";
+
+/*  */
+"theme_blue" = "Bleu";
+
+/*  */
+"theme_green" = "Vert";
+
+/*  */
+"theme_pink" = "Rose";
+
+/*  */
+"theme_purple" = "Violet";
+
+/*  */
+"theme_red" = "Rouge";
 
 /*  */
 "toast_banner_amount_mandatory" = "Le montant est obligatoire";

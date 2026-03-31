@@ -95,7 +95,55 @@
 "generic_end_date" = "End date";
 
 /*  */
+"generic_settings" = "Settings";
+
+/*  */
 "generic_start_date" = "Start date";
+
+/*  */
+"generic_targets" = "Targets";
+
+/*  */
+"setting_condition_of_use" = "Terms of Use";
+
+/*  */
+"setting_contact_us" = "Contact us";
+
+/*  */
+"setting_delete_data" = "Delete my data";
+
+/*  */
+"setting_haptic_feedback" = "Haptic feedback";
+
+/*  */
+"setting_made_by" = "Made by Théo Sementa";
+
+/*  */
+"setting_privacy_policy" = "Privacy policy";
+
+/*  */
+"setting_share_app" = "Share the app";
+
+/*  */
+"setting_theme" = "Theme";
+
+/*  */
+"setting_write_review" = "Write a review";
+
+/*  */
+"theme_blue" = "Blue";
+
+/*  */
+"theme_green" = "Green";
+
+/*  */
+"theme_pink" = "Pink";
+
+/*  */
+"theme_purple" = "Purple";
+
+/*  */
+"theme_red" = "Red";
 
 /*  */
 "toast_banner_amount_mandatory" = "The amount is required";
