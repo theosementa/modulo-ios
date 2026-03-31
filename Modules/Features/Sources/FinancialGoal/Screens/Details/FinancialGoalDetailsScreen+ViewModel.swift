@@ -19,12 +19,7 @@ extension FinancialGoalDetailsScreen {
         // MARK: Dependencies
         var goalId: String
         private let financialGoalProvider: FinancialGoalProvider
-        private let contributionProvider: ContributionProvider
-
-        // MARK: Contributions pagination
-        private(set) var hasMoreContributions: Bool = true
-        private var contributionsOffset: Int = 0
-        private let pageSize: Int = 25
+        private let contributionProvider: ContributionProvider 
 
         // MARK: Chart
         var monthlyDataPoints: [ContributionMonthlyDataPoint] = []

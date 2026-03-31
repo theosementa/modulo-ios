@@ -8,11 +8,15 @@
 import SwiftUI
 import Models
 import Stores
+import Navigation
 
 public struct FinancialGoalRowView: View {
     
     // MARK: Dependencies
     private let item: FinancialGoalUIModel
+    
+    // MARK: Environments
+    @Environment(Router<AppDestination>.self) private var router
     
     // MARK: Init
     public init(
@@ -48,6 +52,17 @@ public struct FinancialGoalRowView: View {
         .background(Color.Background.bg100, in: .rect(cornerRadius: .large, style: .continuous))
         .contentShape(.contextMenuPreview, .rect(cornerRadius: .large))
         .contextMenu {
+            Button {
+                router.present(route: .fullScreenCover, .financialGoal(.update(id: item.id)))
+            } label: {
+                Label {
+                    Text("generic_edit".localized) // TODO: TBL
+                        .font(.Body.mediumMedium)
+                } icon: {
+                    IconView(.iconPencil, size: .medium)
+                }
+            }
+            
             Button(role: .destructive) {
                // TODO: Ask with alert
                 DefaultFinancialGoalStore.shared.delete(by: item.id)
