@@ -18,6 +18,9 @@ public struct ContributionRowView: View {
     // MARK: Environments
     @Environment(Router<AppDestination>.self) private var router
     
+    // MARK: States
+    @State private var isAlertPresented: Bool = false
+    
     // MARK: Init
     public init(
         item: ContributionUIModel
@@ -49,6 +52,9 @@ public struct ContributionRowView: View {
         }
         .contentShape(Rectangle())
         .contentShape(.contextMenuPreview, RoundedRectangle(cornerRadius: .medium, style: .continuous))
+        .confirmationAlert(.deletion, isPresented: $isAlertPresented) {
+            DefaultContributionStore.shared.delete(by: item.id)
+        }
         .contextMenu {
             Button {
                 if let domain = DefaultContributionStore.shared.findOneBy(item.id) {
@@ -56,7 +62,7 @@ public struct ContributionRowView: View {
                 }
             } label: {
                 Label {
-                    Text("generic_edit".localized) // TODO: TBL
+                    Text("generic_edit".localized)
                         .font(.Body.mediumMedium)
                 } icon: {
                     IconView(.iconPencil, size: .medium)
@@ -64,8 +70,7 @@ public struct ContributionRowView: View {
             }
             
             Button(role: .destructive) {
-                // TODO: Ask with alert
-                DefaultContributionStore.shared.delete(by: item.id)
+                isAlertPresented = true
             } label: {
                 Label {
                     Text("generic_delete".localized)

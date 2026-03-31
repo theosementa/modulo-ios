@@ -6,11 +6,14 @@
 //
 
 import SwiftUI
+import Models
 
-struct AlertLeaveFormModifier: ViewModifier {
+struct ConfirmationAlertModifier: ViewModifier {
     
     // MARK: Dependencies
+    let style: ConfirmationAlertType
     @Binding var isPresented: Bool
+    let destructiveAction: () -> Void
     
     // MARK: Environments
     @Environment(\.dismiss) private var dismiss
@@ -19,22 +22,22 @@ struct AlertLeaveFormModifier: ViewModifier {
     func body(content: Content) -> some View {
         content
             .alert(
-                "confirmation_leave_form_title".localized,
+                style.title,
                 isPresented: $isPresented,
                 actions: {
                     Button(
-                        "confirmation_leave_form_destructive_button".localized,
+                        style.actionButton,
                         role: .destructive,
-                        action: { dismiss() }
+                        action: { destructiveAction() }
                     )
                     Button(
-                        "confirmation_leave_form_cancel_button".localized,
+                        style.cancelButton,
                         role: .cancel,
                         action: {}
                     )
                 },
                 message: {
-                    Text("confirmation_leave_form_message".localized)
+                    Text(style.message)
                 }
             )
     }
@@ -42,7 +45,7 @@ struct AlertLeaveFormModifier: ViewModifier {
 
 // MARK: - Extension View
 public extension View {
-    func alertLeaveForm(isPresented: Binding<Bool>) -> some View {
-        return modifier(AlertLeaveFormModifier(isPresented: isPresented))
+    func confirmationAlert(_ style: ConfirmationAlertType, isPresented: Binding<Bool>, destructiveAction: @escaping () -> Void) -> some View {
+        return modifier(ConfirmationAlertModifier(style: style, isPresented: isPresented, destructiveAction: destructiveAction))
     }
 }

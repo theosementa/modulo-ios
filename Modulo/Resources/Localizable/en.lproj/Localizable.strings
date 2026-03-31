@@ -94,6 +94,9 @@
 /*  */
 "generic_end_date" = "End date";
 
+/* */
+"generic_edit" = "Edit";
+
 /*  */
 "generic_settings" = "Settings";
 

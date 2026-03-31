@@ -73,7 +73,7 @@ struct AddContributionScreen: View {
         }
         .padding(.standard)
         .background(Color.Background.bg50)
-        .alertLeaveForm(isPresented: $viewModel.isAlertLeavePresented)
+        .confirmationAlert(.leaveWithoutSaving, isPresented: $viewModel.isAlertLeavePresented) { dismiss() }
         .animation(.smooth, value: keyboardManager.isKeyboardVisible)
         .lockView()
         .navigationBarBackButtonHidden(true)

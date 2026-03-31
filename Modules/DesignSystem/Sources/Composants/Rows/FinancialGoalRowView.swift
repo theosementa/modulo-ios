@@ -18,6 +18,9 @@ public struct FinancialGoalRowView: View {
     // MARK: Environments
     @Environment(Router<AppDestination>.self) private var router
     
+    // MARK: States
+    @State private var isAlertPresented: Bool = false
+    
     // MARK: Init
     public init(
         item: FinancialGoalUIModel
@@ -51,12 +54,15 @@ public struct FinancialGoalRowView: View {
         .padding(.standard)
         .background(Color.Background.bg100, in: .rect(cornerRadius: .large, style: .continuous))
         .contentShape(.contextMenuPreview, .rect(cornerRadius: .large))
+        .confirmationAlert(.deletion, isPresented: $isAlertPresented) {
+            DefaultFinancialGoalStore.shared.delete(by: item.id)
+        }
         .contextMenu {
             Button {
                 router.present(route: .fullScreenCover, .financialGoal(.update(id: item.id)))
             } label: {
                 Label {
-                    Text("generic_edit".localized) // TODO: TBL
+                    Text("generic_edit".localized)
                         .font(.Body.mediumMedium)
                 } icon: {
                     IconView(.iconPencil, size: .medium)
@@ -64,8 +70,7 @@ public struct FinancialGoalRowView: View {
             }
             
             Button(role: .destructive) {
-               // TODO: Ask with alert
-                DefaultFinancialGoalStore.shared.delete(by: item.id)
+                isAlertPresented = true
             } label: {
                 Label {
                     Text("generic_delete".localized)
