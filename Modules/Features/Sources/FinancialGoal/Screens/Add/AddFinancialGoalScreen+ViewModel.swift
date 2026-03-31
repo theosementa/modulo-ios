@@ -75,7 +75,7 @@ extension AddFinancialGoalScreen.ViewModel {
         do {
             try checkDatas()
             if isEditing {
-                //                await updateTransaction(dismiss: dismiss)
+                update()
             } else {
                 create()
             }
@@ -117,6 +117,20 @@ private extension AddFinancialGoalScreen.ViewModel {
             endDate: endDate
         )
         store.create(goal: domain)
+        router?.dismiss()
+    }
+    
+    func update() {
+        guard let goalId else { return }
+        let domain = FinancialGoalDomain(
+            id: goalId,
+            name: name,
+            emoji: emoji,
+            goalAmount: amount.toDouble(),
+            startDate: startDate ?? .now,
+            endDate: endDate
+        )
+        store.update(goal: domain)
         router?.dismiss()
     }
     

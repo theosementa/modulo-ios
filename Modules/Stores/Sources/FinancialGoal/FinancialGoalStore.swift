@@ -44,6 +44,24 @@ public extension FinancialGoalStore {
         }
     }
     
+    func update(goal: FinancialGoalDomain) {
+        guard let uuid = UUID(uuidString: goal.id) else { return }
+        do {
+            if let entity = repository.fetchOneByEntityId(uuid) {
+                entity.emoji = goal.emoji
+                entity.name = goal.name
+                entity.goalAmount = goal.goalAmount
+                entity.startDate = goal.startDate
+                entity.endDate = goal.endDate
+                
+                try repository.saveContext()
+                replace(goal)
+            }
+        } catch {
+            
+        }
+    }
+    
     func delete(by id: String) {
         guard let uuid = UUID(uuidString: id) else { return }
         let goalToDelete = repository.fetchOneByEntityId(uuid)
@@ -73,6 +91,12 @@ private extension FinancialGoalStore {
     func add(_ goal: FinancialGoalDomain) {
         if financialGoals.contains(where: { $0.id == goal.id }) == false {
             financialGoals.append(goal)
+        }
+    }
+    
+    func replace(_ goal: FinancialGoalDomain) {
+        if let index = financialGoals.firstIndex(where: { $0.id == goal.id }) {
+            self.financialGoals[index] = goal
         }
     }
     
