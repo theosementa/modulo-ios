@@ -55,6 +55,10 @@ jobs:
       - name: Run SwiftLint
         run: swiftlint lint --quiet --reporter json > sonarqube-swiftlint.json
 
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
       - name: mobsfscan
         uses: MobSF/mobsfscan@0.3.6
         with:
