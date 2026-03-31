@@ -23,8 +23,8 @@ struct AddContributionScreen: View {
     @StateObject private var keyboardManager: KeyboardManager = .init()
 
     // MARK: Init
-    init(goalId: String) {
-        self._viewModel = State(wrappedValue: ViewModel(goalId: goalId))
+    init(goalId: String, contributionId: String? = nil) {
+        self._viewModel = State(wrappedValue: ViewModel(goalId: goalId, contributionId: contributionId))
     }
 
     // MARK: - View

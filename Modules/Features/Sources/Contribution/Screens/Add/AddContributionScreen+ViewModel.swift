@@ -18,6 +18,7 @@ extension AddContributionScreen {
 
         // MARK: Dependencies
         private let goalId: String
+        private let contributionId: String?
         private let contributionStore: ContributionStore
         private let financialGoalStore: FinancialGoalStore
         var toastBannerService: ToastBannerService
@@ -34,14 +35,22 @@ extension AddContributionScreen {
         // MARK: Init
         init(
             goalId: String,
+            contributionId: String? = nil,
             contributionStore: ContributionStore = DefaultContributionStore.shared,
             financialGoalStore: FinancialGoalStore = DefaultFinancialGoalStore.shared,
             toastBannerService: ToastBannerService = .shared
         ) {
             self.goalId = goalId
+            self.contributionId = contributionId
             self.contributionStore = contributionStore
             self.financialGoalStore = financialGoalStore
             self.toastBannerService = toastBannerService
+            if let contributionId, let contribution = contributionStore.findOneBy(contributionId) {
+                self.name = contribution.name ?? ""
+                self.amount = contribution.amount.toString()
+                self.date = contribution.date
+                self.type = contribution.type
+            }
         }
 
     }
@@ -54,6 +63,10 @@ extension AddContributionScreen.ViewModel {
     var isModelInCreation: Bool {
         amount.toDouble() != 0 || name.isReallyEmpty == false
     }
+    
+    var isEditing: Bool {
+        return contributionId != nil
+    }
 
 }
 
@@ -63,7 +76,11 @@ extension AddContributionScreen.ViewModel {
     func validationAction() async {
         do {
             try checkDatas()
-            create()
+            if isEditing {
+                update()
+            } else {
+                create()
+            }
         } catch { }
     }
 
@@ -90,16 +107,31 @@ private extension AddContributionScreen.ViewModel {
     func create() {
         let contribution = ContributionDomain(
             id: "0",
+            goalId: goalId,
             name: name.isReallyEmpty ? nil : name,
             amount: amount.toDouble(),
             type: type,
             date: date ?? .now
         )
         
-        if let goal = financialGoalStore.findOneEntity(by: goalId) {
-            contributionStore.create(contribution: contribution, in: goal)
-            router?.dismiss()
-        }
+        contributionStore.create(contribution: contribution)
+        router?.dismiss()
+    }
+    
+    func update() {
+        guard let contributionId else { return }
+        
+        let contribution = ContributionDomain(
+            id: contributionId,
+            goalId: goalId,
+            name: name.isReallyEmpty ? nil : name,
+            amount: amount.toDouble(),
+            type: type,
+            date: date ?? .now
+        )
+        
+        contributionStore.update(contribution: contribution)
+        router?.dismiss()
     }
 
 }

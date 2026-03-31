@@ -54,7 +54,7 @@ public extension FinancialGoalStore {
                 entity.startDate = goal.startDate
                 entity.endDate = goal.endDate
                 
-                try repository.saveContext()
+                try repository.save(entity)
                 replace(goal)
             }
         } catch {

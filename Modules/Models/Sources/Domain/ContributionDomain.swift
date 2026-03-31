@@ -10,6 +10,7 @@ import Utilities
 
 public struct ContributionDomain: Identifiable, Sendable {
     public let id: String
+    public let goalId: String
     public let name: String?
     public let amount: Double
     public let type: ContributionType
@@ -17,12 +18,14 @@ public struct ContributionDomain: Identifiable, Sendable {
 
     public init(
         id: String,
+        goalId: String,
         name: String? = nil,
         amount: Double,
         type: ContributionType,
         date: Date
     ) {
         self.id = id
+        self.goalId = goalId
         self.name = name
         self.amount = amount
         self.type = type
@@ -72,44 +75,44 @@ public extension ContributionDomain {
         // Vacances Japon — currentAmount: 600 (400 add + 200 add - 50 remove + 50 add ce mois)
         case "mock-1":
             return [
-                .init(id: "m1-c1", name: "Virement", amount: 200, type: .add, date: date(-3)),
-                .init(id: "m1-c2", name: "Prime été", amount: 200, type: .add, date: date(-2)),
-                .init(id: "m1-c3", name: "Retrait exceptionnel", amount: 50, type: .remove, date: date(-1)),
-                .init(id: "m1-c4", name: "Virement", amount: 200, type: .add, date: date(-1, 15)),
-                .init(id: "m1-c5", name: "Virement", amount: 50, type: .add, date: date(0))
+                .init(id: "m1-c1", goalId: goalId, name: "Virement", amount: 200, type: .add, date: date(-3)),
+                .init(id: "m1-c2", goalId: goalId, name: "Prime été", amount: 200, type: .add, date: date(-2)),
+                .init(id: "m1-c3", goalId: goalId, name: "Retrait exceptionnel", amount: 50, type: .remove, date: date(-1)),
+                .init(id: "m1-c4", goalId: goalId, name: "Virement", amount: 200, type: .add, date: date(-1, 15)),
+                .init(id: "m1-c5", goalId: goalId, name: "Virement", amount: 50, type: .add, date: date(0))
             ]
 
         // MacBook Pro — currentAmount: 1200 (pas de contribution ce mois-ci)
         case "mock-2":
             return [
-                .init(id: "m2-c1", name: "Virement", amount: 300, type: .add, date: date(-4)),
-                .init(id: "m2-c2", name: "Virement", amount: 300, type: .add, date: date(-3)),
-                .init(id: "m2-c3", name: "Virement", amount: 300, type: .add, date: date(-2)),
-                .init(id: "m2-c4", name: "Virement", amount: 350, type: .add, date: date(-1)),
-                .init(id: "m2-c5", name: "Achat accessoire", amount: 50, type: .remove, date: date(-1, 10))
+                .init(id: "m2-c1", goalId: goalId, name: "Virement", amount: 300, type: .add, date: date(-4)),
+                .init(id: "m2-c2", goalId: goalId, name: "Virement", amount: 300, type: .add, date: date(-3)),
+                .init(id: "m2-c3", goalId: goalId, name: "Virement", amount: 300, type: .add, date: date(-2)),
+                .init(id: "m2-c4", goalId: goalId, name: "Virement", amount: 350, type: .add, date: date(-1)),
+                .init(id: "m2-c5", goalId: goalId, name: "Achat accessoire", amount: 50, type: .remove, date: date(-1, 10))
             ]
 
         // Fonds d'urgence — currentAmount: 2500 (gros virement ce mois)
         case "mock-3":
             return [
-                .init(id: "m3-c1", name: "Virement", amount: 400, type: .add, date: date(-6)),
-                .init(id: "m3-c2", name: "Virement", amount: 400, type: .add, date: date(-5)),
-                .init(id: "m3-c3", name: "Retrait urgence", amount: 100, type: .remove, date: date(-4)),
-                .init(id: "m3-c4", name: "Virement", amount: 400, type: .add, date: date(-3)),
-                .init(id: "m3-c5", name: "Virement", amount: 400, type: .add, date: date(-2)),
-                .init(id: "m3-c6", name: "Virement", amount: 400, type: .add, date: date(-1)),
-                .init(id: "m3-c7", name: "Virement", amount: 600, type: .add, date: date(0))
+                .init(id: "m3-c1", goalId: goalId, name: "Virement", amount: 400, type: .add, date: date(-6)),
+                .init(id: "m3-c2", goalId: goalId, name: "Virement", amount: 400, type: .add, date: date(-5)),
+                .init(id: "m3-c3", goalId: goalId, name: "Retrait urgence", amount: 100, type: .remove, date: date(-4)),
+                .init(id: "m3-c4", goalId: goalId, name: "Virement", amount: 400, type: .add, date: date(-3)),
+                .init(id: "m3-c5", goalId: goalId, name: "Virement", amount: 400, type: .add, date: date(-2)),
+                .init(id: "m3-c6", goalId: goalId, name: "Virement", amount: 400, type: .add, date: date(-1)),
+                .init(id: "m3-c7", goalId: goalId, name: "Virement", amount: 600, type: .add, date: date(0))
             ]
 
         // Voiture — currentAmount: 3000 (retrait ce mois)
         case "mock-4":
             return [
-                .init(id: "m4-c1", name: "Virement", amount: 600, type: .add, date: date(-5)),
-                .init(id: "m4-c2", name: "Virement", amount: 600, type: .add, date: date(-4)),
-                .init(id: "m4-c3", name: "Virement", amount: 600, type: .add, date: date(-3)),
-                .init(id: "m4-c4", name: "Virement", amount: 600, type: .add, date: date(-2)),
-                .init(id: "m4-c5", name: "Virement", amount: 700, type: .add, date: date(-1)),
-                .init(id: "m4-c6", name: "Retrait réparation", amount: 100, type: .remove, date: date(0))
+                .init(id: "m4-c1", goalId: goalId, name: "Virement", amount: 600, type: .add, date: date(-5)),
+                .init(id: "m4-c2", goalId: goalId, name: "Virement", amount: 600, type: .add, date: date(-4)),
+                .init(id: "m4-c3", goalId: goalId, name: "Virement", amount: 600, type: .add, date: date(-3)),
+                .init(id: "m4-c4", goalId: goalId, name: "Virement", amount: 600, type: .add, date: date(-2)),
+                .init(id: "m4-c5", goalId: goalId, name: "Virement", amount: 700, type: .add, date: date(-1)),
+                .init(id: "m4-c6", goalId: goalId, name: "Retrait réparation", amount: 100, type: .remove, date: date(0))
             ]
 
         default:

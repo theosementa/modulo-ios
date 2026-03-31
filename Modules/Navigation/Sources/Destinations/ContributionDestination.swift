@@ -9,4 +9,5 @@ import Foundation
 
 public enum ContributionDestination: DestinationItem {
     case create(goalId: String)
+    case update(goalId: String, contributionId: String)
 }

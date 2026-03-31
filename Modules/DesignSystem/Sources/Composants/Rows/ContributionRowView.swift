@@ -8,11 +8,15 @@
 import SwiftUI
 import Models
 import Stores
+import Navigation
 
 public struct ContributionRowView: View {
     
     // MARK: Dependencies
     private let item: ContributionUIModel
+    
+    // MARK: Environments
+    @Environment(Router<AppDestination>.self) private var router
     
     // MARK: Init
     public init(
@@ -46,8 +50,21 @@ public struct ContributionRowView: View {
         .contentShape(Rectangle())
         .contentShape(.contextMenuPreview, RoundedRectangle(cornerRadius: .medium, style: .continuous))
         .contextMenu {
+            Button {
+                if let domain = DefaultContributionStore.shared.findOneBy(item.id) {
+                    router.present(route: .fullScreenCover, .contribution(.update(goalId: domain.goalId, contributionId: item.id)))
+                }
+            } label: {
+                Label {
+                    Text("generic_edit".localized) // TODO: TBL
+                        .font(.Body.mediumMedium)
+                } icon: {
+                    IconView(.iconPencil, size: .medium)
+                }
+            }
+            
             Button(role: .destructive) {
-               // TODO: Ask with alert
+                // TODO: Ask with alert
                 DefaultContributionStore.shared.delete(by: item.id)
             } label: {
                 Label {

@@ -43,6 +43,7 @@ public extension ContributionEntity {
     func toDomain() -> ContributionDomain {
         return .init(
             id: id.uuidString,
+            goalId: financialGoal?.id.uuidString ?? "0",
             name: name,
             amount: amount,
             type: ContributionType(rawValue: type) ?? .add,
