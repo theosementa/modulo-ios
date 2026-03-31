@@ -11,11 +11,9 @@ import Models
 
 public extension View {
     
-    func font(_ font: AppFont, color: Color? = nil) -> some View {
-        let uiFont = UIFont(name: font.name, size: font.size) ?? UIFont.systemFont(ofSize: font.size)
-        
+    func font(_ font: AppFont, color: Color? = nil) -> some View {        
         return self
-            .font(Font(uiFont))
+            .font(.custom(font.name, size: font.size, relativeTo: font.relativeTo))
             .foregroundStyle(color ?? .Text.primary)
     }
     
