@@ -26,7 +26,7 @@
 
 ## Screenshots
 
-*Coming soon*
+<img width="1920" height="1440" alt="394_1x_shots_so" src="https://github.com/user-attachments/assets/ab077052-239d-419e-8ba2-079b23889bc6" />
 
 ---
 
