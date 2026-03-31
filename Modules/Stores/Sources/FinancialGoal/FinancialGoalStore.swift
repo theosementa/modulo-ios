@@ -22,16 +22,6 @@ public protocol FinancialGoalStore: AnyObject {
 
 public extension FinancialGoalStore {
     
-    func findOne(by id: String) -> FinancialGoalDomain? {
-        return financialGoals
-            .first(where: { $0.id == id })
-    }
-    
-    func findOneEntity(by id: String) -> FinancialGoalEntity? {
-        guard let uuid = UUID(uuidString: id) else { return nil }
-        return repository.fetchOneByEntityId(uuid)
-    }
-    
     func create(goal: FinancialGoalDomain) {
         let draftEntity = goal.toEntity()
         do {
@@ -73,6 +63,29 @@ public extension FinancialGoalStore {
             } catch { }
         }
     }
+    
+    func deleteAll() {
+        do {
+            try repository.deleteAll()
+            financialGoals.removeAll()
+        } catch {
+            
+        }
+    }
+
+}
+
+public extension FinancialGoalStore {
+    
+    func findOne(by id: String) -> FinancialGoalDomain? {
+        return financialGoals
+            .first(where: { $0.id == id })
+    }
+    
+    func findOneEntity(by id: String) -> FinancialGoalEntity? {
+        guard let uuid = UUID(uuidString: id) else { return nil }
+        return repository.fetchOneByEntityId(uuid)
+    }
 
     func fetchContributions(for goalId: String, offset: Int, limit: Int) -> [ContributionDomain] {
         guard let uuid = UUID(uuidString: goalId) else { return [] }
@@ -83,7 +96,7 @@ public extension FinancialGoalStore {
         guard let uuid = UUID(uuidString: goalId) else { return [] }
         return repository.fetchMonthlyDataPoints(for: uuid)
     }
-
+    
 }
 
 private extension FinancialGoalStore {

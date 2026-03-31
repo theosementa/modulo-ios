@@ -34,6 +34,9 @@ struct SettingsScreen: View {
         }
         .navigationBarBackButtonHidden(true)
         .background(Color.Background.bg50)
+        .confirmationAlert(.deleteAllData, isPresented: $viewModel.isAlertDataPresented) {
+            viewModel.deleteAll()
+        }
     }
 }
 
@@ -113,12 +116,16 @@ fileprivate extension SettingsScreen {
 
     var dangerSectionView: some View {
         VStack(spacing: .zero) {
-            SettingsRowView(
-                icon: .iconTrash,
-                text: "setting_delete_data".localized,
-                style: .destructive
-            ) {
-                EmptyView()
+            Button {
+                viewModel.isAlertDataPresented = true
+            } label: {
+                SettingsRowView(
+                    icon: .iconTrash,
+                    text: "setting_delete_data".localized,
+                    style: .destructive
+                ) {
+                    EmptyView()
+                }
             }
         }
         .padding(.standard)

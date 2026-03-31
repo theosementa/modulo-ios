@@ -8,5 +8,5 @@
 import Foundation
 
 public enum ConfirmationAlertType {
-    case leaveWithoutSaving, deletion
+    case leaveWithoutSaving, deletion, deleteAllData
 }

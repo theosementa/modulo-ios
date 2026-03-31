@@ -23,6 +23,9 @@
 "add_goal_field_name_title" = "Nom de l'objectif";
 
 /*  */
+"confirmation_delete_all_data_message" = "Es tu sûr de vouloir supprimer toutes tes données ? Cette action est irréversible !";
+
+/*  */
 "confirmation_leave_form_cancel_button" = "Continuer";
 
 /*  */

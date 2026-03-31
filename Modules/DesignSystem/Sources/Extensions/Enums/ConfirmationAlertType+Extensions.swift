@@ -14,7 +14,7 @@ public extension ConfirmationAlertType {
         switch self {
         case .leaveWithoutSaving:
             return "confirmation_leave_form_title".localized
-        case .deletion:
+        case .deletion, .deleteAllData:
             return "confirmation_deletion_title".localized
         }
     }
@@ -25,6 +25,8 @@ public extension ConfirmationAlertType {
             return "confirmation_leave_form_message".localized
         case .deletion:
             return "confirmation_deletion_message".localized
+        case .deleteAllData:
+            return "confirmation_delete_all_data_message".localized
         }
     }
     
@@ -36,7 +38,7 @@ public extension ConfirmationAlertType {
         switch self {
         case .leaveWithoutSaving:
             return "confirmation_leave_form_destructive_button".localized
-        case .deletion:
+        case .deletion, .deleteAllData:
             return "generic_delete".localized
         }
     }
