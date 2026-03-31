@@ -26,6 +26,12 @@
 "confirmation_delete_all_data_message" = "Es tu sûr de vouloir supprimer toutes tes données ? Cette action est irréversible !";
 
 /*  */
+"confirmation_deletion_message" = "Tu es sur le point de faire une suppression. Cette action est irréversible !";
+
+/*  */
+"confirmation_deletion_title" = "Suppression";
+
+/*  */
 "confirmation_leave_form_cancel_button" = "Continuer";
 
 /*  */
@@ -89,16 +95,19 @@
 "financial_goal_detail_to_contribute_this_month" = "Montant à contribuer ce mois-ci";
 
 /*  */
+"generic_cancel" = "Annuler";
+
+/*  */
 "generic_date" = "Date";
 
 /*  */
 "generic_delete" = "Supprimer";
 
 /*  */
-"generic_end_date" = "Date de fin";
-
-/* */
 "generic_edit" = "Modifier";
+
+/*  */
+"generic_end_date" = "Date de fin";
 
 /*  */
 "generic_settings" = "Réglages";

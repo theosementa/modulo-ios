@@ -20,10 +20,16 @@
 "add_financial_goal_field_name_placeholder_two" = "New car";
 
 /*  */
-"add_goal_field_name_title" = "Target name";
+"add_goal_field_name_title" = "Goal name";
 
 /*  */
 "confirmation_delete_all_data_message" = "Are you sure you want to delete all your data? This action cannot be undone!";
+
+/*  */
+"confirmation_deletion_message" = "You are about to delete something. This action cannot be undone!";
+
+/*  */
+"confirmation_deletion_title" = "Deletion";
 
 /*  */
 "confirmation_leave_form_cancel_button" = "Continue";
@@ -68,7 +74,7 @@
 "financial_goal_detail_general_section_remaining_contribution" = "Remaining contribution";
 
 /*  */
-"financial_goal_detail_general_section_target" = "Target";
+"financial_goal_detail_general_section_target" = "Goal";
 
 /*  */
 "financial_goal_detail_general_section_total_contribution" = "Total contribution";
@@ -77,10 +83,10 @@
 "financial_goal_detail_monthly_section_contributed_this_month" = "Contributed this month";
 
 /*  */
-"financial_goal_detail_monthly_section_recalculed_target" = "Recalculated target";
+"financial_goal_detail_monthly_section_recalculed_target" = "Recalculated goal";
 
 /*  */
-"financial_goal_detail_monthly_section_theorical_target" = "Theoretical target";
+"financial_goal_detail_monthly_section_theorical_target" = "Theoretical goal";
 
 /*  */
 "financial_goal_detail_monthly_section_title" = "Monthly payment";
@@ -89,16 +95,19 @@
 "financial_goal_detail_to_contribute_this_month" = "Amount to contribute this month";
 
 /*  */
+"generic_cancel" = "Cancel";
+
+/*  */
 "generic_date" = "Date";
 
 /*  */
 "generic_delete" = "Delete";
 
 /*  */
-"generic_end_date" = "End date";
-
-/* */
 "generic_edit" = "Edit";
+
+/*  */
+"generic_end_date" = "End date";
 
 /*  */
 "generic_settings" = "Settings";
@@ -107,7 +116,7 @@
 "generic_start_date" = "Start date";
 
 /*  */
-"generic_targets" = "Targets";
+"generic_targets" = "Goals";
 
 /*  */
 "setting_condition_of_use" = "Terms of Use";
