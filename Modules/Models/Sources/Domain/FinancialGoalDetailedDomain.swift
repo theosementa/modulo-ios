@@ -20,6 +20,10 @@ public struct FinancialGoalDetailedDomain {
 
 // MARK: - Computed Stats
 public extension FinancialGoalDetailedDomain {
+    
+    var remainingContributions: Double {
+        return goal.goalAmount - goal.currentAmount
+    }
 
     var progressRatio: Double {
         guard goal.goalAmount > 0 else { return 0 }
@@ -27,36 +31,32 @@ public extension FinancialGoalDetailedDomain {
     }
 
     var remainingDays: Int? {
-        guard let endDate = goal.endDate else { return nil }
-        let days = Calendar.current.dateComponents([.day], from: .now, to: endDate).day ?? 0
+        let days = Calendar.current.days(between: .now, and: goal.endDate) ?? 0
         return max(0, days)
     }
 
     var monthlyRequired: Double? {
-        guard let endDate = goal.endDate else { return nil }
+        guard
+            let months = Calendar.current.months(between: .now, and: goal.endDate),
+            months > 0,
+            remainingContributions > 0
+        else { return nil }
         
-        let remaining = goal.goalAmount - goal.currentAmount
-        guard remaining > 0 else { return 0 }
-        
-        let months = Calendar.current.months(between: .now, and: endDate)
-        
-        guard months > 0 else { return nil }
-        
-        return remaining / Double(months)
+        return remainingContributions / Double(months)
     }
 
-    var projectedEndDate: Date? {
-        let remaining = goal.goalAmount - goal.currentAmount
-        guard remaining > 0 else { return .now }
-        let monthsElapsed = max(
-            1,
-            Calendar.current.dateComponents([.month], from: goal.startDate, to: .now).month ?? 1
-        )
-        let monthlyAverage = goal.currentAmount / Double(monthsElapsed)
-        guard monthlyAverage > 0 else { return nil }
-        let monthsNeeded = Int(ceil(remaining / monthlyAverage))
-        return Calendar.current.date(byAdding: .month, value: monthsNeeded, to: .now)
-    }
+//    var projectedEndDate: Date? {
+//        guard remainingContributions > 0 else { return .now }
+//        
+//        let monthsElapsed = max(
+//            1,
+//            Calendar.current.dateComponents([.month], from: goal.startDate, to: .now).month ?? 1
+//        )
+//        let monthlyAverage = goal.currentAmount / Double(monthsElapsed)
+//        guard monthlyAverage > 0 else { return nil }
+//        let monthsNeeded = Int(ceil(remainingContributions / monthlyAverage))
+//        return Calendar.current.date(byAdding: .month, value: monthsNeeded, to: .now)
+//    }
 
 }
 
@@ -66,20 +66,11 @@ public extension FinancialGoalDetailedDomain {
     func toUIModel() -> FinancialGoalDetailedUIModel {
         let calendar = Calendar.current
 
-        let elapsedDays = max(0, calendar.dateComponents([.day], from: goal.startDate, to: .now).day ?? 0)
+        let elapsedDays = max(0, calendar.days(between: goal.startDate, and: .now) ?? 0)
 
         let monthlyTarget: Double? = {
-            guard let endDate = goal.endDate else { return nil }
-            let startMonth = calendar.dateComponents([.year, .month], from: goal.startDate)
-            let endMonth = calendar.dateComponents([.year, .month], from: endDate)
-            
-            guard
-                let startMonthDate = calendar.date(from: startMonth),
-                let endMonthDate = calendar.date(from: endMonth)
+            guard let totalMonths = calendar.months(between: goal.startDate, and: goal.endDate), totalMonths > 0
             else { return nil }
-            
-            let totalMonths = calendar.months(between: startMonthDate, and: endMonthDate)
-            guard totalMonths > 0 else { return nil }
             
             return goal.goalAmount / Double(totalMonths)
         }()
