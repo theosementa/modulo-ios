@@ -164,5 +164,23 @@
 "toast_banner_amount_mandatory" = "Le montant est obligatoire";
 
 /*  */
+"toast_banner_contribution_added" = "Contribution ajoutée !";
+
+/*  */
+"toast_banner_contribution_deleted" = "Contribution supprimée !";
+
+/*  */
+"toast_banner_contribution_updated" = "Contribution mis à jour !";
+
+/*  */
+"toast_banner_goal_created" = "Objectif créé !";
+
+/*  */
+"toast_banner_goal_deleted" = "Objectif supprimé !";
+
+/*  */
+"toast_banner_goal_updated" = "Objectif mis à jour !";
+
+/*  */
 "toast_banner_name_mandatory" = "Le nom est obligatoire";
 
