@@ -176,6 +176,9 @@
 "toast_banner_goal_created" = "Goal created!";
 
 /*  */
+"toast_banner_delete_all" = "All data has been deleted!";
+
+/*  */
 "toast_banner_goal_deleted" = "Goal deleted!";
 
 /*  */

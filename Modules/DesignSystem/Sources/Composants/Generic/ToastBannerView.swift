@@ -32,11 +32,11 @@ public struct ToastBannerView: View {
                     .resizable()
                     .renderingMode(.template)
                     .foregroundStyle(style.foregroundColor)
-                    .frame(width: .standard, height: .standard)
+                    .frame(width: .mediumLarge, height: .mediumLarge)
             }
             
             Text(banner.title)
-                .font(.Body.smallRegular, color: style.foregroundColor)
+                .font(.Body.mediumMedium, color: style.foregroundColor)
                 .lineLimit(1)
         }
         .padding(.small)

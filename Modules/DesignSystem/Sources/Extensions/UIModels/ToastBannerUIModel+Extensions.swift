@@ -67,4 +67,10 @@ public extension ToastBannerUIModel {
         style: ToastBannerStyle.success
     )
     
+    static let successDeleteAllData: ToastBannerUIModel = .init(
+        title: "toast_banner_delete_all".localized,
+        uiImage: UIImage(asset: .iconCheckmarkRounded),
+        style: ToastBannerStyle.success
+    )
+    
 }

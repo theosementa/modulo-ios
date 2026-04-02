@@ -173,6 +173,9 @@
 "toast_banner_contribution_updated" = "Contribution mis à jour !";
 
 /*  */
+"toast_banner_delete_all" = "Toutes les données ont été supprimées !";
+
+/*  */
 "toast_banner_goal_created" = "Objectif créé !";
 
 /*  */
