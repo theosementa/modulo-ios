@@ -1,5 +1,5 @@
 {
-  "originHash" : "53ca7d4ed651192831e811b520368b47dc06c7a9694523d7f2e810f1be642dd4",
+  "originHash" : "25e88206344d3de9fbbbcc66db349ee64aae019fe2784e886b5a22c6c2e13fdc",
   "pins" : [
     {
       "identity" : "mcemojipicker",
@@ -24,8 +24,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/theosementa/ToastBannerKit.git",
       "state" : {
-        "revision" : "210aaac66093420588a1801180c2917822355886",
-        "version" : "1.0.3"
+        "revision" : "e23b17c0790ab0a8ea905d459e2948cc6b0932e4",
+        "version" : "1.0.31"
       }
     }
   ],

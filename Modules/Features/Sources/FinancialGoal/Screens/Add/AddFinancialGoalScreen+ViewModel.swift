@@ -118,6 +118,7 @@ private extension AddFinancialGoalScreen.ViewModel {
         )
         store.create(goal: domain)
         router?.dismiss()
+        toastBannerService.send(.successGoalCreated, delay: AppConstant.Animation.toastDelayAfterCloseSheet)
     }
     
     func update() {
@@ -132,6 +133,7 @@ private extension AddFinancialGoalScreen.ViewModel {
         )
         store.update(goal: domain)
         router?.dismiss()
+        toastBannerService.send(.successGoalUpdated, delay: AppConstant.Animation.toastDelayAfterCloseSheet)
     }
     
     func randomPlaceholder() -> String {

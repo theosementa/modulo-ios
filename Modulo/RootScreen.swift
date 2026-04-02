@@ -8,8 +8,13 @@
 import SwiftUI
 import Navigation
 import FinancialGoal
+import ToastBannerKit
+import DesignSystem
 
 struct RootScreen: View {
+    
+    // MARK: States
+    @State private var toastBannerService: ToastBannerService = .shared
     
     // MARK: Constants
     private let router: Router<AppDestination> = .init()
@@ -23,6 +28,12 @@ struct RootScreen: View {
             flow: AppFlow.home
         ) {
             FinancialGoalListScreen()
+        }
+        .toastBanner(
+            item: $toastBannerService.toastBanner,
+            config: .init(yOffset: 10, animation: .smooth),
+        ) { toastBanner in
+            ToastBannerView(banner: toastBanner)
         }
     }
 }

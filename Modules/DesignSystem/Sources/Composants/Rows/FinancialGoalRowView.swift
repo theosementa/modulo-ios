@@ -9,6 +9,7 @@ import SwiftUI
 import Models
 import Stores
 import Navigation
+import ToastBannerKit
 
 public struct FinancialGoalRowView: View {
     
@@ -56,6 +57,7 @@ public struct FinancialGoalRowView: View {
         .contentShape(.contextMenuPreview, .rect(cornerRadius: .large))
         .confirmationAlert(.deletion, isPresented: $isAlertPresented) {
             DefaultFinancialGoalStore.shared.delete(by: item.id)
+            ToastBannerService.shared.send(.successGoalDeleted)
         }
         .contextMenu {
             Button {

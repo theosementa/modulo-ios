@@ -9,6 +9,7 @@ import SwiftUI
 import Models
 import Stores
 import Navigation
+import ToastBannerKit
 
 public struct ContributionRowView: View {
     
@@ -54,6 +55,7 @@ public struct ContributionRowView: View {
         .contentShape(.contextMenuPreview, RoundedRectangle(cornerRadius: .medium, style: .continuous))
         .confirmationAlert(.deletion, isPresented: $isAlertPresented) {
             DefaultContributionStore.shared.delete(by: item.id)
+            ToastBannerService.shared.send(.successContributionDeleted)
         }
         .contextMenu {
             Button {

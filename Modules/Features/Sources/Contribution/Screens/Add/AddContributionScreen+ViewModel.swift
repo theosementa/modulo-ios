@@ -116,6 +116,7 @@ private extension AddContributionScreen.ViewModel {
         
         contributionStore.create(contribution: contribution)
         router?.dismiss()
+        toastBannerService.send(.successContributionAdded, delay: AppConstant.Animation.toastDelayAfterCloseSheet)
     }
     
     func update() {
@@ -132,6 +133,7 @@ private extension AddContributionScreen.ViewModel {
         
         contributionStore.update(contribution: contribution)
         router?.dismiss()
+        toastBannerService.send(.successContributionUpdated, delay: AppConstant.Animation.toastDelayAfterCloseSheet)
     }
 
 }

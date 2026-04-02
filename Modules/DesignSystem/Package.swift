@@ -18,7 +18,7 @@ let package = Package(
         .package(name: "Navigation", path: "../Navigation"),
         .package(name: "Stores", path: "../Stores"),
         
-        .package(url: "https://github.com/theosementa/ToastBannerKit.git", exact: "1.0.3")
+        .package(url: "https://github.com/theosementa/ToastBannerKit.git", exact: "1.0.31")
     ],
     targets: [
         .target(
