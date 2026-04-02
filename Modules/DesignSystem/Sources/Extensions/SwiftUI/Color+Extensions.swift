@@ -61,12 +61,12 @@ public extension Color {
     
     struct Success {
         public static let s500: Color = Color.green
-        public static let s100: Color = Color.green.opacity(0.15)
+        public static let s100: Color = Color(hex: 0xC2EECD)
     }
     
     struct Error {
         public static let e500: Color = Color.red
-        public static let e100: Color = Color.red.opacity(0.15)
+        public static let e100: Color = Color(hex: 0xFFC3C5)
     }
     
 }

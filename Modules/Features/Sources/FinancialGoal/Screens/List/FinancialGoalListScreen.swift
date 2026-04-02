@@ -12,9 +12,13 @@ import Core
 
 public struct FinancialGoalListScreen: View {
     
+    // MARK: States
     @State private var viewModel: ViewModel = .init()
+    
+    // MARK: Environments
     @Environment(\.theme) private var theme
     
+    // MARK: Init
     public init() { }
     
     // MARK: - View

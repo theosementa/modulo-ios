@@ -13,13 +13,15 @@ import Settings
 
 @main
 struct ModuloApp: App {
-    
+
+    @UIApplicationDelegateAdaptor(AppDelegate.self) var appDelegate
+
     init() {
         NavigationRegistry.shared.registerFinancialGoalsRoutes()
         NavigationRegistry.shared.registerContributionRoutes()
         NavigationRegistry.shared.registerSettingsRoutes()
     }
-    
+
     var body: some Scene {
         WindowGroup {
             RootScreen()

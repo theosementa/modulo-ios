@@ -9,6 +9,7 @@ import Foundation
 import Core
 import Models
 import Stores
+import ToastBannerKit
 
 extension SettingsScreen {
     
@@ -40,6 +41,7 @@ extension SettingsScreen.ViewModel {
     @MainActor
     func deleteAll() {
         DefaultFinancialGoalStore.shared.deleteAll()
+        ToastBannerService.shared.send(.successDeleteAllData)
     }
     
 }
