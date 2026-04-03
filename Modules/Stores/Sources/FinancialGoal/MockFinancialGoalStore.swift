@@ -21,8 +21,10 @@ public final class MockFinancialGoalStore: FinancialGoalStore {
 
     public init() {}
 
-    // MARK: - Overrides (in-memory, no SwiftData)
+}
 
+extension MockFinancialGoalStore {
+    
     public func fetchAll() {
         financialGoals = FinancialGoalDomain.mocks
     }
@@ -80,20 +82,5 @@ public final class MockFinancialGoalStore: FinancialGoalStore {
 
         return result
     }
-
-    public func addContribution(to goalId: String, name: String?, amount: Double, type: ContributionType, date: Date) {
-        guard let index = financialGoals.firstIndex(where: { $0.id == goalId }) else { return }
-        let goal = financialGoals[index]
-        let delta = type == .add ? amount : -amount
-        financialGoals[index] = FinancialGoalDomain(
-            id: goal.id,
-            name: goal.name,
-            emoji: goal.emoji,
-            goalAmount: goal.goalAmount,
-            currentAmount: goal.currentAmount + delta,
-            startDate: goal.startDate,
-            endDate: goal.endDate
-        )
-    }
-
+    
 }

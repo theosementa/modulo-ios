@@ -1,6 +1,7 @@
 # Modulo
 
 [![Quality Phase](https://github.com/theosementa/modulo-ios/actions/workflows/quality.yml/badge.svg)](https://github.com/theosementa/modulo-ios/actions/workflows/quality.yml)
+[![Build Status](https://app.bitrise.io/app/790a9c9c-63dd-4af3-bc6a-93f0a11dc921/status.svg?token=bUwSdF9KdJXfDBG9kyq0kA&branch=develop)](https://app.bitrise.io/app/790a9c9c-63dd-4af3-bc6a-93f0a11dc921)
 ![Swift](https://img.shields.io/badge/Swift-6.1-F05138?logo=swift&logoColor=white)
 ![iOS](https://img.shields.io/badge/iOS-17%2B-000000?logo=apple&logoColor=white)
 [![Roadmap](https://img.shields.io/badge/Roadmap-GitHub%20Projects-0D96F6?logo=github)](https://github.com/theosementa/modulo-ios/projects)
