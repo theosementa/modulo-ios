@@ -28,6 +28,7 @@ let package = Package(
                 .product(name: "Providers", package: "Providers")
             ]
         ),
+        .testTarget(name: "ContributionTests", dependencies: ["Contribution"]),
         .target(
             name: "FinancialGoal",
             dependencies: [
