@@ -33,7 +33,6 @@ struct AddContributionViewModelTests {
         financialGoalStore: MockFinancialGoalStore()
     )
 
-
     // MARK: - isModelInCreation
     @Test
     func isModelInCreation_whenAmountIsZeroAndNameIsEmpty_returnsFalse() async throws {

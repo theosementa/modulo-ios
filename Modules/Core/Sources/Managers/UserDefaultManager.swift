@@ -9,16 +9,21 @@ import Foundation
 import SwiftUI
 import Models
 
+@Observable
 public final class UserDefaultManager: @unchecked Sendable {
     public static let shared = UserDefaultManager()
-    
-    @AppStorage("isOnboardingNeedToBePresented")
+
+    @ObservationIgnored
+    @ObservableUserDefault("isOnboardingNeedToBePresented")
     public var isOnboardingNeedToBePresented: Bool = true
-    
+
     // MARK: - Preferences
-    @AppStorage("isHapticFeebackEnabled")
+    @ObservationIgnored
+    @ObservableUserDefault("isHapticFeebackEnabled")
     public var isHapticFeebackEnabled: Bool = true
-    
-    @AppStorage("selectedTheme")
+
+    @ObservationIgnored
+    @ObservableUserDefault("selectedTheme")
     public var selectedTheme: String = ThemeColorType.blue.rawValue
+    
 }

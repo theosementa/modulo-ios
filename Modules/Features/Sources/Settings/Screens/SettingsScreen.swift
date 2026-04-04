@@ -50,7 +50,8 @@ fileprivate extension SettingsScreen {
                 text: "setting_haptic_feedback".localized,
                 style: .casual
             ) {
-                Toggle("", isOn: viewModel.userDefaultManager.$isHapticFeebackEnabled)
+                @Bindable var userDefaultManager = viewModel.userDefaultManager
+                Toggle("", isOn: $userDefaultManager.isHapticFeebackEnabled)
                     .labelsHidden()
                     .tint(viewModel.selectedTheme.color)
             }

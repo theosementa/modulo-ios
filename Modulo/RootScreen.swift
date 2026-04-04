@@ -7,6 +7,7 @@
 
 import SwiftUI
 import Navigation
+import Core
 import FinancialGoal
 import ToastBannerKit
 import DesignSystem
@@ -15,6 +16,7 @@ struct RootScreen: View {
     
     // MARK: States
     @State private var toastBannerService: ToastBannerService = .shared
+    @State private var userDefaultManager: UserDefaultManager = .shared
     
     // MARK: Constants
     private let router: Router<AppDestination> = .init()
@@ -27,8 +29,13 @@ struct RootScreen: View {
             routerManager: routerManager,
             flow: AppFlow.home
         ) {
-//            FinancialGoalListScreen()
-            OnboardingScreen()
+            Group {
+                if userDefaultManager.isOnboardingNeedToBePresented {
+                    OnboardingScreen()
+                } else {
+                    FinancialGoalListScreen()
+                }
+            }
         }
         .toastBanner(
             item: $toastBannerService.toastBanner,
