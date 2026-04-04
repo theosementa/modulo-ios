@@ -3,13 +3,16 @@
 [![Build Status](https://app.bitrise.io/app/790a9c9c-63dd-4af3-bc6a-93f0a11dc921/status.svg?token=bUwSdF9KdJXfDBG9kyq0kA&branch=develop)](https://app.bitrise.io/app/790a9c9c-63dd-4af3-bc6a-93f0a11dc921)
 ![Swift](https://img.shields.io/badge/Swift-6.1-F05138?logo=swift&logoColor=white)
 ![iOS](https://img.shields.io/badge/iOS-17%2B-000000?logo=apple&logoColor=white)
-[![Roadmap](https://img.shields.io/badge/Roadmap-GitHub%20Projects-0D96F6?logo=github)](https://github.com/theosementa/modulo-ios/projects)
+[![Roadmap](https://img.shields.io/badge/Roadmap-GitHub%20Projects-34C759?logo=github)](https://github.com/theosementa/modulo-ios/projects)
+[![TestFlight](https://img.shields.io/badge/TestFlight-Join%20Beta-0D96F6?logo=apple&logoColor=white)](https://testflight.apple.com/join/v4MMAVYm)
 ![App Store](https://img.shields.io/badge/App%20Store-Coming%20Soon-0D96F6?logo=app-store&logoColor=white)
 [![Figma](https://img.shields.io/badge/Figma-Design-F24E1E?logo=figma&logoColor=white)](https://www.figma.com/design/uTGmdDAvUopqBAdL5VSC8o/Modulo-v2?node-id=1-5&t=QwxXDSNasY1lKJvw-1)
 ![SonarQube](https://img.shields.io/badge/SonarQube-Analyzed-4E9BCD?logo=sonarqube&logoColor=white)
 [![License: CC BY-NC 4.0](https://img.shields.io/badge/License-CC%20BY--NC%204.0-lightgrey)](./LICENSE)
 
 > A clean, focused savings tracker for iOS — set goals, log contributions, and watch your progress over time.
+
+> 🧪 **Beta available!** Try the latest version on [TestFlight](https://testflight.apple.com/join/v4MMAVYm) and help shape the app before its App Store release.
 
 ---
 
