@@ -119,6 +119,30 @@
 "generic_targets" = "Goals";
 
 /*  */
+"onboarding_action_button" = "Start saving now";
+
+/*  */
+"onboarding_first_section_desc" = "Vacations, purchases, personal projects… Set your goals and track your progress all in one place. ";
+
+/*  */
+"onboarding_first_section_title" = "Organize your savings by goal";
+
+/*  */
+"onboarding_second_section_desc" = "Modulo automatically updates your progress with every move. ";
+
+/*  */
+"onboarding_second_section_title" = "Deposit or withdraw money";
+
+/*  */
+"onboarding_third_section_desc" = "A clear monthly amount to help you reach each goal by the date you want.";
+
+/*  */
+"onboarding_third_section_title" = "Always know how much to save";
+
+/*  */
+"onboarding_title_welcome" = "Welcome\nto";
+
+/*  */
 "setting_condition_of_use" = "Terms of Use";
 
 /*  */
@@ -173,10 +197,10 @@
 "toast_banner_contribution_updated" = "Contribution updated!";
 
 /*  */
-"toast_banner_goal_created" = "Goal created!";
+"toast_banner_delete_all" = "All data has been deleted!";
 
 /*  */
-"toast_banner_delete_all" = "All data has been deleted!";
+"toast_banner_goal_created" = "Goal created!";
 
 /*  */
 "toast_banner_goal_deleted" = "Goal deleted!";

@@ -21,26 +21,29 @@ public struct OnboardingScreen: View {
                 .multilineTextAlignment(.leading)
                 .fullWidth(.leading)
             
-            VStack(spacing: .large) {
-                onboardingRowView(
-                    icon: .iconTarget,
-                    title: "onboarding_first_section_title".localized,
-                    description: "onboarding_first_section_desc".localized
-                )
-                
-                onboardingRowView(
-                    icon: .iconHandCoins,
-                    title: "onboarding_second_section_title".localized,
-                    description: "onboarding_second_section_desc".localized
-                )
-                
-                onboardingRowView(
-                    icon: .iconCoins,
-                    title: "onboarding_third_section_title".localized,
-                    description: "onboarding_third_section_desc".localized
-                )
+            ScrollView {
+                VStack(spacing: .large) {
+                    onboardingRowView(
+                        icon: .iconTarget,
+                        title: "onboarding_first_section_title".localized,
+                        description: "onboarding_first_section_desc".localized
+                    )
+                    
+                    onboardingRowView(
+                        icon: .iconHandCoins,
+                        title: "onboarding_second_section_title".localized,
+                        description: "onboarding_second_section_desc".localized
+                    )
+                    
+                    onboardingRowView(
+                        icon: .iconCoins,
+                        title: "onboarding_third_section_title".localized,
+                        description: "onboarding_third_section_desc".localized
+                    )
+                }
+                .fullSize(.top)
             }
-            .fullSize(.top)
+            .scrollIndicators(.hidden)
             
             ActionButtonView(text: "onboarding_action_button".localized) {
                 UserDefaultManager.shared.isOnboardingNeedToBePresented = false

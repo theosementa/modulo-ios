@@ -27,7 +27,8 @@ struct RootScreen: View {
             routerManager: routerManager,
             flow: AppFlow.home
         ) {
-            FinancialGoalListScreen()
+//            FinancialGoalListScreen()
+            OnboardingScreen()
         }
         .toastBanner(
             item: $toastBannerService.toastBanner,
