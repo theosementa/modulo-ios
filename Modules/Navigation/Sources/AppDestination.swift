@@ -9,6 +9,7 @@ import Foundation
 import NavigationKit
 
 public enum AppDestination: AppDestinationProtocol {
+    case shared(SharedDestination)
     case financialGoal(FinancialGoalDestination)
     case contribution(ContributionDestination)
     case settings(SettingsDestination)
@@ -18,6 +19,8 @@ extension AppDestination: RecursiveDestination {
     
     public var unwrapped: AnyHashable {
         switch self {
+        case .shared(let sharedDestination):
+            return sharedDestination
         case .financialGoal(let financialGoalDestination):
             return financialGoalDestination
         case .contribution(let contributionDestination):

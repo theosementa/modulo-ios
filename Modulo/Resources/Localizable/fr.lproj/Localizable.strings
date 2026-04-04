@@ -119,6 +119,30 @@
 "generic_targets" = "Objectifs";
 
 /*  */
+"onboarding_action_button" = "Commence à épargner dès maintenant";
+
+/*  */
+"onboarding_first_section_desc" = "Vacances, achat, projet perso… Crée tes objectifs et suis ta progression depuis un seul endroit.";
+
+/*  */
+"onboarding_first_section_title" = "Organise ton épargne par objectif";
+
+/*  */
+"onboarding_second_section_desc" = "Modulo met à jour ta progression automatiquement à chaque mouvement.";
+
+/*  */
+"onboarding_second_section_title" = "Ajoute ou retire de l'argent";
+
+/*  */
+"onboarding_third_section_desc" = "Un montant mensuel clair pour atteindre chaque objectif à la date que tu veux.";
+
+/*  */
+"onboarding_third_section_title" = "Sache toujours combien épargner";
+
+/*  */
+"onboarding_title_welcome" = "Bienvenue\nsur";
+
+/*  */
 "setting_condition_of_use" = "Conditions d'utilisation";
 
 /*  */
