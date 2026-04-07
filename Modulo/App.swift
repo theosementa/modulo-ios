@@ -11,6 +11,7 @@ import DesignSystem
 import FinancialGoal
 import Contribution
 import Settings
+import Utilities
 
 @main
 struct ModuloApp: App {
@@ -22,6 +23,15 @@ struct ModuloApp: App {
         NavigationRegistry.shared.registerContributionRoutes()
         NavigationRegistry.shared.registerSettingsRoutes()
         NavigationRegistry.shared.registerSharedRoutes()
+        
+#if DEV
+        AppConfiguration.setEnvironment(.dev)
+#elseif MOCK
+        AppConfiguration.setEnvironment(.mock)
+#else
+        AppConfiguration.setEnvironment(.prod)
+#endif
+        
     }
 
     var body: some Scene {

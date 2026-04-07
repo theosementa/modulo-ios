@@ -9,11 +9,13 @@ import Foundation
 import Repositories
 import Models
 import Persistence
+import Utilities
 
 @Observable
 public final class DefaultFinancialGoalStore: FinancialGoalStore {
     
-    @MainActor public static let shared = DefaultFinancialGoalStore()
+    @MainActor
+    public static let shared: FinancialGoalStore = AppConfiguration.environment == .mock ? MockFinancialGoalStore() : DefaultFinancialGoalStore()
     
     public var repository: FinancialGoalRepository
     public var financialGoals: [FinancialGoalDomain] = []

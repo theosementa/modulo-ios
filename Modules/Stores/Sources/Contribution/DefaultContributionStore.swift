@@ -9,11 +9,13 @@ import Foundation
 import Repositories
 import Models
 import Persistence
+import Utilities
 
 @Observable
 public final class DefaultContributionStore: ContributionStore {
 
-    @MainActor public static let shared = DefaultContributionStore()
+    @MainActor
+    public static let shared: ContributionStore = AppConfiguration.environment == .mock ? MockContributionStore() : DefaultContributionStore()
 
     public var repository: ContributionRepository
     public var contributions: [ContributionDomain] = []
