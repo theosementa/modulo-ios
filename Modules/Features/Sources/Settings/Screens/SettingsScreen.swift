@@ -12,6 +12,9 @@ import Core
 import Models
 
 struct SettingsScreen: View {
+    
+    // MARK: Environments
+    @Environment(\.openURL) private var openURL
 
     // MARK: States
     @State private var viewModel: ViewModel = .init()
@@ -86,7 +89,7 @@ fileprivate extension SettingsScreen {
     var actionsSectionView: some View {
         VStack(spacing: .standard) {
             Button {
-                
+                if let url = URL(string: AppConstant.Link.writeReview) { openURL(url) }
             } label: {
                 SettingsRowView(
                     icon: .iconStar,
@@ -97,19 +100,27 @@ fileprivate extension SettingsScreen {
 
             DividerView(color: .Background.bg200)
 
-            SettingsRowView(
-                icon: .iconSend,
-                text: "setting_share_app".localized,
-                style: .casual
-            )
+//            Button {
+//                
+//            } label: {
+//                SettingsRowView(
+//                    icon: .iconSend,
+//                    text: "setting_share_app".localized,
+//                    style: .casual
+//                )
+//            }
+//
+//            DividerView(color: .Background.bg200)
 
-            DividerView(color: .Background.bg200)
-
-            SettingsRowView(
-                icon: .iconMessage,
-                text: "setting_contact_us".localized,
-                style: .casual
-            )
+            Button {
+                if let url = URL(string: AppConstant.Link.contactEmail) { openURL(url) }
+            } label: {
+                SettingsRowView(
+                    icon: .iconMessage,
+                    text: "setting_contact_us".localized,
+                    style: .casual
+                )
+            }
         }
         .padding(.standard)
         .background(Color.Background.bg100, in: .rect(cornerRadius: .mediumLarge, style: .continuous))
@@ -135,19 +146,24 @@ fileprivate extension SettingsScreen {
 
     var legalSectionView: some View {
         VStack(spacing: .standard) {
-            SettingsRowView(
-                icon: .iconLock,
-                text: "setting_privacy_policy".localized,
-                style: .casual
-            )
+            Button { viewModel.openPrivacyPolicy() } label: {
+                SettingsRowView(
+                    icon: .iconLock,
+                    text: "setting_privacy_policy".localized,
+                    style: .casual
+                )
+            }
+
 
             DividerView(color: .Background.bg200)
 
-            SettingsRowView(
-                icon: .iconFile,
-                text: "setting_condition_of_use".localized,
-                style: .casual
-            )
+            Button { viewModel.openConditionOfUse() } label: {
+                SettingsRowView(
+                    icon: .iconFile,
+                    text: "setting_condition_of_use".localized,
+                    style: .casual
+                )
+            }
         }
         .padding(.standard)
         .background(Color.Background.bg100, in: .rect(cornerRadius: .mediumLarge, style: .continuous))

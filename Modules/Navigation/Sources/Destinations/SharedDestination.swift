@@ -9,5 +9,6 @@ import Foundation
 import NavigationKit
 
 public enum SharedDestination: DestinationItem {
+    case sfSafari(url: URL)
     case onboarding
 }

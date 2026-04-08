@@ -15,6 +15,8 @@ public extension NavigationRegistry {
     func registerSharedRoutes() {
         self.register(SharedDestination.self) { destination in
             switch destination {
+            case .sfSafari(let url):
+                AnyView(SFSafariScreen(url: url))
             case .onboarding:
                 AnyView(OnboardingScreen())
             }

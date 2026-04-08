@@ -13,8 +13,8 @@ import ToastBannerKit
 
 extension SettingsScreen {
     
-    @Observable
-    final class ViewModel {
+    @Observable @MainActor
+    final class ViewModel: BaseViewModel {
         
         // MARK: States
         var selectedTheme: ThemeColorType = .blue
@@ -38,10 +38,21 @@ extension SettingsScreen {
 
 extension SettingsScreen.ViewModel {
     
-    @MainActor
     func deleteAll() {
         DefaultFinancialGoalStore.shared.deleteAll()
         ToastBannerService.shared.send(.successDeleteAllData)
+    }
+    
+    func openPrivacyPolicy() {
+        if let url = URL(string: AppConstant.Link.privacyPolicy) {
+            router?.present(route: .fullScreenCover, .shared(.sfSafari(url: url)))
+        }
+    }
+    
+    func openConditionOfUse() {
+        if let url = URL(string: AppConstant.Link.conditionsOfUse) {
+            router?.present(route: .fullScreenCover, .shared(.sfSafari(url: url)))
+        }
     }
     
 }
