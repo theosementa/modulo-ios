@@ -64,18 +64,10 @@ public extension FinancialGoalDomain {
 @MainActor
 public extension FinancialGoalDomain {
 
-    static let mock: FinancialGoalDomain = .init(
-        id: "mock-1",
-        name: "Preview Goal",
-        emoji: "🧠",
-        goalAmount: 20_000,
-        startDate: .now
-    )
-
     static let mocks: [FinancialGoalDomain] = [
         .init(
             id: "mock-1",
-            name: "Vacances Japon",
+            name: "mock_goal_vacation_japan".localized,
             emoji: "🗾",
             goalAmount: 3_000,
             currentAmount: 600,
@@ -84,7 +76,7 @@ public extension FinancialGoalDomain {
         ),
         .init(
             id: "mock-2",
-            name: "MacBook Pro",
+            name: "mock_goal_macbook".localized,
             emoji: "💻",
             goalAmount: 2_500,
             currentAmount: 1_200,
@@ -93,7 +85,7 @@ public extension FinancialGoalDomain {
         ),
         .init(
             id: "mock-3",
-            name: "Fonds d'urgence",
+            name: "mock_goal_emergency_fund".localized,
             emoji: "🛡️",
             goalAmount: 10_000,
             currentAmount: 2_500,
@@ -101,7 +93,7 @@ public extension FinancialGoalDomain {
         ),
         .init(
             id: "mock-4",
-            name: "Voiture",
+            name: "mock_goal_car".localized,
             emoji: "🚗",
             goalAmount: 15_000,
             currentAmount: 3_000,

@@ -14,14 +14,16 @@ let package = Package(
     ],
     dependencies: [
         .package(name: "Models", path: "../Models"),
-        .package(name: "Stores", path: "../Stores")
+        .package(name: "Stores", path: "../Stores"),
+        .package(name: "Utilities", path: "../Utilities")
     ],
     targets: [
         .target(
             name: "Providers",
             dependencies: [
                 .product(name: "Models", package: "Models"),
-                .product(name: "Stores", package: "Stores")
+                .product(name: "Stores", package: "Stores"),
+                .product(name: "Utilities", package: "Utilities")
             ]
         )
     ]

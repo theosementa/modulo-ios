@@ -18,6 +18,7 @@ public protocol FinancialGoalStore: AnyObject {
     
     func fetchAll()
     func findOneDetailed(by id: String) -> FinancialGoalDetailedDomain?
+    func fetchMonthlyDataPoints(for goalId: String) -> [ContributionMonthlyDataPoint]
 }
 
 public extension FinancialGoalStore {
@@ -90,11 +91,6 @@ public extension FinancialGoalStore {
     func fetchContributions(for goalId: String, offset: Int, limit: Int) -> [ContributionDomain] {
         guard let uuid = UUID(uuidString: goalId) else { return [] }
         return repository.fetchContributions(for: uuid, offset: offset, limit: limit).map { $0.toDomain() }
-    }
-
-    func fetchMonthlyDataPoints(for goalId: String) -> [ContributionMonthlyDataPoint] {
-        guard let uuid = UUID(uuidString: goalId) else { return [] }
-        return repository.fetchMonthlyDataPoints(for: uuid)
     }
     
 }

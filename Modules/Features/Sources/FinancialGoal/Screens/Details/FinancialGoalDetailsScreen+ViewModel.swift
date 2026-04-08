@@ -62,7 +62,7 @@ extension FinancialGoalDetailsScreen.ViewModel {
     }
     
     func fetchAllContributions() {
-        contributionProvider.store.fetchAll()
+        contributionProvider.store.fetchAll(addToRepo: true)
     }
     
     func loadMonthlyDataPoints() {

@@ -214,5 +214,5 @@ fileprivate extension FinancialGoalDetailsScreen {
 
 // MARK: - Preview
 #Preview {
-    FinancialGoalDetailsScreen(id: FinancialGoalDomain.mock.id)
+    FinancialGoalDetailsScreen(id: FinancialGoalDomain.mocks[0].id)
 }
