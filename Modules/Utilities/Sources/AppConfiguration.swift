@@ -26,4 +26,8 @@ public struct AppConfiguration {
         AppConfiguration._environment = environment
     }
     
+    public static var isMockEnv: Bool {
+        return _environment == .mock
+    }
+    
 }

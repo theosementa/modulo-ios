@@ -15,7 +15,7 @@ import Utilities
 public final class DefaultFinancialGoalStore: FinancialGoalStore {
     
     @MainActor
-    public static let shared: FinancialGoalStore = AppConfiguration.environment == .mock ? MockFinancialGoalStore() : DefaultFinancialGoalStore()
+    public static let shared: FinancialGoalStore = AppConfiguration.isMockEnv ? MockFinancialGoalStore() : DefaultFinancialGoalStore()
     
     public var repository: FinancialGoalRepository
     public var financialGoals: [FinancialGoalDomain] = []
@@ -54,6 +54,11 @@ public extension DefaultFinancialGoalStore {
     func findOneDetailed(by id: String) -> FinancialGoalDetailedDomain? {
         guard let uuid = UUID(uuidString: id) else { return nil }
         return repository.fetchOneByEntityId(uuid)?.toDetailed()
+    }
+    
+    func fetchMonthlyDataPoints(for goalId: String) -> [ContributionMonthlyDataPoint] {
+        guard let uuid = UUID(uuidString: goalId) else { return [] }
+        return repository.fetchMonthlyDataPoints(for: uuid)
     }
     
 }

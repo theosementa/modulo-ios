@@ -15,6 +15,7 @@ public final class MockContributionStore: ContributionStore {
     @MainActor public static let shared = MockContributionStore()
 
     public var repository: ContributionRepository = .init()
+    public var financialGoalStore: FinancialGoalStore = MockFinancialGoalStore.shared
     public var contributions: [ContributionDomain] = []
 
     public init(goalId: String = "mock-1") {
@@ -26,7 +27,12 @@ public final class MockContributionStore: ContributionStore {
 extension MockContributionStore {
 
     public func fetchAll(addToRepo: Bool = true) -> [ContributionDomain] {
-        contributions
+        if let goalId = financialGoalStore.currentGoalId {
+            let contributions = ContributionDomain.mocks(for: goalId)
+            if addToRepo { self.contributions = contributions }
+            return contributions
+        }
+        return []
     }
 
     public func create(contribution: ContributionDomain) {

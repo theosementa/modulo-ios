@@ -7,9 +7,11 @@
 
 import Foundation
 import Stores
+import Utilities
 
 public final class DefaultFinancialGoalProvider: FinancialGoalProvider {
-    @MainActor public static let shared = DefaultFinancialGoalProvider()
+    @MainActor
+    public static let shared: FinancialGoalProvider = AppConfiguration.isMockEnv ? MockFinancialGoalProvider() : DefaultFinancialGoalProvider()
     
     public var store: FinancialGoalStore
     

@@ -12,28 +12,18 @@ import Models
 @MainActor
 public protocol ContributionStore: AnyObject {
     var repository: ContributionRepository { get }
+    var financialGoalStore: FinancialGoalStore { get }
     var contributions: [ContributionDomain] { get set }
+    
+    @discardableResult
+    func fetchAll(addToRepo: Bool) -> [ContributionDomain]
 }
 
 // MARK: - Public methods
 public extension ContributionStore {
     
-    @discardableResult
-    func fetchAll(addToRepo: Bool = true) -> [ContributionDomain] {
-        guard let goalId = DefaultFinancialGoalStore.shared.currentGoalId,
-              let uuid = UUID(uuidString: goalId)
-        else { return [] }
-        
-        let entities = repository.fetchAll(for: uuid)
-        let models = entities.map { $0.toDomain() }
-        if addToRepo {
-            self.contributions = models
-        }
-        return models
-    }
-    
     func create(contribution: ContributionDomain) {
-        guard let goalEntity = DefaultFinancialGoalStore.shared.findOneEntity(by: contribution.goalId) else { return }
+        guard let goalEntity = financialGoalStore.findOneEntity(by: contribution.goalId) else { return }
         let draftEntity = contribution.toEntity(goal: goalEntity)
         do {
             let entity = try repository.save(draftEntity)

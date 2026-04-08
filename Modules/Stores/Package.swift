@@ -14,7 +14,7 @@ let package = Package(
     ],
     dependencies: [
         .package(name: "Repositories", path: "../Repositories"),
-        .package(name: "Utilities", path: "../Utilities"),
+        .package(name: "Utilities", path: "../Utilities")
     ],
     targets: [
         .target(
