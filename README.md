@@ -29,7 +29,7 @@
 
 ## Screenshots
 
-<img width="1920" height="1440" alt="394_1x_shots_so" src="https://github.com/user-attachments/assets/ab077052-239d-419e-8ba2-079b23889bc6" />
+<img width="1920" height="1440" alt="803_1x_shots_so" src="https://github.com/user-attachments/assets/f16f0593-f408-4a23-8097-f927c4f0a36c" />
 
 ---
 
