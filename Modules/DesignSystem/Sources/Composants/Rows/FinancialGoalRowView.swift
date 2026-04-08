@@ -90,5 +90,5 @@ public struct FinancialGoalRowView: View {
 
 // MARK: - Preview
 #Preview {
-    FinancialGoalRowView(item: FinancialGoalDomain.mock.toUIModel())
+    FinancialGoalRowView(item: FinancialGoalDomain.mocks[0].toUIModel())
 }

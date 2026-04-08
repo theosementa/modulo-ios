@@ -119,6 +119,30 @@
 "generic_targets" = "Objectifs";
 
 /*  */
+"mock_contrib_accessory" = "Achat accessoire";
+
+/*  */
+"mock_contrib_emergency_withdrawal" = "Retrait urgence";
+
+/*  */
+"mock_contrib_prime" = "Prime été";
+
+/*  */
+"mock_contrib_repair_withdrawal" = "Retrait réparation";
+
+/*  */
+"mock_goal_car" = "Voiture";
+
+/*  */
+"mock_goal_emergency_fund" = "Fonds d'urgence";
+
+/*  */
+"mock_goal_macbook" = "MacBook Pro";
+
+/*  */
+"mock_goal_vacation_japan" = "Vacances Japon";
+
+/*  */
 "onboarding_action_button" = "Commence à épargner dès maintenant";
 
 /*  */

@@ -119,6 +119,30 @@
 "generic_targets" = "Goals";
 
 /*  */
+"mock_contrib_accessory" = "Accessory purchase";
+
+/*  */
+"mock_contrib_emergency_withdrawal" = "Emergency withdrawal";
+
+/*  */
+"mock_contrib_prime" = "Summer Bonus";
+
+/*  */
+"mock_contrib_repair_withdrawal" = "Repair withdrawal";
+
+/*  */
+"mock_goal_car" = "Car";
+
+/*  */
+"mock_goal_emergency_fund" = "Emergency Fund";
+
+/*  */
+"mock_goal_macbook" = "MacBook Pro";
+
+/*  */
+"mock_goal_vacation_japan" = "Vacation in Japan";
+
+/*  */
 "onboarding_action_button" = "Start saving now";
 
 /*  */
