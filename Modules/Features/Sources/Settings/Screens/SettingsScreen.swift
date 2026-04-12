@@ -154,7 +154,6 @@ fileprivate extension SettingsScreen {
                 )
             }
 
-
             DividerView(color: .Background.bg200)
 
             Button { viewModel.openConditionOfUse() } label: {
