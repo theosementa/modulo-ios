@@ -13,13 +13,13 @@ let package = Package(
         )
     ],
     dependencies: [
-        .package(url: "https://github.com/theosementa/NavigationKit", branch: "3.0.3")
+        .package(url: "https://github.com/neopixl/PharosNav-ios.git", from: "1.0.0")
     ],
     targets: [
         .target(
             name: "Navigation",
             dependencies: [
-                .product(name: "NavigationKit", package: "NavigationKit")
+                .product(name: "PharosNav", package: "PharosNav-ios")
             ]
         )
     ]

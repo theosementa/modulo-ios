@@ -16,13 +16,13 @@ public extension NavigationRegistry {
         self.register(FinancialGoalDestination.self) { destination in
             switch destination {
             case .list:
-                return AnyView(FinancialGoalListScreen())
+                FinancialGoalListScreen()
             case .create:
-                return AnyView(AddFinancialGoalScreen())
+                AddFinancialGoalScreen()
             case let .update(id):
-                return AnyView(AddFinancialGoalScreen(goalId: id))
+                AddFinancialGoalScreen(goalId: id)
             case let .details(id):
-                return AnyView(FinancialGoalDetailsScreen(id: id))
+                FinancialGoalDetailsScreen(id: id)
             }
         }
     }

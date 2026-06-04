@@ -67,8 +67,7 @@ struct FinancialGoalDetailsScreen: View {
         .navigationBarBackButtonHidden(true)
         .overlay(alignment: .bottomTrailing) {
             NavigationButtonView(
-                route: .fullScreenCover,
-                destination: .contribution(.create(goalId: viewModel.goalId)),
+                target: .fullScreenCover(.contribution(.create(goalId: viewModel.goalId))),
                 onNavigate: { VibrationManager.vibration() },
                 label: {
                     IconButtonView(

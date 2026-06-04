@@ -46,7 +46,7 @@ public extension CustomEmptyStyle {
         }
     }
     
-    func action(router: Router<AppDestination>) {
+    @MainActor func action(router: Router<AppDestination>) {
         switch self {
         case .noTargets:
             router.present(route: .fullScreenCover, .financialGoal(.create))

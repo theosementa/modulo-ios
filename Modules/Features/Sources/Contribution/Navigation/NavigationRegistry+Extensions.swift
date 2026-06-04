@@ -16,9 +16,9 @@ public extension NavigationRegistry {
         self.register(ContributionDestination.self) { destination in
             switch destination {
             case let .create(goalId):
-                AnyView(AddContributionScreen(goalId: goalId))
+                AddContributionScreen(goalId: goalId)
             case let .update(goalId, contributionId):
-                AnyView(AddContributionScreen(goalId: goalId, contributionId: contributionId))
+                AddContributionScreen(goalId: goalId, contributionId: contributionId)
             }
         }
     }

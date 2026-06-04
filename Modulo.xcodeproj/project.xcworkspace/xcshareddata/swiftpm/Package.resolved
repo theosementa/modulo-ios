@@ -1,5 +1,5 @@
 {
-  "originHash" : "25e88206344d3de9fbbbcc66db349ee64aae019fe2784e886b5a22c6c2e13fdc",
+  "originHash" : "ef2a89570394ccbc4b5c50478af0afaca127f1907afb4333ec3b2a91dfd5f4c8",
   "pins" : [
     {
       "identity" : "mcemojipicker",
@@ -11,12 +11,21 @@
       }
     },
     {
-      "identity" : "navigationkit",
+      "identity" : "pharosnav-ios",
       "kind" : "remoteSourceControl",
-      "location" : "https://github.com/theosementa/NavigationKit",
+      "location" : "https://github.com/neopixl/PharosNav-ios.git",
       "state" : {
-        "branch" : "3.0.3",
-        "revision" : "9f284f1ae300d7155b544d3e7381931869119750"
+        "revision" : "823950e734276ec523864410627044b265d2242f",
+        "version" : "1.0.0"
+      }
+    },
+    {
+      "identity" : "swift-syntax",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/swiftlang/swift-syntax.git",
+      "state" : {
+        "revision" : "f99ae8aa18f0cf0d53481901f88a0991dc3bd4a2",
+        "version" : "601.0.1"
       }
     },
     {

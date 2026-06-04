@@ -6,7 +6,7 @@
 //
 
 import Foundation
-import NavigationKit
+import PharosNav
 
 @MainActor @Observable
 public final class AppRouterManager: RouterManager<AppFlow, AppDestination> {

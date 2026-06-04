@@ -16,7 +16,7 @@ public extension NavigationRegistry {
         self.register(SettingsDestination.self) { destination in
             switch destination {
             case .list:
-                AnyView(SettingsScreen())
+                SettingsScreen()
             }
         }
     }
