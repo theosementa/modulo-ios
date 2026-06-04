@@ -7,7 +7,7 @@
 
 import Foundation
 
-enum FinancialGoalIntent {
+enum AddFinancialGoalIntent {
     case emojiChanged(String)
     case nameChanged(String)
     case amountChanged(Double)

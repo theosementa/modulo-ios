@@ -7,10 +7,13 @@
 
 import Foundation
 
-struct FinancialGoalState {
+struct AddFinancialGoalState {
     var emoji: String = ""
     var name: String = ""
     var amount: Double = 0
     var startDate: Date = .now
     var endDate: Date? = nil
+    
+    var isLoading: Bool = false
+    var errorMessage: String? = nil
 }
