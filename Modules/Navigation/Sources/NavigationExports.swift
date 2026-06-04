@@ -7,4 +7,4 @@
 
 import Foundation
 
-@_exported import NavigationKit
+@_exported import PharosNav

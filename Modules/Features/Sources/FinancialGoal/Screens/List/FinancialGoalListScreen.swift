@@ -32,8 +32,7 @@ public struct FinancialGoalListScreen: View {
             if viewModel.financialGoals.isEmpty == false {
                 List(viewModel.financialGoals) { financialGoal in
                     NavigationButtonView(
-                        route: .push,
-                        destination: .financialGoal(.details(id: financialGoal.id)),
+                        target: .push(.financialGoal(.details(id: financialGoal.id))),
                         onNavigate: { viewModel.onNavigateSetGoalId(financialGoal.id) },
                         label: { FinancialGoalRowView(item: financialGoal.toUIModel()) }
                     )
@@ -52,8 +51,7 @@ public struct FinancialGoalListScreen: View {
         .background(Color.Background.bg50)
         .overlay(alignment: .bottomTrailing) {
             NavigationButtonView(
-                route: .fullScreenCover,
-                destination: .financialGoal(.create),
+                target: .fullScreenCover(.financialGoal(.create)),
                 onNavigate: { VibrationManager.vibration() },
                 label: {
                     IconButtonView(

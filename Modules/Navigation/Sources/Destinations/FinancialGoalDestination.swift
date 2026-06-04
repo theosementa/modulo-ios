@@ -6,7 +6,7 @@
 //
 
 import Foundation
-import NavigationKit
+import PharosNav
 
 public enum FinancialGoalDestination: DestinationItem {
     case list

@@ -6,28 +6,12 @@
 //
 
 import Foundation
-import NavigationKit
+import PharosNav
 
-public enum AppDestination: AppDestinationProtocol {
+@RecursiveDestination
+public enum AppDestination: @MainActor AppDestinationProtocol {
     case shared(SharedDestination)
     case financialGoal(FinancialGoalDestination)
     case contribution(ContributionDestination)
     case settings(SettingsDestination)
-}
-
-extension AppDestination: RecursiveDestination {
-    
-    public var unwrapped: AnyHashable {
-        switch self {
-        case .shared(let sharedDestination):
-            return sharedDestination
-        case .financialGoal(let financialGoalDestination):
-            return financialGoalDestination
-        case .contribution(let contributionDestination):
-            return contributionDestination
-        case .settings(let settingsDestination):
-            return settingsDestination
-        }
-    }
-    
 }

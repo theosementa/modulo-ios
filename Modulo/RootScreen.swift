@@ -18,16 +18,12 @@ struct RootScreen: View {
     @State private var toastBannerService: ToastBannerService = .shared
     @State private var userDefaultManager: UserDefaultManager = .shared
     
-    // MARK: Constants
-    private let router: Router<AppDestination> = .init()
-    private let routerManager: AppRouterManager = .shared
-    
     // MARK: - View
     var body: some View {
         NavigationStackView(
-            router: router,
-            routerManager: routerManager,
-            flow: AppFlow.home
+            routerManager: AppRouterManager.shared,
+            flow: AppFlow.home,
+            isTabPage: true
         ) {
             Group {
                 if userDefaultManager.isOnboardingNeedToBePresented {
