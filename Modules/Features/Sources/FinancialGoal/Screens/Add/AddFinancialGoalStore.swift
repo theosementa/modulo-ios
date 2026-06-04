@@ -7,7 +7,7 @@
 
 import Foundation
 
-@Observable
+@Observable @MainActor
 final class AddFinancialGoalStore: Sendable {
     
     private(set) var state = AddFinancialGoalState()
