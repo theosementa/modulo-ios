@@ -39,12 +39,16 @@ public struct FinancialGoalDomain: Identifiable, Equatable {
 public extension FinancialGoalDomain {
 
     func toUIModel() -> FinancialGoalUIModel {
+        let ratio: Double = goalAmount > 0 ? min(max(currentAmount / goalAmount, 0), 1) : 0
         return .init(
             id: id,
             name: name,
             emoji: emoji,
             currentAmountFormatted: currentAmount.toCurrency(),
-            goalDateFormatted: endDate?.formatted(date: .numeric, time: .omitted) ?? ""
+            goalAmountFormatted: goalAmount.toCurrency(),
+            goalDateFormatted: endDate?.formatted(date: .numeric, time: .omitted) ?? "",
+            progressPercentFormatted: "\(Int((ratio * 100).rounded())) %",
+            progressRatio: ratio
         )
     }
     
