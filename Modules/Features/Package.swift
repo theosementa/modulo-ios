@@ -1,4 +1,4 @@
-// swift-tools-version: 6.1
+// swift-tools-version: 6.2
 // The swift-tools-version declares the minimum version of Swift required to build this package.
 
 import PackageDescription
@@ -15,7 +15,7 @@ let package = Package(
         .package(name: "Core", path: "../Core"),
         .package(name: "DesignSystem", path: "../DesignSystem"),
         .package(name: "Navigation", path: "../Navigation"),
-        .package(name: "Providers", path: "../Providers"),
+        .package(name: "Presenters", path: "../Presenters"),
         
         .package(url: "https://github.com/izyumkin/MCEmojiPicker", branch: "1.2.3")
     ],
@@ -25,7 +25,11 @@ let package = Package(
             dependencies: [
                 .product(name: "DesignSystem", package: "DesignSystem"),
                 .product(name: "Navigation", package: "Navigation"),
-                .product(name: "Providers", package: "Providers")
+                .product(name: "Presenters", package: "Presenters")
+            ],
+            swiftSettings: [
+                .swiftLanguageMode(.v6),
+                .defaultIsolation(MainActor.self)
             ]
         ),
         .testTarget(name: "ContributionTests", dependencies: ["Contribution"]),
@@ -34,9 +38,13 @@ let package = Package(
             dependencies: [
                 .product(name: "DesignSystem", package: "DesignSystem"),
                 .product(name: "Navigation", package: "Navigation"),
-                .product(name: "Providers", package: "Providers"),
+                .product(name: "Presenters", package: "Presenters"),
                 
                 .product(name: "MCEmojiPicker", package: "MCEmojiPicker")
+            ],
+            swiftSettings: [
+                .swiftLanguageMode(.v6),
+                .defaultIsolation(MainActor.self)
             ]
         ),
         .target(

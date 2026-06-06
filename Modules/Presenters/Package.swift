@@ -4,32 +4,26 @@
 import PackageDescription
 
 let package = Package(
-    name: "DesignSystem",
+    name: "Presenters",
     platforms: [.iOS(.v17)],
     products: [
         .library(
-            name: "DesignSystem",
-            targets: ["DesignSystem"]
+            name: "Presenters",
+            targets: ["Presenters"]
         )
     ],
     dependencies: [
-        .package(name: "Core", path: "../Core"),
         .package(name: "Models", path: "../Models"),
-        .package(name: "Navigation", path: "../Navigation"),
         .package(name: "DataSources", path: "../DataSources"),
-        
-        .package(url: "https://github.com/theosementa/ToastBannerKit.git", exact: "1.0.31")
+        .package(name: "Utilities", path: "../Utilities")
     ],
     targets: [
         .target(
-            name: "DesignSystem",
+            name: "Presenters",
             dependencies: [
-                .product(name: "Core", package: "Core"),
                 .product(name: "Models", package: "Models"),
-                .product(name: "Navigation", package: "Navigation"),
                 .product(name: "DataSources", package: "DataSources"),
-                
-                .product(name: "ToastBannerKit", package: "ToastBannerKit")
+                .product(name: "Utilities", package: "Utilities")
             ]
         )
     ]

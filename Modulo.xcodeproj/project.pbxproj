@@ -9,8 +9,8 @@
 /* Begin PBXBuildFile section */
 		D9469C5F2F73CA8E002B5BE5 /* Core in Frameworks */ = {isa = PBXBuildFile; productRef = D9469C5E2F73CA8E002B5BE5 /* Core */; };
 		D9469D0D2F73D3B3002B5BE5 /* Repositories in Frameworks */ = {isa = PBXBuildFile; productRef = D9469D0C2F73D3B3002B5BE5 /* Repositories */; };
-		D9469D0F2F73D3BA002B5BE5 /* Providers in Frameworks */ = {isa = PBXBuildFile; productRef = D9469D0E2F73D3BA002B5BE5 /* Providers */; };
-		D9469D112F73D3BF002B5BE5 /* Stores in Frameworks */ = {isa = PBXBuildFile; productRef = D9469D102F73D3BF002B5BE5 /* Stores */; };
+		D9469D0F2F73D3BA002B5BE5 /* Presenters in Frameworks */ = {isa = PBXBuildFile; productRef = D9469D0E2F73D3BA002B5BE5 /* Presenters */; };
+		D9469D112F73D3BF002B5BE5 /* DataSources in Frameworks */ = {isa = PBXBuildFile; productRef = D9469D102F73D3BF002B5BE5 /* DataSources */; };
 		D9469E192F751F12002B5BE5 /* Contribution in Frameworks */ = {isa = PBXBuildFile; productRef = D9469E182F751F12002B5BE5 /* Contribution */; };
 		D946A0702F7A5DD7002B5BE5 /* Settings in Frameworks */ = {isa = PBXBuildFile; productRef = D946A06F2F7A5DD7002B5BE5 /* Settings */; };
 		D9ADB2222F6FFCF600FEDA12 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = D9ADB2212F6FFCF600FEDA12 /* README.md */; };
@@ -41,10 +41,10 @@
 			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
 			membershipExceptions = (
 				Core,
+				DataSources,
 				Models,
-				Providers,
+				Presenters,
 				Repositories,
-				Stores,
 			);
 			target = D9ADB20A2F6FFBDE00FEDA12 /* Modulo */;
 		};
@@ -74,11 +74,11 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D9469D112F73D3BF002B5BE5 /* Stores in Frameworks */,
+				D9469D112F73D3BF002B5BE5 /* DataSources in Frameworks */,
 				D9ADB25C2F705EE700FEDA12 /* Navigation in Frameworks */,
 				D9ADB2C62F706E0E00FEDA12 /* Utilities in Frameworks */,
 				D9ADB28E2F7062F700FEDA12 /* Persistence in Frameworks */,
-				D9469D0F2F73D3BA002B5BE5 /* Providers in Frameworks */,
+				D9469D0F2F73D3BA002B5BE5 /* Presenters in Frameworks */,
 				D9ADB25A2F705EE700FEDA12 /* Models in Frameworks */,
 				D9469E192F751F12002B5BE5 /* Contribution in Frameworks */,
 				D9469D0D2F73D3B3002B5BE5 /* Repositories in Frameworks */,
@@ -149,8 +149,8 @@
 				D9ADB2C52F706E0E00FEDA12 /* Utilities */,
 				D9469C5E2F73CA8E002B5BE5 /* Core */,
 				D9469D0C2F73D3B3002B5BE5 /* Repositories */,
-				D9469D0E2F73D3BA002B5BE5 /* Providers */,
-				D9469D102F73D3BF002B5BE5 /* Stores */,
+				D9469D0E2F73D3BA002B5BE5 /* Presenters */,
+				D9469D102F73D3BF002B5BE5 /* DataSources */,
 				D9469E182F751F12002B5BE5 /* Contribution */,
 				D946A06F2F7A5DD7002B5BE5 /* Settings */,
 			);
@@ -608,13 +608,13 @@
 			isa = XCSwiftPackageProductDependency;
 			productName = Repositories;
 		};
-		D9469D0E2F73D3BA002B5BE5 /* Providers */ = {
+		D9469D0E2F73D3BA002B5BE5 /* Presenters */ = {
 			isa = XCSwiftPackageProductDependency;
-			productName = Providers;
+			productName = Presenters;
 		};
-		D9469D102F73D3BF002B5BE5 /* Stores */ = {
+		D9469D102F73D3BF002B5BE5 /* DataSources */ = {
 			isa = XCSwiftPackageProductDependency;
-			productName = Stores;
+			productName = DataSources;
 		};
 		D9469E182F751F12002B5BE5 /* Contribution */ = {
 			isa = XCSwiftPackageProductDependency;

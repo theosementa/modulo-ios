@@ -29,8 +29,8 @@ Utilities
   └── Models
         └── Persistence
               └── Repositories
-                    └── Stores
-                          └── Providers
+                    └── DataSources
+                          └── Presenters
                                 └── DesignSystem ← Core, Navigation
                                       └── Features (Contribution, FinancialGoal, Settings)
 ```
@@ -41,12 +41,17 @@ External packages: `NavigationKit` (theosementa), `ToastBannerKit` (theosementa)
 
 ## Architecture
 
-### Full Stack for One Feature
+The codebase uses two patterns side by side:
+
+- **MVVM** (default) — described below. Screen + nested `@Observable @MainActor ViewModel`, talks to a `Presenter` → `DataSource` chain. Used by most screens (`List`, `Details`, `Settings`, etc.).
+- **MVI** — Intent / State / SideEffect / Action / Result / Reducer / Store. Preferred when a screen has user input, async work, or one-shot UI effects (dismiss, navigation, toast). Currently used by `AddFinancialGoal` (`Modules/Features/Sources/FinancialGoal/Screens/Add/`). The full recipe lives in **`.claude/rules/swift-mvi.md`** — read it before adding or refactoring an MVI feature.
+
+### Full Stack for One Feature (MVVM)
 
 1. **View** (`Features/`) — `@State private var viewModel: ViewModel`, calls methods on ViewModel, reads computed properties.
-2. **ViewModel** (`Screen+ViewModel.swift`) — `@Observable @MainActor`, extends `BaseViewModel` (provides `router`). Injects a `Provider` via constructor (default = shared singleton).
-3. **Provider** (`Providers/`) — Protocol + `Default` implementation. Holds a `Store` reference, exposes sorted/filtered arrays of Domain types.
-4. **Store** (`Stores/`) — Protocol + `Default` + `Mock` implementations. `@Observable`, holds `[DomainType]` state, owns a `Repository`. Extension methods on the protocol provide the shared business logic (create, delete, fetch…).
+2. **ViewModel** (`Screen+ViewModel.swift`) — `@Observable @MainActor`, extends `BaseViewModel` (provides `router`). Injects a `Presenter` via constructor (default = shared singleton).
+3. **Presenter** (`Presenters/`) — Protocol + `Default` implementation. Holds a `DataSource` reference and exposes sorted / filtered / scoped views of Domain types (presentation queries — never mutates the cache).
+4. **DataSource** (`DataSources/`) — Protocol + `Default` + `Mock` implementations. `@Observable`, holds `[DomainType]` state, owns a `Repository`. Extension methods on the protocol provide the shared business logic (create, delete, fetch…).
 5. **Repository** (`Repositories/`) — Extends `GenericRepository<Entity>`. SwiftData queries via `FetchDescriptor`. Never called directly by the UI.
 6. **Persistence** — `GenericRepository<T: PersistentModel>` backed by `SwiftDataContextManager.shared` (single `ModelContainer`).
 
@@ -78,12 +83,12 @@ Each feature module registers its routes in `NavigationRegistry+Extensions.swift
 
 ### Dependency Injection
 
-- ViewModels receive providers in their `init` with default singletons:
+- ViewModels receive presenters in their `init` with default singletons:
   ```swift
-  init(provider: FinancialGoalProvider = DefaultFinancialGoalProvider.shared)
+  init(presenter: FinancialGoalPresenter = DefaultFinancialGoalPresenter.shared)
   ```
-- Use `MockFinancialGoalProvider` / `MockFinancialGoalStore` in Previews and tests.
-- `MockFinancialGoalStore` overrides all protocol extension methods with in-memory implementations using `FinancialGoalDomain.mocks` and `ContributionDomain.mocks(for: goalId)`.
+- Use `MockFinancialGoalPresenter` / `MockFinancialGoalDataSource` in Previews and tests.
+- `MockFinancialGoalDataSource` overrides all protocol extension methods with in-memory implementations using `FinancialGoalDomain.mocks` and `ContributionDomain.mocks(for: goalId)`.
 
 ## Key Conventions
 
@@ -103,8 +108,8 @@ Each feature module registers its routes in `NavigationRegistry+Extensions.swift
 | New reusable component | `Modules/DesignSystem/Sources/Composants/` |
 | New domain model | `Modules/Models/Sources/Domain/` |
 | New SwiftData entity | `Modules/Models/Sources/Entities/` + register in `SwiftDataContextManager` |
-| New store + mock | `Modules/Stores/Sources/<FeatureName>/` |
-| New provider | `Modules/Providers/Sources/<FeatureName>/` |
+| New data source + mock | `Modules/DataSources/Sources/<FeatureName>/` |
+| New presenter | `Modules/Presenters/Sources/<FeatureName>/` |
 | New navigation destination | `Modules/Navigation/Sources/Destinations/` |
 | Route registration | `Modules/Features/Sources/<Feature>/Navigation/NavigationRegistry+Extensions.swift` |
 | New icon | `Modules/DesignSystem/Sources/Resources/Icons.xcassets/` + add case to `ImageType` |

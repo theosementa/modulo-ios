@@ -6,34 +6,39 @@
 //
 
 import SwiftUI
+import Core
 import DesignSystem
 import Navigation
-import Core
+import Presenters
+import Models
 
 public struct FinancialGoalListScreen: View {
-    
-    // MARK: States
-    @State private var viewModel: ViewModel = .init()
-    
+
+    // MARK: Dependencies
+    private let presenter: FinancialGoalPresenter
+
     // MARK: Environments
     @Environment(\.theme) private var theme
-    
+    @Environment(Router<AppDestination>.self) private var router
+
     // MARK: Init
-    public init() { }
-    
+    public init(presenter: FinancialGoalPresenter = DefaultFinancialGoalPresenter.shared) {
+        self.presenter = presenter
+    }
+
     // MARK: - View
     public var body: some View {
         VStack(spacing: .zero) {
             NavigationBarView(
                 style: .home,
-                rightAction: viewModel.navigateToSettings
+                rightAction: { router.push(.settings(.list)) }
             )
-            
-            if viewModel.financialGoals.isEmpty == false {
-                List(viewModel.financialGoals) { financialGoal in
+
+            if sortedGoals.isEmpty == false {
+                List(sortedGoals) { financialGoal in
                     NavigationButtonView(
                         target: .push(.financialGoal(.details(id: financialGoal.id))),
-                        onNavigate: { viewModel.onNavigateSetGoalId(financialGoal.id) },
+                        onNavigate: { presenter.dataSource.currentGoalId = financialGoal.id },
                         label: { FinancialGoalRowView(item: financialGoal.toUIModel()) }
                     )
                     .disableListStyle()
@@ -47,7 +52,7 @@ public struct FinancialGoalListScreen: View {
                     .fullSize()
             }
         }
-        .animation(.smooth, value: viewModel.financialGoals)
+        .animation(.smooth, value: sortedGoals)
         .background(Color.Background.bg50)
         .overlay(alignment: .bottomTrailing) {
             NavigationButtonView(
@@ -62,8 +67,17 @@ public struct FinancialGoalListScreen: View {
             )
             .padding(.large)
         }
-        .onAppear { viewModel.onAppearAction() }
+        .onAppear { presenter.dataSource.fetchAll() }
     }
+}
+
+// MARK: - Computed variables
+private extension FinancialGoalListScreen {
+
+    var sortedGoals: [FinancialGoalDomain] {
+        presenter.goals(sortedBy: .goalAmount)
+    }
+
 }
 
 // MARK: - Preview

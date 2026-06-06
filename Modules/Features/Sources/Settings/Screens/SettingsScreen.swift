@@ -10,14 +10,26 @@ import DesignSystem
 import Navigation
 import Core
 import Models
+import DataSources
+import ToastBannerKit
 
 struct SettingsScreen: View {
-    
+
     // MARK: Environments
     @Environment(\.openURL) private var openURL
+    @Environment(Router<AppDestination>.self) private var router
 
     // MARK: States
-    @State private var viewModel: ViewModel = .init()
+    @State private var userDefaultManager = UserDefaultManager.shared
+    @State private var isAlertDataPresented: Bool = false
+
+    // MARK: Constants
+    private let appVersion: String = Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String ?? "1.0.0"
+
+    // MARK: Computed
+    private var selectedTheme: ThemeColorType {
+        ThemeColorType(rawValue: userDefaultManager.selectedTheme) ?? .blue
+    }
 
     // MARK: - View
     var body: some View {
@@ -37,8 +49,8 @@ struct SettingsScreen: View {
         }
         .navigationBarBackButtonHidden(true)
         .background(Color.Background.bg50)
-        .confirmationAlert(.deleteAllData, isPresented: $viewModel.isAlertDataPresented) {
-            viewModel.deleteAll()
+        .confirmationAlert(.deleteAllData, isPresented: $isAlertDataPresented) {
+            deleteAll()
         }
     }
 }
@@ -53,10 +65,10 @@ fileprivate extension SettingsScreen {
                 text: "setting_haptic_feedback".localized,
                 style: .casual
             ) {
-                @Bindable var userDefaultManager = viewModel.userDefaultManager
+                @Bindable var userDefaultManager = userDefaultManager
                 Toggle("", isOn: $userDefaultManager.isHapticFeebackEnabled)
                     .labelsHidden()
-                    .tint(viewModel.selectedTheme.color)
+                    .tint(selectedTheme.color)
             }
 
             DividerView(color: .Background.bg200)
@@ -69,16 +81,15 @@ fileprivate extension SettingsScreen {
                 Menu {
                     ForEach(ThemeColorType.allCases, id: \.self) { theme in
                         Button {
-                            viewModel.selectedTheme = theme
-                            viewModel.userDefaultManager.selectedTheme = theme.rawValue
+                            userDefaultManager.selectedTheme = theme.rawValue
                         } label: {
                             Label(theme.name, systemImage: "square.fill")
                                 .tint(theme.color)
                         }
                     }
                 } label: {
-                    Text(viewModel.selectedTheme.name)
-                        .font(.Body.largeMedium, color: viewModel.selectedTheme.color)
+                    Text(selectedTheme.name)
+                        .font(.Body.largeMedium, color: selectedTheme.color)
                 }
             }
         }
@@ -101,7 +112,7 @@ fileprivate extension SettingsScreen {
             DividerView(color: .Background.bg200)
 
 //            Button {
-//                
+//
 //            } label: {
 //                SettingsRowView(
 //                    icon: .iconSend,
@@ -129,7 +140,7 @@ fileprivate extension SettingsScreen {
     var dangerSectionView: some View {
         VStack(spacing: .zero) {
             Button {
-                viewModel.isAlertDataPresented = true
+                isAlertDataPresented = true
             } label: {
                 SettingsRowView(
                     icon: .iconTrash,
@@ -146,7 +157,7 @@ fileprivate extension SettingsScreen {
 
     var legalSectionView: some View {
         VStack(spacing: .standard) {
-            Button { viewModel.openPrivacyPolicy() } label: {
+            Button { openPrivacyPolicy() } label: {
                 SettingsRowView(
                     icon: .iconLock,
                     text: "setting_privacy_policy".localized,
@@ -156,7 +167,7 @@ fileprivate extension SettingsScreen {
 
             DividerView(color: .Background.bg200)
 
-            Button { viewModel.openConditionOfUse() } label: {
+            Button { openConditionOfUse() } label: {
                 SettingsRowView(
                     icon: .iconFile,
                     text: "setting_condition_of_use".localized,
@@ -170,12 +181,32 @@ fileprivate extension SettingsScreen {
 
     var footerView: some View {
         VStack(spacing: .zero) {
-            Text("v\(viewModel.appVersion)")
+            Text("v\(appVersion)")
                 .font(.Body.mediumMedium)
             Text("setting_made_by".localized)
                 .font(.Label.largeMedium)
         }
         .padding(.top, .small)
+    }
+
+}
+
+// MARK: - Actions
+fileprivate extension SettingsScreen {
+
+    func deleteAll() {
+        DefaultFinancialGoalDataSource.shared.deleteAll()
+        ToastBannerService.shared.send(.successDeleteAllData)
+    }
+
+    func openPrivacyPolicy() {
+        guard let url = URL(string: AppConstant.Link.privacyPolicy) else { return }
+        router.present(route: .fullScreenCover, .shared(.sfSafari(url: url)))
+    }
+
+    func openConditionOfUse() {
+        guard let url = URL(string: AppConstant.Link.conditionsOfUse) else { return }
+        router.present(route: .fullScreenCover, .shared(.sfSafari(url: url)))
     }
 
 }
