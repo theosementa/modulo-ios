@@ -7,7 +7,7 @@
 
 import SwiftUI
 import Models
-import Stores
+import DataSources
 import Navigation
 import ToastBannerKit
 
@@ -54,12 +54,12 @@ public struct ContributionRowView: View {
         .contentShape(Rectangle())
         .contentShape(.contextMenuPreview, RoundedRectangle(cornerRadius: .medium, style: .continuous))
         .confirmationAlert(.deletion, isPresented: $isAlertPresented) {
-            DefaultContributionStore.shared.delete(by: item.id)
+            DefaultContributionDataSource.shared.delete(by: item.id)
             ToastBannerService.shared.send(.successContributionDeleted)
         }
         .contextMenu {
             Button {
-                if let domain = DefaultContributionStore.shared.findOneBy(item.id) {
+                if let domain = DefaultContributionDataSource.shared.findOneBy(item.id) {
                     router.present(route: .fullScreenCover, .contribution(.update(goalId: domain.goalId, contributionId: item.id)))
                 }
             } label: {
