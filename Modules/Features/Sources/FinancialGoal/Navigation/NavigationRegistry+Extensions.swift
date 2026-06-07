@@ -23,6 +23,8 @@ public extension NavigationRegistry {
                 AddFinancialGoalScreen(goalId: id)
             case let .details(id):
                 FinancialGoalDetailsScreen(id: id)
+            case .addFlow:
+                AddFinancialGoalFlowScreen()
             }
         }
     }

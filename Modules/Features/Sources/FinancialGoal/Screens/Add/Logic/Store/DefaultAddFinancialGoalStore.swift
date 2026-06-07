@@ -12,7 +12,7 @@ import DesignSystem
 import ToastBannerKit
 
 @Observable @MainActor
-final class DefaultAddFinancialGoalStore: AddFinancialGoalStore, Sendable {
+final class DefaultAddFinancialGoalStore: AddFinancialGoalStore {
 
     private(set) var state: AddFinancialGoalState
     private let reducer = AddFinancialGoalReducer()

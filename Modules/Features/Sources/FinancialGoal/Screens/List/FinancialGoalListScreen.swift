@@ -67,6 +67,18 @@ public struct FinancialGoalListScreen: View {
             )
             .padding(.large)
         }
+        // TODO: TBR — temp debug button for the new add-goal flow
+        .toolbar {
+            // TODO: TBR — temp debug button for the new add-goal flow
+            ToolbarItem(placement: .topBarLeading) {
+                // TODO: TBR — temp debug button for the new add-goal flow
+                NavigationButtonView(target: .fullScreenCover(.financialGoal(.addFlow))) {
+                    // TODO: TBR — temp debug button for the new add-goal flow
+                    Text("🧪 New flow")
+                        .font(.Body.mediumMedium, color: .Text.secondary)
+                }
+            }
+        }
         .onAppear { presenter.dataSource.fetchAll() }
     }
 }

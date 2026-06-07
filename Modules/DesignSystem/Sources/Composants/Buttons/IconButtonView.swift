@@ -33,9 +33,18 @@ public struct IconButtonView: View {
             VibrationManager.vibration()
             if let action { action() }
         } label: {
-            IconView(icon, color: config.iconColor)
-                .padding(10)
-                .background(config.bgColor, in: .rect(cornerRadius: .standard, style: .continuous))
+            if #available(iOS 26, *) {
+                IconView(icon, color: config.iconColor)
+                    .frame(width: 44, height: 44)
+                    .glassEffect(
+                        .regular.interactive(),
+                        in: .rect(cornerRadius: .standard, style: .continuous)
+                    )
+            } else {
+                IconView(icon, color: config.iconColor)
+                    .padding(10)
+                    .background(config.bgColor, in: .rect(cornerRadius: .standard, style: .continuous))
+            }
         }
         .disabled(action == nil)
     }

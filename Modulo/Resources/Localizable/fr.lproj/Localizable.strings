@@ -20,6 +20,27 @@
 "add_financial_goal_field_name_placeholder_two" = "Nouvelle voiture";
 
 /*  */
+"add_flow_create_goal_button" = "Créer l'objectif";
+
+/*  */
+"add_flow_step_amount_caption" = "Montant de l'objectif";
+
+/*  */
+"add_flow_step_info_name_placeholder" = "Acompte maison";
+
+/*  */
+"add_flow_step_info_next_button" = "Suivant";
+
+/*  */
+"add_flow_step_start_amount_caption" = "Montant initial (optionnel)";
+
+/*  */
+"add_flow_step_start_amount_not_tracked_banner" = "Ta contribution initiale de %@ n'est pas incluse";
+
+/*  */
+"add_flow_step_start_amount_track_toggle" = "Inclure dans ma progression";
+
+/*  */
 "add_goal_field_name_title" = "Nom de l'objectif";
 
 /*  */
