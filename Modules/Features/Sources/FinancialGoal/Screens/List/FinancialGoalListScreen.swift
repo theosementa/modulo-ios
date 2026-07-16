@@ -48,7 +48,7 @@ public struct FinancialGoalListScreen: View {
                 .scrollIndicators(.hidden)
                 .contentMargins(.all, .standard, for: .scrollContent)
             } else {
-                CustomEmptyView(style: .noTargets)
+                CustomEmptyView(style: .noGoals)
                     .fullSize()
             }
         }
@@ -56,7 +56,7 @@ public struct FinancialGoalListScreen: View {
         .background(Color.Background.bg50)
         .overlay(alignment: .bottomTrailing) {
             NavigationButtonView(
-                target: .fullScreenCover(.financialGoal(.create)),
+                target: .fullScreenCover(.financialGoal(.addFlow)),
                 onNavigate: { VibrationManager.vibration() },
                 label: {
                     IconButtonView(
@@ -66,18 +66,6 @@ public struct FinancialGoalListScreen: View {
                 }
             )
             .padding(.large)
-        }
-        // TODO: TBR — temp debug button for the new add-goal flow
-        .toolbar {
-            // TODO: TBR — temp debug button for the new add-goal flow
-            ToolbarItem(placement: .topBarLeading) {
-                // TODO: TBR — temp debug button for the new add-goal flow
-                NavigationButtonView(target: .fullScreenCover(.financialGoal(.addFlow))) {
-                    // TODO: TBR — temp debug button for the new add-goal flow
-                    Text("🧪 New flow")
-                        .font(.Body.mediumMedium, color: .Text.secondary)
-                }
-            }
         }
         .onAppear { presenter.dataSource.fetchAll() }
     }

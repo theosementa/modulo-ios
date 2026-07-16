@@ -6,5 +6,5 @@
 //
 
 public enum CustomEmptyStyle {
-    case noTargets
+    case noGoals
 }

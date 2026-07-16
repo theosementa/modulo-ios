@@ -44,5 +44,5 @@ public struct CustomEmptyView: View {
 
 // MARK: - Preview
 #Preview {
-    CustomEmptyView(style: .noTargets)
+    CustomEmptyView(style: .noGoals)
 }

@@ -32,7 +32,7 @@
 "add_flow_step_info_next_button" = "Next";
 
 /*  */
-"add_flow_step_start_amount_caption" = "Start amount (optional)";
+"add_flow_step_start_amount_caption" = "Current amount (optional)";
 
 /*  */
 "add_flow_step_start_amount_not_tracked_banner" = "Your initial contribution of %@ is not included";
