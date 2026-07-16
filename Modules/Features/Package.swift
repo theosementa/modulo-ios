@@ -17,7 +17,7 @@ let package = Package(
         .package(name: "Navigation", path: "../Navigation"),
         .package(name: "Presenters", path: "../Presenters"),
         
-        .package(url: "https://github.com/izyumkin/MCEmojiPicker", branch: "1.2.3")
+        .package(url: "https://github.com/izyumkin/MCEmojiPicker", branch: "1.2.5")
     ],
     targets: [
         .target(

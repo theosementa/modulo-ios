@@ -13,4 +13,5 @@ public enum FinancialGoalDestination: DestinationItem {
     case create
     case update(id: String)
     case details(id: String)
+    case addFlow
 }

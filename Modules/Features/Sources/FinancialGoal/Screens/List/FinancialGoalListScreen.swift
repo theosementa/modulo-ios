@@ -48,7 +48,7 @@ public struct FinancialGoalListScreen: View {
                 .scrollIndicators(.hidden)
                 .contentMargins(.all, .standard, for: .scrollContent)
             } else {
-                CustomEmptyView(style: .noTargets)
+                CustomEmptyView(style: .noGoals)
                     .fullSize()
             }
         }
@@ -56,7 +56,7 @@ public struct FinancialGoalListScreen: View {
         .background(Color.Background.bg50)
         .overlay(alignment: .bottomTrailing) {
             NavigationButtonView(
-                target: .fullScreenCover(.financialGoal(.create)),
+                target: .fullScreenCover(.financialGoal(.addFlow)),
                 onNavigate: { VibrationManager.vibration() },
                 label: {
                     IconButtonView(

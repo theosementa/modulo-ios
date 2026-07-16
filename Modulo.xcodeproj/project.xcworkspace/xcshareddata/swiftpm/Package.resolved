@@ -1,13 +1,13 @@
 {
-  "originHash" : "ef2a89570394ccbc4b5c50478af0afaca127f1907afb4333ec3b2a91dfd5f4c8",
+  "originHash" : "454988be07b28da06ad52ef8354a7d134cc1adcaeb6a09aa5c06cb199376a014",
   "pins" : [
     {
       "identity" : "mcemojipicker",
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/izyumkin/MCEmojiPicker",
       "state" : {
-        "branch" : "1.2.3",
-        "revision" : "e0b4903b75ae1cc418d276d84d1cb946b8a1d73c"
+        "branch" : "1.2.5",
+        "revision" : "e5b3ed359b04370287366a7c15ffa7013cdd4eec"
       }
     },
     {
@@ -15,8 +15,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/neopixl/PharosNav-ios.git",
       "state" : {
-        "revision" : "823950e734276ec523864410627044b265d2242f",
-        "version" : "1.0.0"
+        "revision" : "aa7c81fd5c2f188d7f540bbb10e2e7dcd8bc253c",
+        "version" : "1.0.1"
       }
     },
     {

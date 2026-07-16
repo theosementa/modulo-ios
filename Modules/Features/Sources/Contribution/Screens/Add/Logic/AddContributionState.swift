@@ -19,7 +19,7 @@ struct AddContributionState {
     var screenState: ScreenState = .idle
 
     var goalId: String = ""
-    var contributionId: String? = nil
+    var contributionId: String?
     var name: String = ""
     var amount: String = "0"
     var date: Date? = .now

@@ -20,6 +20,27 @@
 "add_financial_goal_field_name_placeholder_two" = "New car";
 
 /*  */
+"add_flow_create_goal_button" = "Create the goal";
+
+/*  */
+"add_flow_step_amount_caption" = "Goal amount";
+
+/*  */
+"add_flow_step_info_name_placeholder" = "House down payment";
+
+/*  */
+"add_flow_step_info_next_button" = "Next";
+
+/*  */
+"add_flow_step_start_amount_caption" = "Current amount (optional)";
+
+/*  */
+"add_flow_step_start_amount_not_tracked_banner" = "Your initial contribution of %@ is not included";
+
+/*  */
+"add_flow_step_start_amount_track_toggle" = "Track in my progress";
+
+/*  */
 "add_goal_field_name_title" = "Goal name";
 
 /*  */
