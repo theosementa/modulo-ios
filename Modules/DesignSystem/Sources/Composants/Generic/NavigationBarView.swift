@@ -26,6 +26,7 @@ public struct NavigationBarView: View {
     private let style: NavigationBarStyle
     private let rightAction: (() -> Void)?
     private let leftAction: (() -> Void)?
+    private let hasBackground: Bool
     
     // MARK: - Environments
     @Environment(\.dismiss) private var dismiss
@@ -34,11 +35,13 @@ public struct NavigationBarView: View {
     public init(
         style: NavigationBarStyle,
         rightAction: (() -> Void)? = nil,
-        leftAction: (() -> Void)? = nil
+        leftAction: (() -> Void)? = nil,
+        hasBackground: Bool = true
     ) {
         self.style = style
         self.rightAction = rightAction
         self.leftAction = leftAction
+        self.hasBackground = hasBackground
     }
     
     // MARK: - View
@@ -73,7 +76,7 @@ public struct NavigationBarView: View {
             }
         }
         .padding(.standard)
-        .background(Color.Background.bg50)
+        .background(hasBackground ? Color.Background.bg50 : Color.clear)
     }
 }
 

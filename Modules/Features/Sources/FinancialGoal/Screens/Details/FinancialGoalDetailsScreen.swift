@@ -19,13 +19,27 @@ struct FinancialGoalDetailsScreen: View {
     // MARK: Environments
     @Environment(\.theme) private var theme
     @Environment(Router<AppDestination>.self) private var router
+    @Environment(\.safeAreaInsets) private var safeAreaInsets
 
     // MARK: States
     @State private var store: DefaultFinancialGoalDetailsStore = .init()
+    @State private var navigationBarHeight: CGFloat = 0
+    @State private var toContributeSectionHeight: CGFloat = 0
+    @State private var generalSectionHeight: CGFloat = 0
+    @State private var scrollOffset: CGFloat = 0
 
     // MARK: Init
     init(id: String) {
         self.id = id
+    }
+
+    // MARK: Computed variables
+    private var meshGradientBaseHeight: CGFloat {
+        navigationBarHeight + toContributeSectionHeight + generalSectionHeight + .large + (.huge / 2)
+    }
+
+    private var meshGradientHeight: CGFloat {
+        max(navigationBarHeight, meshGradientBaseHeight - scrollOffset + safeAreaInsets.top)
     }
 
     // MARK: - View
@@ -34,25 +48,40 @@ struct FinancialGoalDetailsScreen: View {
             NavigationBarView(
                 style: .push(title: store.detailledGoal?.toUIModel().name ?? ""),
                 rightAction: { store.send(.editTapped) },
-                leftAction: { store.send(.dismissTapped) }
+                leftAction: { store.send(.dismissTapped) },
+                hasBackground: false
             )
+            .getSize { size in
+                navigationBarHeight = size.height
+            }
 
             if let goal = store.detailledGoal?.toUIModel() {
                 ScrollView {
-                    VStack(spacing: .large) {
+                    VStack(spacing: .huge) {
                         if goal.remainingThisMonthFormatted != nil {
                             toContributeThisMonthSectionView(goal)
-                            DividerView()
+                                .getSize { size in
+                                    toContributeSectionHeight = size.height
+                                }
+                            DividerView(color: Color.Base.white)
                         }
+                        
                         generalSectionView(goal)
-                        DividerView()
+                            .getSize { size in
+                                generalSectionHeight = size.height
+                            }
+                        
                         monthlySectionView(goal)
+                        
                         DividerView()
+                        
                         dateSectionView(goal)
+                        
                         DividerView()
+                        
                         contributionsSectionView()
                     }
-                    .padding(.standard)
+                    .padding(.large)
                 }
                 .scrollIndicators(.hidden)
                 .contentMargins(.bottom, .massive, for: .scrollContent)
@@ -60,10 +89,23 @@ struct FinancialGoalDetailsScreen: View {
                 .onChange(of: store.detailledGoal?.goal.currentAmount) {
                     store.send(.loadMonthlyDataPoints)
                 }
+                .onScrollGeometryChange(for: CGFloat.self) { geometry in
+                    geometry.contentOffset.y + geometry.contentInsets.top
+                } action: { _, newValue in
+                    scrollOffset = newValue
+                }
             }
         }
         .fullSize(.top)
-        .background(Color.Background.bg50)
+        .background {
+            VStack(spacing: .zero) {
+                meshGradientView
+                    .ignoresSafeArea(.all, edges: .top)
+                    .frame(height: meshGradientHeight)
+                Color.Background.bg50
+                    .ignoresSafeArea(.all, edges: .bottom)
+            }
+        }
         .navigationBarBackButtonHidden(true)
         .overlay(alignment: .bottomTrailing) {
             NavigationButtonView(
@@ -99,27 +141,28 @@ fileprivate extension FinancialGoalDetailsScreen {
 
     func generalSectionView(_ goal: FinancialGoalDetailedUIModel) -> some View {
         VStack(spacing: .medium) {
-            if store.state.isChartDisplayed {
-                ContributionLineChartView(dataPoints: store.state.monthlyDataPoints)
-            }
+//            if store.state.isChartDisplayed {
+//                ContributionLineChartView(dataPoints: store.state.monthlyDataPoints)
+//            }
 
             ProgressBarView(percentage: goal.progress)
 
-            ValueWithLabelView(
-                value: goal.goalAmountFormatted,
-                label: "financial_goal_detail_general_section_target".localized
-            )
-
-            HStack(spacing: .medium) {
-                ValueWithLabelView(
-                    value: goal.currentContributionsFormatted,
-                    label: "financial_goal_detail_general_section_total_contribution".localized
-                )
-
-                ValueWithLabelView(
-                    value: goal.remainingContributionsFormatted,
-                    label: "financial_goal_detail_general_section_remaining_contribution".localized
-                )
+            HStack(spacing: .small) {
+                VStack(alignment: .leading, spacing: .zero) {
+                    Text("financial_goal_detail_general_section_total_contribution".localized)
+                        .font(.Body.smallRegular, color: Color(uiColor: .secondaryLabel))
+                    Text(goal.currentContributionsFormatted)
+                        .font(.Title.largeSemiBold, color: Color(uiColor: .label))
+                }
+                .fullWidth(.leading)
+                
+                VStack(alignment: .trailing, spacing: .zero) {
+                    Text("financial_goal_detail_general_section_remaining_contribution".localized)
+                        .font(.Body.smallRegular, color: Color(uiColor: .secondaryLabel))
+                    Text(goal.remainingContributionsFormatted)
+                        .font(.Title.largeSemiBold, color: Color(uiColor: .label))
+                }
+                .fullWidth(.trailing)
             }
         }
     }
@@ -201,6 +244,25 @@ fileprivate extension FinancialGoalDetailsScreen {
         }
         .task {
             store.send(.fetchContributions)
+        }
+    }
+    
+    var meshGradientView: some View {
+        Group {
+            if #available(iOS 18.0, *) {
+                MeshGradient(
+                    width: 2, height: 2,
+                    points: [
+                        [0, 0], [1, 0],
+                        [0, 1], [1, 1]
+                    ],
+                    colors: [
+                        Color.Background.bg50, theme.color, theme.color, Color.Background.bg50
+                    ]
+                )
+            } else {
+                theme.color
+            }
         }
     }
 
