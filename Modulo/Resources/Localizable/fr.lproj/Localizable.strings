@@ -32,7 +32,7 @@
 "add_flow_step_info_next_button" = "Suivant";
 
 /*  */
-"add_flow_step_start_amount_caption" = "Montant actuek (optionnel)";
+"add_flow_step_start_amount_caption" = "Montant actuel (optionnel)";
 
 /*  */
 "add_flow_step_start_amount_not_tracked_banner" = "Ta contribution initiale de %@ n'est pas incluse";

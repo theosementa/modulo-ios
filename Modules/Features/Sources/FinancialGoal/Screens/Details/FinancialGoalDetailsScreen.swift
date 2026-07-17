@@ -133,22 +133,25 @@ fileprivate extension FinancialGoalDetailsScreen {
             VStack(spacing: .medium) {
                 if goal.date.endDateFormatted != nil {
                     DetailRowView(
-                        icon: .iconTarget,
-                        text: "financial_goal_detail_monthly_section_theorical_target".localized,
-                        value: goal.monthlyTargetFormatted ?? ""
+                        style: .big,
+                        value: goal.monthlyTargetFormatted ?? "",
+                        title: "financial_goal_detail_monthly_section_theorical_target".localized,
+                        description: "Based on your goal and deadline"
                     )
-
+                    
                     DetailRowView(
-                        icon: .iconTarget,
-                        text: "financial_goal_detail_monthly_section_recalculed_target".localized,
-                        value: goal.monthlyRequiredFormatted ?? ""
+                        style: .big,
+                        value: goal.monthlyRequiredFormatted ?? "",
+                        title: "financial_goal_detail_monthly_section_recalculed_target".localized,
+                        description: "Recalculated from your current progress"
                     )
                 }
-
+                
                 DetailRowView(
-                    icon: .iconHandCoins,
-                    text: "financial_goal_detail_monthly_section_contributed_this_month".localized,
-                    value: goal.contribuedThisMonthFormatted
+                    style: .big,
+                    value: goal.contribuedThisMonthFormatted,
+                    title: "financial_goal_detail_monthly_section_contributed_this_month".localized,
+                    description: "Added to your goal this month"
                 )
             }
         }
@@ -161,30 +164,18 @@ fileprivate extension FinancialGoalDetailsScreen {
 
             VStack(spacing: .medium) {
                 DetailRowView(
-                    icon: .iconSablier,
-                    text: "financial_goal_detail_date_section_elapsed_days".localized,
-                    value: goal.date.elapsedDaysFormatted
+                    style: .small,
+                    value: goal.date.elapsedDaysFormatted,
+                    title: "financial_goal_detail_date_section_elapsed_days".localized,
+                    description: "Since \(goal.date.startDateFormatted)"
                 )
 
-                if let remainingDays = goal.date.remainingDaysFormatted {
+                if let remainingDays = goal.date.remainingDaysFormatted, let endDate = goal.date.endDateFormatted {
                     DetailRowView(
-                        icon: .iconRemaningTime,
-                        text: "financial_goal_detail_date_section_remaining_days".localized,
-                        value: remainingDays
-                    )
-                }
-
-                DetailRowView(
-                    icon: .iconCalendar,
-                    text: "generic_start_date".localized,
-                    value: goal.date.startDateFormatted
-                )
-
-                if let endDate = goal.date.endDateFormatted {
-                    DetailRowView(
-                        icon: .iconCalendar,
-                        text: "generic_end_date".localized,
-                        value: endDate
+                        style: .small,
+                        value: remainingDays,
+                        title: "financial_goal_detail_date_section_remaining_days".localized,
+                        description: "Until \(endDate)"
                     )
                 }
             }

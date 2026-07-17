@@ -21,4 +21,8 @@ extension ThemeColorType {
         }
     }
     
+    public var backgroundColor: Color {
+        return color.opacity(0.15)
+    }
+    
 }
