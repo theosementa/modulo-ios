@@ -35,8 +35,10 @@ struct AddContributionScreen: View {
     // MARK: - View
     var body: some View {
         VStack(spacing: .standard) {
-            DismissButtonView { store.send(.dismissAttempted) }
-                .fullWidth(.trailing)
+            IconButtonView(.iconXmark) {
+                store.send(.dismissAttempted)
+            }
+            .fullWidth(.trailing)
 
             TextFieldView(
                 text: .init(

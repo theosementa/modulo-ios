@@ -24,7 +24,7 @@ public extension View {
     func fullSize(_ alignment: Alignment = .center) -> some View {
         self.frame(maxWidth: .infinity, maxHeight: .infinity, alignment: alignment)
     }
-        
+    
     @ViewBuilder
     func isDisplayed(_ isDisplayed: Bool) -> some View {
         if isDisplayed {

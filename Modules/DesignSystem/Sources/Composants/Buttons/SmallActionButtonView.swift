@@ -41,18 +41,34 @@ public struct SmallActionButtonView: View {
                 }
             }
         } label: {
-            HStack(spacing: .small) {
-                IconView(icon, size: .mediumLarge, color: style.foregroundColor)
-                Text(text)
-                    .font(.Body.mediumRegular, color: style.foregroundColor)
+            if #available(iOS 26, *), config.hasLiquidGlass {
+                labelView
+                    .glassEffect(
+                        style.glass,
+                        in: .rect(cornerRadius: .medium, style: .continuous)
+                    )
+            } else {
+                labelView
+                    .background(style.backgroundColor, in: .rect(cornerRadius: .medium, style: .continuous))
             }
-            .padding(.horizontal, .standard)
-            .padding(.vertical, .medium)
-            .frame(maxWidth: config.isFullWidth ? .infinity : nil, alignment: config.isFullWidth ? .leading : .center)
-            .background(style.backgroundColor, in: .rect(cornerRadius: .medium, style: .continuous))
         }
         .disabled(action == nil)
     }
+}
+
+fileprivate extension SmallActionButtonView {
+    
+    var labelView: some View {
+        HStack(spacing: .small) {
+            IconView(icon, size: .mediumLarge, color: style.foregroundColor)
+            Text(text)
+                .font(.Body.mediumRegular, color: style.foregroundColor)
+        }
+        .padding(.horizontal, .standard)
+        .padding(.vertical, .medium)
+        .frame(maxWidth: config.isFullWidth ? .infinity : nil, alignment: config.isFullWidth ? .leading : .center)
+    }
+    
 }
 
 // MARK: - Utils
@@ -89,16 +105,31 @@ public enum SmallActionButtonStyle: Equatable {
             return nil
         }
     }
-    
+
+    @available(iOS 26.0, *)
+    var glass: Glass {
+        switch self {
+        case .classic, .noValue:
+            return .regular.interactive()
+        case .withValue(let bgColor):
+            return .regular.tint(bgColor).interactive()
+        }
+    }
+
 }
 
 extension SmallActionButtonView {
     
     public struct Configuration {
         public var isFullWidth: Bool
+        public var hasLiquidGlass: Bool
         
-        public init(isFullWidth: Bool = false) {
+        public init(
+            isFullWidth: Bool = false,
+            hasLiquidGlass: Bool = false
+        ) {
             self.isFullWidth = isFullWidth
+            self.hasLiquidGlass = hasLiquidGlass
         }
     }
     

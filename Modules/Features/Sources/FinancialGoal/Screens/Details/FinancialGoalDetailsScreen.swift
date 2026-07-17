@@ -108,16 +108,15 @@ struct FinancialGoalDetailsScreen: View {
         }
         .navigationBarBackButtonHidden(true)
         .overlay(alignment: .bottomTrailing) {
-            NavigationButtonView(
-                target: .fullScreenCover(.contribution(.create(goalId: store.state.goalId))),
-                onNavigate: { VibrationManager.vibration() },
-                label: {
-                    IconButtonView(
-                        .iconPlus,
-                        config: .init(iconColor: .white, bgColor: theme.color)
-                    )
-                }
-            )
+            SmallActionButtonView(
+                style: .withValue(bgColor: theme.color),
+                icon: .iconPlusRounded,
+                text: "Add a contribution", // TODO: TBL
+                config: .init(hasLiquidGlass: true)
+            ) {
+                VibrationManager.vibration()
+                router.present(route: .fullScreenCover, .contribution(.create(goalId: store.state.goalId)))
+            }
             .padding(.large)
         }
         .task {

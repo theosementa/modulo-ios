@@ -25,6 +25,7 @@ public enum ImageType: String {
     case iconMessage
     case iconPencil
     case iconPlus
+    case iconPlusRounded
     case iconProfile
     case iconRemaningTime
     case iconSablier

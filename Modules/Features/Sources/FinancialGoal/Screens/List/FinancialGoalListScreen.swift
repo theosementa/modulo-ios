@@ -55,16 +55,15 @@ public struct FinancialGoalListScreen: View {
         .animation(.smooth, value: sortedGoals)
         .background(Color.Background.bg50)
         .overlay(alignment: .bottomTrailing) {
-            NavigationButtonView(
-                target: .fullScreenCover(.financialGoal(.addFlow)),
-                onNavigate: { VibrationManager.vibration() },
-                label: {
-                    IconButtonView(
-                        .iconPlus,
-                        config: .init(iconColor: .white, bgColor: theme.color)
-                    )
-                }
-            )
+            SmallActionButtonView(
+                style: .withValue(bgColor: theme.color),
+                icon: .iconPlusRounded,
+                text: "Add a goal", // TODO: TBL
+                config: .init(hasLiquidGlass: true)
+            ) {
+                VibrationManager.vibration()
+                router.present(route: .fullScreenCover, .financialGoal(.addFlow))
+            }
             .padding(.large)
         }
         .onAppear { presenter.dataSource.fetchAll() }
